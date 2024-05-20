@@ -39,6 +39,19 @@
     @apply bg-light-800 dark:bg-dark-300 !important;
   }
 
+  .background-light900_lightDark200 {
+    @apply bg-light-900 dark:lightDark !important;
+  }
+
+  .lightDark {
+    background: radial-gradient(
+      circle,
+      rgba(42, 42, 42, 1) 0%,
+      rgba(15, 20, 38, 1) 0%
+    );
+    border: none;
+  }
+
   .text-dark100_light900 {
     @apply text-dark-100 dark:text-light-900 !important;
   }

@@ -2,12 +2,16 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const ProfileLogo = () => {
   return (
-    <div className="flex flex-col gap-3">
-      <Link href="/sign-in">
-        <Button className="small-medium min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+    <div className="flex flex-col items-center gap-3">
+      <Avatar className="background-light900_dark200 text-dark200_light900">
+        <AvatarFallback>T</AvatarFallback>
+      </Avatar>
+      {/* <Link href="/sign-in">
+        <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
           <Image
             src="/icon/account.svg"
             alt="login profile"
@@ -16,9 +20,9 @@ const ProfileLogo = () => {
             className="invert-colors lg:hidden"
           />
 
-          <span className="max-lg:hidden">Sign in</span>
+          <span className="text-dark100_light900 max-lg:hidden">Sign in</span>
         </Button>
-      </Link>
+      </Link> */}
     </div>
   );
 };

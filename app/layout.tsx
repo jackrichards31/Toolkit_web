@@ -2,6 +2,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeProvider";
+import WelcomeBar from "@/components/Home/WelcomeBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,8 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${spaceGrotesk.className}`}>
-        {children}
+      <body
+        className={`${inter.className} ${spaceGrotesk.className} background-light900_dark200`}
+      >
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
