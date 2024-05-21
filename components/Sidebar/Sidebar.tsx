@@ -9,13 +9,9 @@ import ProfileLogo from "../Profile/ProfileLogo";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  // const [screenSize, setScreenSize] = useState(false);
+  const Firstname = "Tony";
+  const Lastname = "Stark";
 
-  // useEffect(() => {
-  //   const checkScreenSize = () => {
-  //     setScreenSize(window.innerWidth <= 1280);
-  //   }
-  // }, [])
   return (
     <section className="background-light900_dark200 light-border custom-scrollbar sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-6 pt-16 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[266px]">
       <div className="flex flex-1 flex-col gap-6">
@@ -60,7 +56,7 @@ const Sidebar = () => {
         })}
       </div>
 
-      <ProfileLogo />
+      <ProfileLogo Firstname={Firstname} Lastname={Lastname} />
     </section>
   );
 };

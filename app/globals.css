@@ -53,12 +53,20 @@ body {
     );
   }
 
+  .auth-form {
+    @apply flex min-h-screen w-full max-w-[420px] flex-col justify-center gap-5 py-10 md:gap-8;
+  }
+
   .tab {
     @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-500 !important;
   }
 
   .home {
     @apply no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:h-screen xl:overflow-y-scroll;
+  }
+
+  .footer_name {
+    @apply flex size-10 items-center justify-center rounded-full text-light-900 bg-dark-200 dark:bg-gray-200 dark:text-dark-200 max-xl:hidden;
   }
 }
 
