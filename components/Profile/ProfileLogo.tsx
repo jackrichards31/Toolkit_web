@@ -1,6 +1,7 @@
 // import Link from "next/link";
 import React from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import Link from "next/link";
 
 const ProfileLogo = ({
   Firstname,
@@ -11,9 +12,11 @@ const ProfileLogo = ({
 }) => {
   return (
     <div className="flex items-center gap-3">
-      <Avatar className="footer_name">
-        <AvatarFallback className="font-bold">{Firstname[0]}</AvatarFallback>
-      </Avatar>
+      <Link href="/profile">
+        <Avatar className="footer_name">
+          <AvatarFallback className="font-bold">{Firstname[0]}</AvatarFallback>
+        </Avatar>
+      </Link>
       <div className="flex flex-col">
         <h1 className="text-dark200_light900 font-semibold">
           {Firstname} {Lastname}

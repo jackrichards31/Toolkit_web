@@ -8,7 +8,6 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
       <Sidebar />
       <div className="relative flex-1">
         <WelcomeBar user="Tony" />
-        <hr />
         {children}
       </div>
     </div>

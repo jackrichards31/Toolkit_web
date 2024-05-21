@@ -3,5 +3,5 @@ export interface SidebarLink {
   route: string;
   desc: string;
   label: string;
-  options: object;
+  options: string[];
 }

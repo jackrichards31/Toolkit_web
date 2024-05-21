@@ -10,36 +10,30 @@ export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/icon/merchant.png",
     route: "/merchant/{options}",
-    desc: "Find MID, Agent, and Processor here.",
+    desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
-    options: [
-      {
-        MID: "MID",
-        Agent: "Agent",
-        Processor: "Processor",
-      },
-    ],
+    options: ["MID", "Agent", "Processor"],
   },
   {
     imgURL: "/icon/credit-card.svg",
     route: "/merchant/{options}",
     desc: "Report the FSP",
     label: "FSP",
-    options: { FSP: "FSP" },
+    options: ["FSP"],
   },
   {
     imgURL: "/icon/bank-transfer.svg",
     route: "/Ad-hoc",
     desc: "Report Ad Hoc",
     label: "Ad Hoc",
-    options: { AdHoc: "Ad Hoc" },
+    options: ["Ad Hoc"],
   },
   {
     imgURL: "/icon/deposit.svg",
     route: "/Admin",
     desc: "Admin panel",
     label: "Admin",
-    options: { Admin: "Admin" },
+    options: ["Admin"],
   },
 ];
 
