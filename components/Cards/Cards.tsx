@@ -19,11 +19,13 @@ const Cards = () => {
         return (
           <Card
             key={index}
-            className="background-light900_dark200 text-dark200_light900 flex h-80 w-64 flex-col items-center rounded-lg bg-slate-50 shadow-lg"
+            className="bg-light_dark flex h-80 w-64 flex-col items-center rounded-lg shadow-lg"
           >
             <CardHeader className="text-center">
-              <CardTitle>{item.label}</CardTitle>
-              <CardDescription>{item.desc}</CardDescription>
+              <CardTitle className="text-dark_light">{item.label}</CardTitle>
+              <CardDescription className="text-dark_light">
+                {item.desc}
+              </CardDescription>
               <hr />
             </CardHeader>
             {item.options.map((option, optionIndex) => (
@@ -31,7 +33,7 @@ const Cards = () => {
                 key={optionIndex}
                 className="flex h-screen w-full flex-auto flex-col"
               >
-                <Button className="bg-zinc-950 text-white dark:bg-slate-50 dark:text-black">
+                <Button variant="default" className="btn-dark_light">
                   <Link href={item.route}>{option}</Link>
                 </Button>
               </CardContent>

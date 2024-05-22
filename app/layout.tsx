@@ -25,8 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} background-light900_dark200`}>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className={`${inter.variable} text-dark_light dark:bg-zinc-900`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

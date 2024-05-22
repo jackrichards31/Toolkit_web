@@ -1,20 +1,20 @@
-import { PrismaClient } from "@prisma/client";
-import { Pool } from "@neondatabase/serverless";
-import { PrismaNeon } from "@prisma/adapter-neon";
+// import { PrismaClient } from "@prisma/client";
+// import { Pool } from "@neondatabase/serverless";
+// import { PrismaNeon } from "@prisma/adapter-neon";
 
-const prismaClientSingleton = () => {
-  // neon and Prisma neon will make edge compatible
-  const neon = new Pool({ connectionString: process.env.DATABASE_URL });
-  const adapter = new PrismaNeon(neon);
-  return new PrismaClient({ adapter });
-};
+// const prismaClientSingleton = () => {
+//   // neon and Prisma neon will make edge compatible
+//   const neon = new Pool({ connectionString: process.env.DATABASE_URL });
+//   const adapter = new PrismaNeon(neon);
+//   return new PrismaClient({ adapter });
+// };
 
-declare global {
-  var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
-}
+// declare global {
+//   var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
+// }
 
-const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
+// const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
-export default prisma;
+// export default prisma;
 
-if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
+// if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
