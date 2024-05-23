@@ -1,31 +1,39 @@
 import { SidebarLink } from "@/types";
 
 export const themes = [
-  { value: "light", label: "Light", icon: "/assets/icons/sun.svg" },
-  { value: "dark", label: "Dark", icon: "/assets/icons/moon.svg" },
-  { value: "system", label: "System", icon: "/assets/icons/computer.svg" },
+  { value: "light", label: "Light", icon: "icon/sun.svg" },
+  { value: "dark", label: "Dark", icon: "icon/moon.svg" },
+  { value: "system", label: "System", icon: "icon/computer.svg" },
 ];
 
 export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/icon/merchant.png",
-    route: "/",
+    route: "/merchant/{options}",
+    desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
+    options: ["MID", "Agent", "Processor"],
   },
   {
     imgURL: "/icon/credit-card.svg",
-    route: "/community",
+    route: "/merchant/{options}",
+    desc: "Report the FSP",
     label: "FSP",
+    options: ["FSP"],
   },
   {
     imgURL: "/icon/bank-transfer.svg",
-    route: "/collection",
+    route: "/Ad-hoc",
+    desc: "Report Ad Hoc",
     label: "Ad Hoc",
+    options: ["Ad Hoc"],
   },
   {
     imgURL: "/icon/deposit.svg",
-    route: "/jobs",
+    route: "/Admin",
+    desc: "Admin panel",
     label: "Admin",
+    options: ["Admin"],
   },
 ];
 

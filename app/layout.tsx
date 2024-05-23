@@ -1,21 +1,20 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter as Sans } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
-const inter = Inter({
+const inter = Sans({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
   title: "Toolkit",
+  description: "A Toolkit web for everyone",
   icons: {
-    icon: "/icon/Chain-smol-png",
+    icon: "/public/icon/Chain-smol.png",
   },
 };
 
@@ -26,8 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${spaceGrotesk.className}`}>
-        {children}
+      <body className={`${inter.variable} text-dark_light dark:bg-zinc-900`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,24 +1,30 @@
-import Link from "next/link";
+// import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
-import Image from "next/image";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import Link from "next/link";
 
-const ProfileLogo = () => {
+const ProfileLogo = ({
+  Firstname,
+  Lastname,
+}: {
+  Firstname: string;
+  Lastname: string;
+}) => {
   return (
-    <div className="flex flex-col gap-3">
-      <Link href="/sign-in">
-        <Button className="small-medium min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-          <Image
-            src="/icon/account.svg"
-            alt="login profile"
-            width={20}
-            height={20}
-            className="invert-colors lg:hidden"
-          />
-
-          <span className="max-lg:hidden">Sign in</span>
-        </Button>
+    <div className="flex items-center gap-3">
+      <Link href="/profile">
+        <Avatar className="footer_name">
+          <AvatarFallback className="font-bold">{Firstname[0]}</AvatarFallback>
+        </Avatar>
       </Link>
+      <div className="flex flex-col">
+        <h1 className="text-dark200_light900 font-semibold">
+          {Firstname} {Lastname}
+        </h1>
+        <p className="text-dark200_light900 text-[12px]">
+          Head of an IT department
+        </p>
+      </div>
     </div>
   );
 };

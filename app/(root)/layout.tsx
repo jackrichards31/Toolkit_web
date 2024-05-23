@@ -1,11 +1,15 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import WelcomeBar from "@/components/Home/WelcomeBar";
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <div>
+    <div className="flex">
       <Sidebar />
-      {children}
+      <div className="relative flex-1">
+        <WelcomeBar user="Tony" />
+        {children}
+      </div>
     </div>
   );
 };
