@@ -96,11 +96,15 @@
   }
 
   .input-class {
-    @apply text-[16px] placeholder:text-[16px] rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500;
+    @apply text-[16px] placeholder:text-[16px] rounded-lg border border-gray-300 text-gray-900 placeholder:text-gray-500 dark:placeholder:text-zinc-900 dark:text-black dark:bg-white;
   }
 
   .form-message {
     @apply text-[12px] text-red-500;
+  }
+
+  .auth-asset {
+    @apply flex h-screen w-full sticky top-0 items-center justify-end border-l pl-5 pr-5 max-lg:hidden;
   }
 }
 
