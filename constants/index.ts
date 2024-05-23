@@ -1,4 +1,5 @@
 import { SidebarLink } from "@/types";
+import { z } from "zod";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -9,7 +10,7 @@ export const themes = [
 export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/icon/merchant.png",
-    route: "/merchant/{options}",
+    route: "/merchant/props",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
     options: ["MID", "Agent", "Processor"],
@@ -37,30 +38,23 @@ export const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export const BADGE_CRITERIA = {
-  QUESTION_COUNT: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+export const profileLinks = [
+  {
+    title: "Profile",
+    url: "/profile/id/profile",
   },
-  ANSWER_COUNT: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+  {
+    title: "Account",
   },
-  QUESTION_UPVOTES: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+  {
+    title: "Appearance",
   },
-  ANSWER_UPVOTES: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+  {
+    title: "Notifications",
   },
-  TOTAL_VIEWS: {
-    BRONZE: 1000,
-    SILVER: 10000,
-    GOLD: 100000,
-  },
-};
+];
+
+export const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});

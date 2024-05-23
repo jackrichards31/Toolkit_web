@@ -9,9 +9,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
-import { cn, formSchema } from "@/lib/utils";
 
-const Auth = () => {
+const Auth = ({ type }: { type: string }) => {
+  const formSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+
+    firstName:
+      type === "sign-in" ? z.string().optional() : z.string().min(2).max(15),
+    lastName:
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(20),
+    phone:
+      type === "sign-in" ? z.string().optional() : z.string().min(3).max(10),
+    group: type === "sign-in" ? z.string().optional() : z.string().max(20),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,13 +40,12 @@ const Auth = () => {
     console.log(values);
   };
 
-  const handleFormChange = () => {
-    if (type === "sign-in") setType("sign-up");
-    else setType("sign-in");
-  };
+  // const handleFormChange = () => {
+  //   if (type === "sign-in") setType("sign-up");
+  //   else setType("sign-in");
+  // };
 
   const [user, setUser] = useState(null);
-  const [type, setType] = useState<"sign-in" | "sign-up">("sign-in");
 
   return (
     <section className="auth-form">
@@ -108,20 +119,23 @@ const Auth = () => {
                   <Button type="submit">
                     {type === "sign-in" ? "Sign in" : "Sign up"}
                   </Button>
-                  <p className="my-5 cursor-pointer text-center">
-                    Forget password
-                  </p>
+                  {type === "sign-in" && (
+                    <p className="my-5 cursor-pointer text-center">
+                      Forget password
+                    </p>
+                  )}
                   <hr />
                   <p className="mt-5 text-center">
                     {type === "sign-in"
                       ? "Do not have an account yet?"
                       : "Already have an account?"}
                   </p>
-                  <p
-                    className="cursor-pointer text-center text-sky-600"
-                    onClick={handleFormChange}
-                  >
-                    {type === "sign-in" ? "Sign Up" : "Sign In"}
+                  <p className="cursor-pointer text-center text-sky-600">
+                    {type === "sign-in" ? (
+                      <Link href="/sign-up">Sign Up</Link>
+                    ) : (
+                      <Link href="/sign-in">Sign In</Link>
+                    )}
                   </p>
                 </div>
               </form>
