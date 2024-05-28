@@ -1,14 +1,20 @@
-import React from "react";
-import { Form, useForm } from "react-hook-form";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { Form } from "../ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema } from "@/schemas";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { Button } from "../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
+import { login } from "@/actions/authAction";
 
 const SignInForm = ({ type }: { type: string }) => {
+  const [isPending, startPending] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -18,8 +24,14 @@ const SignInForm = ({ type }: { type: string }) => {
   });
 
   const onSubmit = (values: z.infer<typeof SignInSchema>) => {
-    console.log(values);
+    startPending(() => {
+      login(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
   };
+
   return (
     <div>
       <Form {...form}>
@@ -28,24 +40,32 @@ const SignInForm = ({ type }: { type: string }) => {
           className="w-full space-y-8"
         >
           <CustomInput
+            key="email"
             control={form.control}
             name="email"
             label="Email"
             nameHolder="example@micamp.com"
+            type="sign-in"
           />
           <CustomInput
+            key="password"
             control={form.control}
             name="password"
             label="Password"
             nameHolder="*********"
+            type="sign-in"
           />
           <div className="mt-7 flex flex-col">
-            {type === "sign-in" ? (
-              <FormAlert message="Something went wrong!" type="error" />
+            {error && <FormAlert message={error} type="error" />}
+            {success && <FormAlert message={success} type="success" />}
+            {/* {error !== "" ? (
+              <FormAlert message={error} type="error" />
+            ) : success !== "" ? (
+              <FormAlert message={success} type="success" />
             ) : (
-              <FormAlert message="Success" type="success" />
-            )}
-            <Button type="submit">
+              ""
+            )} */}
+            <Button type="submit" disabled={isPending}>
               {type === "sign-in" ? "Sign in" : "Sign up"}
             </Button>
             {type === "sign-in" && (

@@ -1,7 +1,13 @@
 import React from "react";
 import { AlertTriangle, CircleCheckBig } from "lucide-react";
 
-const FormAlert = ({ message, type }: { message: string; type: string }) => {
+const FormAlert = ({
+  message,
+  type,
+}: {
+  message: string | undefined;
+  type: string;
+}) => {
   return (
     <>
       {type === "error" ? (

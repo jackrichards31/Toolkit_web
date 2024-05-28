@@ -1,10 +1,11 @@
 "use server";
 import { z } from "zod";
 import { SignInSchema, SignUpSchema } from "@/schemas";
+import { GetServerSideProps } from "next";
 import { db } from "@/lib/database";
 import bcrypt from "bcrypt";
 
-export const login = (values: z.infer<typeof SignInSchema>) => {
+export const login = async (values: z.infer<typeof SignInSchema>) => {
   //   Use .safeParse on the schema instance
   const validatedFields = SignInSchema.safeParse(values);
 
@@ -24,7 +25,8 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
 
   if (!validatedFields.success) return { error: "Invalid fields!" };
 
-  const { email, password, firstname, lastname, phone } = validatedFields.data;
+  const { email, password, firstname, lastname, phone, group } =
+    validatedFields.data;
 
   // Hashed the password of the registered users
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -44,8 +46,9 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
       email,
       password: hashedPassword,
       phone,
+      group,
     },
   });
 
-  // else return { success: "Your form has been sent!" };
+  return { success: "Yay!! Your user has been created!" };
 };

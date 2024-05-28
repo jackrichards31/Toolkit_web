@@ -8,27 +8,71 @@ datasource db {
 }
 
 model User {
-  id                Int      @id @default(autoincrement())
+  id                String    @id @default(cuid())
   firstname         String
   lastname          String
-  email             String
+  email             String    @unique
   password          String
-  isPhoneConfirm    Boolean  @default(false)
-  isEmailConfirm    Boolean  @default(false)
-  enabled2FA        Boolean  @default(true)
-  createdAtDateTime DateTime @default(now())
-  updatedAtDateTime DateTime @updatedAt
+  phone             String
+  isPhoneConfirm    Boolean   @default(false)
+  isEmailConfirm    Boolean   @default(false)
+  emailVerified     DateTime?
+  enabled2FA        Boolean   @default(true)
+  createdAtDateTime DateTime  @default(now())
+  updatedAtDateTime DateTime  @updatedAt
   Profile           Profile?
+  Account           Account?
+  Group             Group?    @relation(fields: [groupId], references: [id])
+  groupId           Int?
+  Role              Role?     @relation(fields: [roleId], references: [id])
+  roleId            Int?
 
   @@map("Users")
 }
 
 model Profile {
-  id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userID], references: [id])
-  userID Int  @unique
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userID], references: [id])
+  userID String @unique
 
   @@map("Profile")
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userID                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountID        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userID], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([provider, providerAccountID])
+  @@index([userID])
+}
+
+model Group {
+  id    Int    @id @default(autoincrement())
+  title String
+  User  User[]
+  Role  Role[]
+}
+
+model Role {
+  id    Int     @id @default(autoincrement())
+  title String
+  User  User[]
+  Group Group[]
 }
 
 // model AspNetRoleClaims {

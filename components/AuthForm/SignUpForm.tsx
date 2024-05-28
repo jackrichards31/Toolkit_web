@@ -1,15 +1,23 @@
-import { Link } from "lucide-react";
-import React from "react";
-import { Form, useForm } from "react-hook-form";
+import Link from "next/link";
+import React, { useState, useTransition } from "react";
+import { useForm } from "react-hook-form";
+import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
+import { signUp } from "@/actions/authAction";
+import { GetServerSideProps } from "next";
+import { db } from "@/lib/database";
 
 const SignUpForm = ({ type }: { type: string }) => {
-  const form = useForm<z.infer<typeof SignUpSchema>>({
+  const [isPending, startPending] = useTransition();
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  // const [selectedGroup, setSelectedGroup] = useState<string>("");
+  const SignUpForm = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
       email: "",
@@ -21,56 +29,102 @@ const SignUpForm = ({ type }: { type: string }) => {
     },
   });
 
+  const handleGroupSelectionChange = (value: string) => {
+    SignUpForm.setValue("group", value);
+  };
+
   const onSubmit = (values: z.infer<typeof SignUpSchema>) => {
-    console.log(values);
+    // Add selectedGroup to form data.
+    setError("");
+    setSuccess("");
+    startPending(() => {
+      signUp(values).then((data) => {
+        setError(data.error);
+        setSuccess(data.success);
+      });
+    });
+  };
+
+  const getServerSideProps: GetServerSideProps = async () => {
+    const groups = await db.group.findMany();
+    return {
+      props: {
+        groups,
+      },
+    };
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
+    <Form {...SignUpForm}>
+      <form
+        onSubmit={SignUpForm.handleSubmit(onSubmit)}
+        className="w-full space-y-8"
+      >
         <div className="flex justify-between">
           <div className="w-32">
             <CustomInput
-              control={form.control}
+              key="firstname"
+              control={SignUpForm.control}
               name="firstname"
-              label="Your name"
-              nameHolder="example@micamp.com"
+              label="Name"
+              nameHolder="John"
+              type="sign-up"
             />
           </div>
           <div className="w-32">
             <CustomInput
-              control={form.control}
+              key="lastname"
+              control={SignUpForm.control}
               name="lastname"
-              label="Your surname"
-              nameHolder="example@micamp.com"
+              label="Surname"
+              nameHolder="Doe"
+              type="sign-up"
+            />
+          </div>
+        </div>
+        <div className="flex justify-between">
+          <div className="w-32">
+            <CustomInput
+              key="phone"
+              control={SignUpForm.control}
+              name="phone"
+              label="Phone number"
+              nameHolder="1234567890"
+              type="sign-up"
+            />
+          </div>
+          <div className="w-32">
+            <CustomInput
+              key="group"
+              control={SignUpForm.control}
+              name="group"
+              label="Group"
+              nameHolder="IT, Sales, etc..."
+              type="sign-up"
+              onGroupChange={handleGroupSelectionChange} // Pass callback function
             />
           </div>
         </div>
         <CustomInput
-          control={form.control}
-          name="phone"
-          label="Your phone number"
-          nameHolder="example@micamp.com"
-        />
-        <CustomInput
-          control={form.control}
+          key="email"
+          control={SignUpForm.control}
           name="email"
           label="Email"
           nameHolder="example@micamp.com"
+          type="sign-up"
         />
         <CustomInput
-          control={form.control}
+          key="password"
+          control={SignUpForm.control}
           name="password"
           label="Password"
           nameHolder="*********"
+          type="sign-up"
         />
         <div className="mt-7 flex flex-col">
-          {type === "sign-in" ? (
-            <FormAlert message="Something went wrong!" type="error" />
-          ) : (
-            <FormAlert message="Success" type="success" />
-          )}
-          <Button type="submit">
+          {error && <FormAlert message={error} type="error" />}
+          {success && <FormAlert message={success} type="success" />}
+          <Button type="submit" disabled={isPending}>
             {type === "sign-in" ? "Sign in" : "Sign up"}
           </Button>
           {type === "sign-in" && (

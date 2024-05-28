@@ -3,56 +3,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Form } from "@/components/ui/form";
-import CustomInput from "./CustomInput";
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
+import { useTheme } from "next-themes";
 
 const Auth = ({ type }: { type: string }) => {
-  const formSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
-
-    firstName:
-      type === "sign-in" ? z.string().optional() : z.string().min(2).max(15),
-    lastName:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(20),
-    phone:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(10),
-    group: type === "sign-in" ? z.string().optional() : z.string().max(20),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-      firstName: "",
-      lastName: "",
-      phone: "",
-      group: "",
-    },
-  });
-
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-  };
-
-  // const handleFormChange = () => {
-  //   if (type === "sign-in") setType("sign-up");
-  //   else setType("sign-in");
-  // };
-
   const [user, setUser] = useState(null);
+  const { theme } = useTheme();
+  const light = "/icon/LogoWhite.png";
+  const dark = "/icon/LogoBlack.webp";
 
   return (
     <section className="auth-form">
       <div className="flex w-full flex-col items-center gap-5 md:gap-8">
         <Link href="/" className="flex cursor-pointer items-center gap-1 px-4">
           <Image
-            src="/icon/LogoBlack.webp"
+            src={theme === "dark" ? light : dark}
             alt="logo"
             width={300}
             height={300}
@@ -69,77 +35,12 @@ const Auth = ({ type }: { type: string }) => {
                 : "Please, enter your details."}
             </p>
           </h1>
-          <div className="flex w-full flex-auto">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="w-full space-y-8"
-              >
-                {type === "sign-up" && (
-                  <>
-                    <div className="flex justify-between">
-                      <div className="w-32 ">
-                        <CustomInput
-                          control={form.control}
-                          name="firstName"
-                          label="Your name"
-                          nameHolder="example@micamp.com"
-                        />
-                      </div>
-                      <div className="w-32">
-                        <CustomInput
-                          control={form.control}
-                          name="lastName"
-                          label="Your last name"
-                          nameHolder="example@micamp.com"
-                        />
-                      </div>
-                    </div>
-                    <CustomInput
-                      control={form.control}
-                      name="phone"
-                      label="Your phone number"
-                      nameHolder="example@micamp.com"
-                    />
-                  </>
-                )}
-                <CustomInput
-                  control={form.control}
-                  name="email"
-                  label="Email"
-                  nameHolder="example@micamp.com"
-                />
-                <CustomInput
-                  control={form.control}
-                  name="password"
-                  label="Password"
-                  nameHolder="*********"
-                />
-                <div className="mt-7 flex flex-col">
-                  <Button type="submit">
-                    {type === "sign-in" ? "Sign in" : "Sign up"}
-                  </Button>
-                  {type === "sign-in" && (
-                    <p className="my-5 cursor-pointer text-center">
-                      Forget password
-                    </p>
-                  )}
-                  <hr />
-                  <p className="mt-5 text-center">
-                    {type === "sign-in"
-                      ? "Do not have an account yet?"
-                      : "Already have an account?"}
-                  </p>
-                  <p className="cursor-pointer text-center text-sky-600">
-                    {type === "sign-in" ? (
-                      <Link href="/sign-up">Sign Up</Link>
-                    ) : (
-                      <Link href="/sign-in">Sign In</Link>
-                    )}
-                  </p>
-                </div>
-              </form>
-            </Form>
+          <div className="flex w-full justify-center">
+            {type === "sign-in" ? (
+              <SignInForm type="sign-in" />
+            ) : (
+              <SignUpForm type="sign-up" />
+            )}
           </div>
         </div>
       </div>
