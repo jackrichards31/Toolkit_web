@@ -1,5 +1,4 @@
 import { SidebarLink } from "@/types";
-import { z } from "zod";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -53,8 +52,3 @@ export const profileLinks = [
     title: "Notifications",
   },
 ];
-
-export const LoginSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});

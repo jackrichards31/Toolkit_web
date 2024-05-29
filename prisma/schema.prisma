@@ -22,7 +22,7 @@ model User {
   updatedAtDateTime DateTime  @updatedAt
   Profile           Profile?
   Account           Account?
-  Group             Group?    @relation(fields: [groupId], references: [id])
+  // Group             Group?    @relation(fields: [groupId], references: [id])
   groupId           Int?
   Role              Role?     @relation(fields: [roleId], references: [id])
   roleId            Int?
@@ -64,7 +64,7 @@ model Account {
 model Group {
   id    Int    @id @default(autoincrement())
   title String
-  User  User[]
+  // User  User[]
   Role  Role[]
 }
 

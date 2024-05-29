@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SignInForm from "./SignInForm";
@@ -8,7 +8,6 @@ import SignUpForm from "./SignUpForm";
 import { useTheme } from "next-themes";
 
 const Auth = ({ type }: { type: string }) => {
-  const [user, setUser] = useState(null);
   const { theme } = useTheme();
   const light = "/icon/LogoWhite.png";
   const dark = "/icon/LogoBlack.webp";
@@ -28,18 +27,18 @@ const Auth = ({ type }: { type: string }) => {
         <hr className="w-2/3" />
         <div className="flex w-10/12 flex-col gap-1 md:gap-3">
           <h1 className="text-dark_light text-center text-[24px] font-semibold text-gray-900 lg:text-[36px]">
-            {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
+            {type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-dark_light pb-5 text-[16px] font-normal text-gray-600">
-              {user
+              {type === "sign-in"
                 ? "Link your account to get started."
                 : "Please, enter your details."}
             </p>
           </h1>
           <div className="flex w-full justify-center">
             {type === "sign-in" ? (
-              <SignInForm type="sign-in" />
+              <SignInForm type={type} />
             ) : (
-              <SignUpForm type="sign-up" />
+              <SignUpForm type={type} />
             )}
           </div>
         </div>

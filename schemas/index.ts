@@ -15,5 +15,6 @@ export const SignUpSchema = z.object({
   firstname: z.string().min(1).max(15),
   lastname: z.string().min(1).max(20),
   phone: z.string().max(10),
-  group: z.string(),
+  groupId: z.string(),
+  role: z.string(),
 });

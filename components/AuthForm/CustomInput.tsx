@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import { FormControl, FormField, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Control, FieldPath } from "react-hook-form";
@@ -25,7 +23,7 @@ interface CustomInputProps<Type extends string> {
   label: string;
   nameHolder: string;
   type: Type;
-  onGroupChange?: (value: string) => void;
+  groups?: { id: number; title: string }[];
 }
 
 const CustomInput = <Type extends "sign-in" | "sign-up">({
@@ -34,16 +32,9 @@ const CustomInput = <Type extends "sign-in" | "sign-up">({
   label,
   nameHolder,
   type,
-  onGroupChange, // Receive the callback function.
+  groups,
 }: CustomInputProps<Type>) => {
   const isSignIn = type === "sign-in";
-  const [selectedGroup, setSelectedGroup] = useState(""); // Set state to store the select option's value
-
-  const handleGroupChange = (value: string) => {
-    setSelectedGroup(value); // Update the selected group state
-    onGroupChange && onGroupChange(value);
-  };
-
   return (
     <div>
       <FormField
@@ -56,24 +47,16 @@ const CustomInput = <Type extends "sign-in" | "sign-up">({
               {label}
             </FormLabel>
             <div className="flex w-full flex-col">
-              {!isSignIn && name === "group" ? (
+              {!isSignIn && label === "Group" ? (
                 <>
-                  <Select
-                    onValueChange={(value) => field.onChange(handleGroupChange)}
-                  >
+                  <Select onValueChange={(value) => field.onChange(value)}>
                     <SelectTrigger className="dark:bg-white dark:text-black">
                       <SelectValue placeholder="Select a department" />
                     </SelectTrigger>
                     <SelectContent>
                       {["IT", "Hardware", "Sale", "Support", "Marketing"].map(
                         (item) => (
-                          <SelectItem
-                            key={item}
-                            value={item}
-                            onSelect={() => {
-                              field.onChange(item);
-                            }}
-                          >
+                          <SelectItem key={item} value={item}>
                             {item}
                           </SelectItem>
                         )

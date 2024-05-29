@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -9,13 +11,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
-import { GetServerSideProps } from "next";
-import { db } from "@/lib/database";
 
 const SignUpForm = ({ type }: { type: string }) => {
+  // Use the build-in transitioning function from React to prevent the user to submit the form multiple times.
   const [isPending, startPending] = useTransition();
+
+  // For storing the validation of an error and a success messages.
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+
   // const [selectedGroup, setSelectedGroup] = useState<string>("");
   const SignUpForm = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
@@ -23,15 +27,11 @@ const SignUpForm = ({ type }: { type: string }) => {
       email: "",
       password: "",
       phone: "",
-      group: "",
+      groupId: "",
       firstname: "",
       lastname: "",
     },
   });
-
-  const handleGroupSelectionChange = (value: string) => {
-    SignUpForm.setValue("group", value);
-  };
 
   const onSubmit = (values: z.infer<typeof SignUpSchema>) => {
     // Add selectedGroup to form data.
@@ -39,19 +39,11 @@ const SignUpForm = ({ type }: { type: string }) => {
     setSuccess("");
     startPending(() => {
       signUp(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
-  };
-
-  const getServerSideProps: GetServerSideProps = async () => {
-    const groups = await db.group.findMany();
-    return {
-      props: {
-        groups,
-      },
-    };
+    console.log(values);
   };
 
   return (
@@ -97,11 +89,10 @@ const SignUpForm = ({ type }: { type: string }) => {
             <CustomInput
               key="group"
               control={SignUpForm.control}
-              name="group"
+              name="groupId"
               label="Group"
               nameHolder="IT, Sales, etc..."
               type="sign-up"
-              onGroupChange={handleGroupSelectionChange} // Pass callback function
             />
           </div>
         </div>
