@@ -30,11 +30,13 @@ const SignUpForm = ({ type }: { type: string }) => {
       groupId: "",
       firstname: "",
       lastname: "",
+      role: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof SignUpSchema>) => {
     // Add selectedGroup to form data.
+    console.log(values);
     setError("");
     setSuccess("");
     startPending(() => {
@@ -43,7 +45,6 @@ const SignUpForm = ({ type }: { type: string }) => {
         setSuccess(data?.success);
       });
     });
-    console.log(values);
   };
 
   return (
@@ -116,11 +117,8 @@ const SignUpForm = ({ type }: { type: string }) => {
           {error && <FormAlert message={error} type="error" />}
           {success && <FormAlert message={success} type="success" />}
           <Button type="submit" disabled={isPending}>
-            {type === "sign-in" ? "Sign in" : "Sign up"}
+            Sign up
           </Button>
-          {type === "sign-in" && (
-            <p className="my-5 cursor-pointer text-center">Forget password</p>
-          )}
           <hr />
           <p className="mt-5 text-center">
             {type === "sign-in"

@@ -24,10 +24,12 @@ const SignInForm = ({ type }: { type: string }) => {
   });
 
   const onSubmit = (values: z.infer<typeof SignInSchema>) => {
+    setError("");
+    setSuccess("");
     startPending(() => {
       login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };
@@ -58,19 +60,10 @@ const SignInForm = ({ type }: { type: string }) => {
           <div className="mt-7 flex flex-col">
             {error && <FormAlert message={error} type="error" />}
             {success && <FormAlert message={success} type="success" />}
-            {/* {error !== "" ? (
-              <FormAlert message={error} type="error" />
-            ) : success !== "" ? (
-              <FormAlert message={success} type="success" />
-            ) : (
-              ""
-            )} */}
             <Button type="submit" disabled={isPending}>
               {type === "sign-in" ? "Sign in" : "Sign up"}
             </Button>
-            {type === "sign-in" && (
-              <p className="my-5 cursor-pointer text-center">Forget password</p>
-            )}
+            <p className="my-5 cursor-pointer text-center">Forget password</p>
             <hr />
             <p className="mt-5 text-center">
               {type === "sign-in"

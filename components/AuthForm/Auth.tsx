@@ -30,7 +30,7 @@ const Auth = ({ type }: { type: string }) => {
             {type === "sign-in" ? "Sign In" : "Sign Up"}
             <p className="text-dark_light pb-5 text-[16px] font-normal text-gray-600">
               {type === "sign-in"
-                ? "Link your account to get started."
+                ? "Sign-in to your account to get started."
                 : "Please, enter your details."}
             </p>
           </h1>

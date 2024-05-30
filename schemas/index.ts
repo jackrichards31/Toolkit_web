@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const SignInSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(8, {
-    message: "Invalid password!",
+  password: z.string().min(1, {
+    message: "Password shouldn't be blank!",
   }),
 });
 

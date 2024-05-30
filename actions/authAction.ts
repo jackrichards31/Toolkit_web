@@ -1,9 +1,10 @@
 "use server";
+
 import { z } from "zod";
 import { SignInSchema, SignUpSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { db } from "@/lib/database";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
 
@@ -36,8 +37,6 @@ export const login = async (values: z.infer<typeof SignInSchema>) => {
     }
     throw err;
   }
-
-  // Errors are in validatedFields.error
   return { success: `Login succeeded, welcome back!` };
 };
 
