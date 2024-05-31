@@ -1,4 +1,5 @@
 import { SidebarLink } from "@/types";
+import { Store, FileDown, UserCog } from "lucide-react";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -8,28 +9,28 @@ export const themes = [
 
 export const sidebarLinks: SidebarLink[] = [
   {
-    imgURL: "/icon/merchant.png",
-    route: "/merchant/props",
+    icon: Store,
+    route: "/merchant",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
     options: ["MID", "Agent", "Processor"],
   },
   {
-    imgURL: "/icon/credit-card.svg",
+    icon: FileDown,
     route: "/merchant/{options}",
     desc: "Report the FSP",
     label: "FSP",
     options: ["FSP"],
   },
   {
-    imgURL: "/icon/bank-transfer.svg",
+    icon: FileDown,
     route: "/Ad-hoc",
     desc: "Report Ad Hoc",
     label: "Ad Hoc",
     options: ["Ad Hoc"],
   },
   {
-    imgURL: "/icon/deposit.svg",
+    icon: UserCog,
     route: "/Admin",
     desc: "Admin panel",
     label: "Admin",
@@ -40,15 +41,14 @@ export const sidebarLinks: SidebarLink[] = [
 export const profileLinks = [
   {
     title: "Profile",
-    url: "/profile/id/profile",
+    url: "/profile",
   },
   {
-    title: "Account",
+    title: "Settings",
+    url: "/settings",
   },
   {
-    title: "Appearance",
-  },
-  {
-    title: "Notifications",
+    title: "Logout",
+    url: "/logout",
   },
 ];

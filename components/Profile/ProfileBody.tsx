@@ -28,9 +28,9 @@ const ProfileBody = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-  };
+  // const onSubmit = (data: z.infer<typeof formSchema>) => {
+  //   console.log(data);
+  // };
 
   return (
     <section className="flex-1 lg:max-w-2xl">

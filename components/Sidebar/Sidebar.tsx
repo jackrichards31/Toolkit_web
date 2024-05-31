@@ -35,21 +35,15 @@ const Sidebar = () => {
 
         {sidebarLinks.map((item) => {
           const isActive =
-            (pathname.includes(item.route) && item.route.length > 1) ||
-            pathname === item.route;
+            (pathname.includes(item.route) && item.label.length > 1) ||
+            pathname === item.label;
           return (
             <Link
-              className={`${isActive ? "rounded-lg" : "text-dark300_light900"} flex items-center justify-start gap-4 bg-transparent p-4`}
+              className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
               key={item.label}
               href={item.route}
             >
-              <Image
-                src={item.imgURL}
-                alt={item.label}
-                width={24}
-                height={24}
-                className={`${isActive ? "" : "invert-colors"}`}
-              />
+              {React.createElement(item.icon)}
               <p
                 className={`${isActive ? "base-bold" : "base-medium"} max-lg:hidden`}
               >
