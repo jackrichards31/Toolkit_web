@@ -1,7 +1,17 @@
-// import Link from "next/link";
+"use client";
+
 import React from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { profileLinks } from "@/constants";
 
 const ProfileLogo = ({
   Firstname,
@@ -11,20 +21,47 @@ const ProfileLogo = ({
   Lastname: string;
 }) => {
   return (
-    <div className="flex items-center gap-3">
-      <Link href="/profile">
-        <Avatar className="footer_name">
+    <div className="flex cursor-pointer items-center gap-3 rounded-md border p-2 shadow-md">
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex w-full outline-none">
+          <Avatar>
+            <AvatarFallback>{Firstname[0]}</AvatarFallback>
+          </Avatar>
+          <div className="ml-3 flex flex-col items-start max-sm:hidden">
+            <h1 className="text-dark200_light900 font-semibold">
+              {Firstname} {Lastname}
+            </h1>
+            <p className="text-dark200_light900 text-[12px]">
+              Head of an IT department
+            </p>
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          {profileLinks.map((item) => (
+            <DropdownMenuItem key={item.title}>
+              <Link href={item.url} className="w-full">
+                {item.title}
+              </Link>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {/* <button className="flex w-full">
+        <Avatar>
           <AvatarFallback className="font-bold">{Firstname[0]}</AvatarFallback>
         </Avatar>
-      </Link>
-      <div className="flex flex-col">
-        <h1 className="text-dark200_light900 font-semibold">
-          {Firstname} {Lastname}
-        </h1>
-        <p className="text-dark200_light900 text-[12px]">
-          Head of an IT department
-        </p>
-      </div>
+        <div className="ml-3 flex flex-col items-start max-sm:hidden">
+          <h1 className="text-dark200_light900 font-semibold">
+            {Firstname} {Lastname}
+          </h1>
+          <p className="text-dark200_light900 text-[12px]">
+            Head of an IT department
+          </p>
+        </div>
+      </button> */}
     </div>
   );
 };

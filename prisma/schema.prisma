@@ -8,141 +8,69 @@ datasource db {
 }
 
 model User {
-  id                Int      @id @default(autoincrement())
+  id                String    @id @default(cuid())
   firstname         String
   lastname          String
-  email             String
+  email             String    @unique
   password          String
-  isPhoneConfirm    Boolean  @default(false)
-  isEmailConfirm    Boolean  @default(false)
-  enabled2FA        Boolean  @default(true)
-  createdAtDateTime DateTime @default(now())
-  updatedAtDateTime DateTime @updatedAt
+  phone             String
+  isPhoneConfirm    Boolean   @default(false)
+  isEmailConfirm    Boolean   @default(false)
+  emailVerified     DateTime?
+  enabled2FA        Boolean   @default(true)
+  createdAtDateTime DateTime  @default(now())
+  updatedAtDateTime DateTime  @updatedAt
   Profile           Profile?
+  Account           Account?
+  Group             Group?    @relation(fields: [groupId], references: [id])
+  groupId           Int?
+  Role              Role?     @relation(fields: [roleId], references: [id])
+  roleId            Int
 
   @@map("Users")
 }
 
 model Profile {
-  id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userID], references: [id])
-  userID Int  @unique
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userID], references: [id])
+  userID String @unique
 
   @@map("Profile")
 }
 
-// model AspNetRoleClaims {
-//   Id          Int         @id(map: "PK_AspNetRoleClaims") @default(autoincrement())
-//   RoleId      String      @db.NVarChar(450)
-//   ClaimType   String?     @db.NVarChar(Max)
-//   ClaimValue  String?     @db.NVarChar(Max)
-//   AspNetRoles AspNetRoles @relation(fields: [RoleId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetRoleClaims_AspNetRoles_RoleId")
-// }
+model Account {
+  id                       String  @id @default(cuid())
+  userID                   String  @unique
+  type                     String
+  provider                 String
+  providerAccountID        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User?   @relation(fields: [userID], references: [id])
 
-// model AspNetRoles {
-//   Id               String             @id(map: "PK_AspNetRoles") @db.NVarChar(450)
-//   Name             String?            @db.NVarChar(256)
-//   NormalizedName   String?            @db.NVarChar(256)
-//   ConcurrencyStamp String?            @db.NVarChar(Max)
-//   AspNetRoleClaims AspNetRoleClaims[]
-//   AspNetUserRoles  AspNetUserRoles[]
-// }
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-// model AspNetUserClaims {
-//   Id          Int         @id(map: "PK_AspNetUserClaims") @default(autoincrement())
-//   UserId      String      @db.NVarChar(450)
-//   ClaimType   String?     @db.NVarChar(Max)
-//   ClaimValue  String?     @db.NVarChar(Max)
-//   AspNetUsers AspNetUsers @relation(fields: [UserId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetUserClaims_AspNetUsers_UserId")
-// }
+  @@unique([provider, providerAccountID])
+  @@index([userID])
+}
 
-// model AspNetUserLogins {
-//   LoginProvider       String      @db.NVarChar(450)
-//   ProviderKey         String      @db.NVarChar(450)
-//   ProviderDisplayName String?     @db.NVarChar(Max)
-//   UserId              String      @db.NVarChar(450)
-//   AspNetUsers         AspNetUsers @relation(fields: [UserId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetUserLogins_AspNetUsers_UserId")
+model Group {
+  id    Int    @id @default(autoincrement())
+  title String
+  User  User[]
+  Role  Role[]
+}
 
-//   @@id([LoginProvider, ProviderKey], map: "PK_AspNetUserLogins")
-// }
-
-// model AspNetUserRoles {
-//   UserId      String      @db.NVarChar(450)
-//   RoleId      String      @db.NVarChar(450)
-//   AspNetRoles AspNetRoles @relation(fields: [RoleId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetUserRoles_AspNetRoles_RoleId")
-//   AspNetUsers AspNetUsers @relation(fields: [UserId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetUserRoles_AspNetUsers_UserId")
-
-//   @@id([UserId, RoleId], map: "PK_AspNetUserRoles")
-// }
-
-// model AspNetUsers {
-//   Id                    String             @id(map: "PK_AspNetUsers") @db.NVarChar(450)
-//   Discriminator         String             @db.NVarChar(Max)
-//   FirstName             String?            @db.NVarChar(Max)
-//   LastName              String?            @db.NVarChar(Max)
-//   UserName              String?            @db.NVarChar(256)
-//   NormalizedUserName    String?            @db.NVarChar(256)
-//   Email                 String?            @db.NVarChar(256)
-//   NormalizedEmail       String?            @db.NVarChar(256)
-//   EmailConfirmed        Boolean
-//   PasswordHash          String?            @db.NVarChar(Max)
-//   SecurityStamp         String?            @db.NVarChar(Max)
-//   ConcurrencyStamp      String?            @db.NVarChar(Max)
-//   PhoneNumber           String?            @db.NVarChar(Max)
-//   PhoneNumberConfirmed  Boolean
-//   TwoFactorEnabled      Boolean
-//   LockoutEnd            DateTime?          @db.DateTimeOffset
-//   LockoutEnabled        Boolean
-//   AccessFailedCount     Int
-//   txtMSOAgentID         String?            @db.NVarChar(50)
-//   intDocuSignDefault    Int?
-//   txtAgentDisplayName   String?            @db.NVarChar(255)
-//   Internal              Int?
-//   GroupGUID             String?            @db.UniqueIdentifier
-//   isGroupOwner          Int?
-//   TwoFAtempCode         String?            @db.NVarChar(50)
-//   CreateDateStamp       DateTime?          @default(now(), map: "DF_AspNetUsers_CreateDateStamp") @db.DateTime
-//   projectType           String?            @db.NVarChar(100)
-//   txtMerchantMobileName String?            @db.NVarChar(255)
-//   merchantMobileUID     String?            @db.NVarChar(100)
-//   userDocument          String?            @db.NVarChar(100)
-//   AgreeTextMessages     Int?
-//   bypass2FA             Int?
-//   PhoneVerificationCode String?            @db.NChar(10)
-//   IDint                 Int                @default(autoincrement())
-//   AspNetUserClaims      AspNetUserClaims[]
-//   AspNetUserLogins      AspNetUserLogins[]
-//   AspNetUserRoles       AspNetUserRoles[]
-//   AspNetUserTokens      AspNetUserTokens[]
-// }
-
-// model AspNetUserTokens {
-//   UserId        String      @db.NVarChar(450)
-//   LoginProvider String      @db.NVarChar(450)
-//   Name          String      @db.NVarChar(450)
-//   Value         String?     @db.NVarChar(Max)
-//   AspNetUsers   AspNetUsers @relation(fields: [UserId], references: [Id], onDelete: Cascade, onUpdate: NoAction, map: "FK_AspNetUserTokens_AspNetUsers_UserId")
-
-//   @@id([UserId, LoginProvider, Name], map: "PK_AspNetUserTokens")
-// }
-
-// /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
-// model tblSecurity_Groups {
-//   intGroupID          Int     @default(autoincrement())
-//   txtGroupName        String? @db.NVarChar(50)
-//   txtGroupDescription String? @db.NVarChar(100)
-//   intActive           Int?
-
-//   @@ignore
-// }
-
-// model tblSecurity_UserAccess {
-//   IDint                  Int?
-//   txtDescShort           String?   @db.NVarChar(25)
-//   txtDescLong            String?   @db.NVarChar(150)
-//   intAllowViewStatic     Int?
-//   intAllowBImanipulate   Int?
-//   intDateTimeLastUpdated DateTime? @default(now(), map: "DF_tblSecurity_UserAccess_intDateTimeLastUpdated") @db.DateTime
-//   RowID                  Int       @id(map: "PK_tblSecurity_UserAccess") @default(autoincrement())
-//   txtGroups              String?   @db.VarChar(5)
-// }
+model Role {
+  id    Int     @id @default(autoincrement())
+  title String
+  User  User[]
+  Group Group[]
+}

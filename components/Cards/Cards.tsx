@@ -14,12 +14,12 @@ import Link from "next/link";
 
 const Cards = () => {
   return (
-    <div className="mt-10 flex max-h-fit max-w-full flex-1 justify-around">
+    <div className="mt-10 flex max-h-fit max-w-full flex-1 flex-wrap justify-around max-sm:mb-10">
       {sidebarLinks.map((item, index) => {
         return (
           <Card
             key={index}
-            className="bg-light_dark flex h-80 w-64 flex-col items-center rounded-lg shadow-lg"
+            className="bg-light_dark flex h-80 w-64 flex-col items-center rounded-lg shadow-lg max-lg:mt-8"
           >
             <CardHeader className="text-center">
               <CardTitle className="text-dark_light">{item.label}</CardTitle>

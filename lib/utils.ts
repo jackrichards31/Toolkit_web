@@ -9,23 +9,24 @@ export function cn(...inputs: ClassValue[]) {
 export const authFormSchema = (type: string) => {
   z.object({
     // For sign-in
-    Email: z.string().email(),
-    Password: z.string().min(8),
+    email: z.string().email(),
+    password: z.string().min(8),
 
     // For sign up
-    FirstName:
+    firstName:
       type === "sign-in" ? z.string().optional() : z.string().min(2).max(15),
-    LastName:
+    lastName:
       type === "sign-in" ? z.string().optional() : z.string().min(3).max(20),
-    Phone:
+    phone:
       type === "sign-in" ? z.string().optional() : z.string().min(3).max(10),
-    Group: type === "sign-in" ? z.string().optional() : z.string().max(20),
+    group: type === "sign-in" ? z.string().optional() : z.string().max(20),
   });
 };
 
 export const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
+
   firstName: z.string().min(2).max(15),
   lastName: z.string().min(3).max(20),
   phone: z.string().min(3).max(10),

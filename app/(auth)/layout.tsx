@@ -12,6 +12,7 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             alt="Logo"
             width={400}
             height={400}
+            priority
           />
         </div>
       </div>

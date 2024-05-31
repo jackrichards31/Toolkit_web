@@ -1,4 +1,5 @@
 import { SidebarLink } from "@/types";
+import { Store, FileDown, UserCog } from "lucide-react";
 
 export const themes = [
   { value: "light", label: "Light", icon: "icon/sun.svg" },
@@ -8,28 +9,28 @@ export const themes = [
 
 export const sidebarLinks: SidebarLink[] = [
   {
-    imgURL: "/icon/merchant.png",
-    route: "/merchant/{options}",
+    icon: Store,
+    route: "/merchant",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
     options: ["MID", "Agent", "Processor"],
   },
   {
-    imgURL: "/icon/credit-card.svg",
+    icon: FileDown,
     route: "/merchant/{options}",
     desc: "Report the FSP",
     label: "FSP",
     options: ["FSP"],
   },
   {
-    imgURL: "/icon/bank-transfer.svg",
+    icon: FileDown,
     route: "/Ad-hoc",
     desc: "Report Ad Hoc",
     label: "Ad Hoc",
     options: ["Ad Hoc"],
   },
   {
-    imgURL: "/icon/deposit.svg",
+    icon: UserCog,
     route: "/Admin",
     desc: "Admin panel",
     label: "Admin",
@@ -37,30 +38,17 @@ export const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export const BADGE_CRITERIA = {
-  QUESTION_COUNT: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+export const profileLinks = [
+  {
+    title: "Profile",
+    url: "/profile",
   },
-  ANSWER_COUNT: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+  {
+    title: "Settings",
+    url: "/settings",
   },
-  QUESTION_UPVOTES: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
+  {
+    title: "Logout",
+    url: "/logout",
   },
-  ANSWER_UPVOTES: {
-    BRONZE: 10,
-    SILVER: 50,
-    GOLD: 100,
-  },
-  TOTAL_VIEWS: {
-    BRONZE: 1000,
-    SILVER: 10000,
-    GOLD: 100000,
-  },
-};
+];
