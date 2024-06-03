@@ -50,18 +50,17 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
     const { email, password, firstname, lastname, phone, groupId } =
       validatedFields.data;
 
-    const groupIDCatching =
-      groupId === "IT"
-        ? 1
-        : groupId === "Hardware"
-          ? 2
-          : groupId === "Sale"
-            ? 3
-            : groupId === "Support"
-              ? 4
-              : groupId === "Marketing"
-                ? 5
-                : null;
+    const groupIdMapping: Record<string, number | null> = {
+      IT: 1,
+      Hardware: 2,
+      Sale: 3,
+      Support: 4,
+      Marketing: 5,
+    };
+
+    const groupIDCatching = groupIdMapping[groupId] ?? null;
+
+    if (groupIDCatching === null) return { error: "Invalid group ID" };
 
     // Hashed the password of the registered users
     const hashedPassword = await bcrypt.hash(password, 10);

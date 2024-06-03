@@ -48,20 +48,6 @@ const ProfileLogo = ({
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
-
-      {/* <button className="flex w-full">
-        <Avatar>
-          <AvatarFallback className="font-bold">{Firstname[0]}</AvatarFallback>
-        </Avatar>
-        <div className="ml-3 flex flex-col items-start max-sm:hidden">
-          <h1 className="text-dark200_light900 font-semibold">
-            {Firstname} {Lastname}
-          </h1>
-          <p className="text-dark200_light900 text-[12px]">
-            Head of an IT department
-          </p>
-        </div>
-      </button> */}
     </div>
   );
 };

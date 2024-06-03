@@ -17,21 +17,21 @@ export const sidebarLinks: SidebarLink[] = [
   },
   {
     icon: FileDown,
-    route: "/merchant/{options}",
+    route: "/fsp",
     desc: "Report the FSP",
     label: "FSP",
     options: ["FSP"],
   },
   {
     icon: FileDown,
-    route: "/Ad-hoc",
+    route: "/ad-hoc",
     desc: "Report Ad Hoc",
     label: "Ad Hoc",
     options: ["Ad Hoc"],
   },
   {
     icon: UserCog,
-    route: "/Admin",
+    route: "/admin",
     desc: "Admin panel",
     label: "Admin",
     options: ["Admin"],
@@ -50,5 +50,20 @@ export const profileLinks = [
   {
     title: "Logout",
     url: "/logout",
+  },
+];
+
+export const merchantLinks = [
+  {
+    title: "MID",
+    value: "mid",
+  },
+  {
+    title: "Agent",
+    value: "agent",
+  },
+  {
+    title: "Processor",
+    value: "processor",
   },
 ];
