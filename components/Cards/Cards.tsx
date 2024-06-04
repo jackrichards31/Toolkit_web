@@ -33,9 +33,11 @@ const Cards = () => {
                 key={optionIndex}
                 className="flex h-screen w-full flex-auto flex-col"
               >
-                <Button variant="default" className="btn-dark_light">
-                  <Link href={item.route}>{option}</Link>
-                </Button>
+                <Link href={item.route}>
+                  <Button variant="default" className="btn-dark_light w-full">
+                    {option}
+                  </Button>
+                </Link>
               </CardContent>
             ))}
           </Card>

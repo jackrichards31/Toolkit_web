@@ -29,6 +29,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { merchantLinks } from "@/constants";
 import React from "react";
 
 interface DataTableProps<TData, TValue> {
@@ -66,48 +67,37 @@ export default function DataTable<TData, TValue>({
 
   return (
     <div className="w-2/3 rounded-md border p-5">
-      <Tabs defaultValue="account" className="mb-4 w-1/2">
+      <Tabs defaultValue="mid" className="mb-4 w-1/2">
         <TabsList className="w-full">
-          <TabsTrigger value="mid" className="w-full">
-            MID
-          </TabsTrigger>
-          <TabsTrigger value="agent" className="w-full">
-            Agent
-          </TabsTrigger>
-          <TabsTrigger value="processor" className="w-full">
-            Processor
-          </TabsTrigger>
+          {merchantLinks.map((item) => (
+            <TabsTrigger key={item.value} value={item.value} className="w-full">
+              {item.title}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="mid">
-          <h1 className="font-semibold">Merchant - Find (MID)</h1>
-          <div
-            data-orientation="horizontal"
-            role="none"
-            className="my-6 h-px shrink-0 bg-border"
-          />
-        </TabsContent>
-        <TabsContent value="agent">
-          <h1 className="font-semibold">Merchant - Find (Agent)</h1>
-          <div
-            data-orientation="horizontal"
-            role="none"
-            className="my-6 h-px shrink-0 bg-border"
-          />
-        </TabsContent>
-        <TabsContent value="processor">
-          <h1 className="font-semibold">Merchant - Find (Processor)</h1>
-          <div
-            data-orientation="horizontal"
-            role="none"
-            className="my-6 h-px shrink-0 bg-border"
-          />
-        </TabsContent>
+        {merchantLinks.map((item) => (
+          <TabsContent key={item.value} value={item.value} className="mt-5">
+            <h1 className="font-semibold">Merchant - Find ({item.title})</h1>
+          </TabsContent>
+        ))}
       </Tabs>
+
+      {/* For line seperator */}
+      <div
+        data-orientation="horizontal"
+        role="none"
+        className="my-6 h-px shrink-0 bg-border"
+      />
 
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("email")?.getFilterValue() as string) ||
+            (table.getColumn("id")?.getFilterValue() as string) ||
+            (table.getColumn("status")?.getFilterValue() as string) ||
+            (table.getColumn("amount")?.getFilterValue() as string)
+          }
           onChange={(e) =>
             table.getColumn("email")?.setFilterValue(e.target.value)
           }

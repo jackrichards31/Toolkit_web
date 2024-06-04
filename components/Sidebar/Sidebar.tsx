@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { sidebarLinks } from "@/constants";
@@ -14,20 +14,37 @@ const Sidebar = () => {
   const dark = "/icon/LogoBlack.webp";
   const Firstname = "Tony";
   const Lastname = "Stark";
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
+
+  // Set the theme for system, dark, and light
+  // eslint-disable-next-line no-unused-vars
+  const [resolvedTheme, setResolvedTheme] = useState<string | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (theme === "system") {
+      setResolvedTheme(systemTheme);
+    } else {
+      setResolvedTheme(theme);
+    }
+  }, [theme, systemTheme]);
+
+  const imgSrc =
+    theme === "system"
+      ? systemTheme === "dark"
+        ? light
+        : dark
+      : theme === "light"
+        ? dark
+        : light;
 
   return (
     <section className="sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-6 pt-16 dark:shadow-none max-md:hidden lg:w-[266px]">
       <div className="flex flex-1 flex-col gap-6">
         <div>
           <Link href="/">
-            <Image
-              src={theme === "dark" ? light : dark}
-              alt="logo"
-              width={250}
-              height={250}
-              priority
-            />
+            <Image src={imgSrc} alt="logo" width={250} height={250} priority />
           </Link>
         </div>
 
