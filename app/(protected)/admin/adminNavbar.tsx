@@ -15,6 +15,8 @@ import Theme from "@/components/Home/Theme";
 import React, { useState } from "react";
 import { profileLinks } from "@/constants";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowBigLeftDash } from "lucide-react";
 const nav = [
   {
     title: "Overview",
@@ -55,6 +57,13 @@ const AdminNavbar = () => {
       </div>
 
       <div className="ml-auto flex w-2/5 items-center justify-end space-x-4">
+        <Link href="/">
+          <Button>
+            <ArrowBigLeftDash />
+            Home
+          </Button>
+        </Link>
+
         <Input placeholder="Search..." />
 
         <div className="pl-5">

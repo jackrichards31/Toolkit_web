@@ -1,5 +1,6 @@
 import Calendar from "@/components/Calender/Calender";
 import React from "react";
+import OverviewTabs from "./Overview/OverviewTabs";
 
 const AdminBody = () => {
   return (
@@ -7,6 +8,9 @@ const AdminBody = () => {
       <div className="flex justify-between">
         <h1 className="text-3xl font-semibold">Dashboard</h1>
         <Calendar />
+      </div>
+      <div className="flex">
+        <OverviewTabs />
       </div>
     </section>
   );
