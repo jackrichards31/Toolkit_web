@@ -7,7 +7,7 @@ import { getUserById } from "./data/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
-    /**
+    /*
      * Check if this signIn({user}) is emailVerified or not, if not they will not be able to login
      */
     // async signIn({ user }) {
@@ -24,9 +24,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (token.sub && session.user) {
         session.user.id = token.sub;
         session.user.role = token.role as Role; // Create the role for users
-        session.user.group = token.group as Group; //  Create the group for users
+        session.user.group = token.group as Group; // Create the group for users
       }
-
       return session;
     },
     async jwt({ token }) {
@@ -41,6 +40,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       // Include group in the token
       token.group = existingUser.groupId; // Adjust according to the Group model
+
+      token.firstname = existingUser.firstname; // Adjust according to the User's firstname
+
+      token.lastname = existingUser.lastname;
 
       return token;
     },

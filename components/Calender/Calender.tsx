@@ -78,14 +78,14 @@ export default function DatePickerWithRange({
                             )}
                           >
                             <CalendarIcon className="mr-2 size-4" />
-                            {field.value?.from ? (
-                              field.value.to ? (
+                            {date?.from ? (
+                              date?.to ? (
                                 <>
-                                  {format(field.value.from, "LLL dd, y")} -{" "}
-                                  {format(field.value.to, "LLL dd, y")}
+                                  {format(date.from, "LLL dd, y")} -{" "}
+                                  {format(date.to, "LLL dd, y")}
                                 </>
                               ) : (
-                                format(field.value.from, "LLL dd, y")
+                                format(date.from, "LLL dd, y")
                               )
                             ) : (
                               <span>Pick a date</span>

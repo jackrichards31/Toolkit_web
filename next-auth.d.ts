@@ -2,7 +2,7 @@
 // and Group from the database table
 
 import { DefaultSession, DefaultUser } from "next-auth";
-import { Role, Group } from "@prisma/client";
+import { Role, Group, User } from "@prisma/client";
 
 declare module "next-auth" {
   // eslint-disable-next-line no-unused-vars
@@ -19,6 +19,8 @@ declare module "next-auth" {
     id: string;
     role: Role;
     group: Group;
+    firstname: User;
+    lastname: User;
   }
 }
 
@@ -28,5 +30,7 @@ declare module "next-auth/jwt" {
     id: string;
     role: Role;
     group: Group;
+    firstname: User;
+    lastname: User;
   }
 }
