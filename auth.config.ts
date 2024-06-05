@@ -3,10 +3,16 @@ import bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
 import { SignInSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
+import Slack from "next-auth/providers/slack";
 
 export default {
   providers: [
     Credentials({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
         const validatedFields = SignInSchema.safeParse(credentials);
 
@@ -24,5 +30,10 @@ export default {
         return null;
       },
     }),
+    Slack({
+      clientId: process.env.AUTH_SLACK_ID,
+      clientSecret: process.env.AUTH_SLACK_SECRET,
+    }),
   ],
+  debug: true,
 } satisfies NextAuthConfig;

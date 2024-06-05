@@ -41,9 +41,13 @@ const ProfileLogo = ({
           <DropdownMenuSeparator />
           {profileLinks.map((item) => (
             <DropdownMenuItem key={item.title}>
-              <Link href={item.url} className="w-full">
-                {item.title}
-              </Link>
+              {item.title === "Logout" ? (
+                <span className="cursor-pointer">{item.title}</span>
+              ) : (
+                <Link href={item.url} className="w-full">
+                  {item.title}
+                </Link>
+              )}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

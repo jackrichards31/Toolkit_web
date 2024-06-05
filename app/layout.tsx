@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Toolkit",
   description: "A Toolkit web for everyone",
   icons: {
-    icon: "/public/icon/Chain-smol.png",
+    icon: "icon/Chain-smol.png",
   },
 };
 

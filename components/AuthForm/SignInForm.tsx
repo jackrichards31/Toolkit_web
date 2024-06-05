@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -9,11 +11,21 @@ import { Button } from "../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
 import { login } from "@/actions/authAction";
+import LineSeperator from "../LineSeperator";
+import Image from "next/image";
+import { slackLogin } from "./SocialLogin";
 
 const SignInForm = ({ type }: { type: string }) => {
   const [isPending, startPending] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+
+  /**
+   * This is for the slack login
+   */
+  // const SlackLogin = () => {
+  //   signIn("slack", { callbackUrl: DEFAULT_LOGIN_REDIRECT });
+  // };
 
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
@@ -36,6 +48,23 @@ const SignInForm = ({ type }: { type: string }) => {
 
   return (
     <div>
+      {/* Slack login */}
+      <Button
+        className="flex w-full items-center justify-between"
+        onClick={slackLogin}
+      >
+        <Image
+          src="/icon/slack.svg"
+          alt="slack"
+          width={30}
+          height={30}
+          priority
+        />
+        <span>Continue with Slack</span>
+      </Button>
+
+      <div data-orientation="horizon" className="my-5 w-full border" />
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -64,22 +93,19 @@ const SignInForm = ({ type }: { type: string }) => {
               {type === "sign-in" ? "Sign in" : "Sign up"}
             </Button>
             <p className="my-5 cursor-pointer text-center">Forget password</p>
-            <hr />
-            <p className="mt-5 text-center">
-              {type === "sign-in"
-                ? "Do not have an account yet?"
-                : "Already have an account?"}
-            </p>
-            <p className="cursor-pointer text-center text-sky-600">
-              {type === "sign-in" ? (
-                <Link href="/sign-up">Sign Up</Link>
-              ) : (
-                <Link href="/sign-in">Sign In</Link>
-              )}
-            </p>
+            <LineSeperator text="Or" />
           </div>
         </form>
       </Form>
+
+      <div className="mt-3 flex justify-center">
+        <span>Create an account</span>
+      </div>
+      <p className="mt-5 cursor-pointer text-center">
+        <Link href="/sign-up">
+          <Button className="w-full">Sign-Up</Button>
+        </Link>
+      </p>
     </div>
   );
 };

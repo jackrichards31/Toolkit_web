@@ -11,6 +11,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
+import LineSeperator from "../LineSeperator";
 
 const SignUpForm = ({ type }: { type: string }) => {
   // Use the build-in transitioning function from React to prevent the user to submit the form multiple times.
@@ -114,12 +115,17 @@ const SignUpForm = ({ type }: { type: string }) => {
           type="sign-up"
         />
         <div className="mt-7 flex flex-col">
+          <div
+            data-orientation="horizon"
+            role="none"
+            className="mb-5 w-full border"
+          />
           {error && <FormAlert message={error} type="error" />}
           {success && <FormAlert message={success} type="success" />}
           <Button type="submit" disabled={isPending}>
             Sign up
           </Button>
-          <hr />
+          <LineSeperator text="Or" className="mt-4" />
           <p className="mt-5 text-center">
             {type === "sign-in"
               ? "Do not have an account yet?"
