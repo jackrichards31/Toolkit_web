@@ -3,15 +3,15 @@
 import Link from "next/link";
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
-import { Form } from "../ui/form";
-import { Button } from "../ui/button";
+import { Form } from "../../ui/form";
+import { Button } from "../../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
-import LineSeperator from "../LineSeperator";
+import LineSeperator from "../../LineSeperator";
 
 const SignUpForm = ({ type }: { type: string }) => {
   // Use the build-in transitioning function from React to prevent the user to submit the form multiple times.

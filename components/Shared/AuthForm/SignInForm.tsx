@@ -3,29 +3,23 @@
 import React, { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form } from "../ui/form";
+import { Form } from "../../ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema } from "@/schemas";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import CustomInput from "./CustomInput";
 import FormAlert from "./FormAlert";
 import { login } from "@/actions/authAction";
-import LineSeperator from "../LineSeperator";
+import LineSeperator from "../../LineSeperator";
 import Image from "next/image";
-import { slackLogin } from "./SocialLogin";
+import { signIn } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 
 const SignInForm = ({ type }: { type: string }) => {
   const [isPending, startPending] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-
-  /**
-   * This is for the slack login
-   */
-  // const SlackLogin = () => {
-  //   signIn("slack", { callbackUrl: DEFAULT_LOGIN_REDIRECT });
-  // };
 
   const form = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
@@ -51,7 +45,7 @@ const SignInForm = ({ type }: { type: string }) => {
       {/* Slack login */}
       <Button
         className="flex w-full items-center justify-between"
-        onClick={slackLogin}
+        onClick={() => signIn("slack", { callbackUrl: DEFAULT_LOGIN_REDIRECT })}
       >
         <Image
           src="/icon/slack.svg"

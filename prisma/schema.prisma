@@ -9,11 +9,13 @@ datasource db {
 
 model User {
   id                String    @id @default(cuid())
-  firstname         String
-  lastname          String
+  firstname         String?
+  lastname          String?
+  name              String?
   email             String    @unique
-  password          String
-  phone             String
+  password          String?
+  phone             String?
+  image             String?
   isPhoneConfirm    Boolean   @default(false)
   isEmailConfirm    Boolean   @default(false)
   emailVerified     DateTime?
@@ -25,7 +27,7 @@ model User {
   Group             Group?    @relation(fields: [groupId], references: [id])
   groupId           Int?
   Role              Role?     @relation(fields: [roleId], references: [id])
-  roleId            Int
+  roleId            Int?
 
   @@map("Users")
 }

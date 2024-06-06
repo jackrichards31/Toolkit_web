@@ -1,6 +1,6 @@
 import React from "react";
-import { FormControl, FormField, FormLabel, FormMessage } from "../ui/form";
-import { Input } from "../ui/input";
+import { FormControl, FormField, FormLabel, FormMessage } from "../../ui/form";
+import { Input } from "../../ui/input";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
 import { SignInSchema, SignUpSchema } from "@/schemas";
@@ -10,7 +10,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 
 // declare type for interface, if the type is sign-in use SignInSchema.
 type SchemaType<Type extends string> = Type extends "sign-in"

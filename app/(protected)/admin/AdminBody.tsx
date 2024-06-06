@@ -1,4 +1,4 @@
-import Calendar from "@/components/Calender/Calender";
+import Calendar from "@/components/Shared/Calender/Calender";
 import React from "react";
 import OverviewTabs from "./Overview/OverviewTabs";
 

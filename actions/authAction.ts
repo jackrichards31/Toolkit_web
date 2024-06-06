@@ -79,7 +79,7 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
         lastname,
         email,
         password: hashedPassword,
-        phone,
+        phone: phone || "",
         groupId: groupIDCatching,
         roleId: 2, // value of 1 is an admin, and the value of 2 is a user. By default, the newly created user is assigned to the user role.
       },

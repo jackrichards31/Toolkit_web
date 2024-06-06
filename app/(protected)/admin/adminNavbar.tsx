@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Theme from "@/components/Home/Theme";
+import Theme from "@/components/Shared/Home/Theme";
 
 import React, { useState } from "react";
 import { profileLinks } from "@/constants";
