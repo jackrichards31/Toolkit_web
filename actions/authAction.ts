@@ -82,6 +82,8 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
         password: hashedPassword,
         phone,
         groupId: groupIDCatching,
+
+        // Error of this one, it passed an empty string to the database.
         roleId: 2, // value of 1 is an admin, and the value of 2 is a user. By default, the newly created user is assigned to the user role.
       },
     });
