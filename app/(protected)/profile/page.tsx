@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "@/components/Profile/Header";
-import ProfileBody from "@/components/Profile/ProfileBody";
-import SideProfileBar from "@/components/Profile/SideProfileBar";
+import Header from "@/components/Shared/Profile/Header";
+import ProfileBody from "@/components/Shared/Profile/ProfileBody";
+import SideProfileBar from "@/components/Shared/Profile/SideProfileBar";
 
 export default function ProfilePage({ id }: { id: string }) {
   return (

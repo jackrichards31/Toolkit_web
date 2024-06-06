@@ -1,5 +1,5 @@
-import Auth from "@/components/AuthForm/Auth";
-import Theme from "@/components/Home/Theme";
+import Auth from "@/components/Shared/AuthForm/Auth";
+import Theme from "@/components/Shared/Home/Theme";
 import React from "react";
 
 const SignIn = () => {

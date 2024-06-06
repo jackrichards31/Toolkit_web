@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import WelcomeBar from "@/components/Home/WelcomeBar";
-import Footer from "@/components/Footer/Footer";
-import MobileNav from "@/components/Sidebar/MobileNav";
+import Sidebar from "@/components/Shared/Sidebar/Sidebar";
+import WelcomeBar from "@/components/Shared/Home/WelcomeBar";
+import Footer from "@/components/Shared/Footer/Footer";
+import MobileNav from "@/components/Shared/Sidebar/MobileNav";
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (

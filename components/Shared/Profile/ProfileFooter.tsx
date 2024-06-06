@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { ArrowBigLeftDash } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
