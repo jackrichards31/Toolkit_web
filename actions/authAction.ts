@@ -7,6 +7,7 @@ import { db } from "@/lib/database";
 import bcrypt from "bcryptjs";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
+import { generateVerificationToken } from "@/lib/tokens";
 
 export const login = async (values: z.infer<typeof SignInSchema>) => {
   //   Use .safeParse on the schema instance
@@ -79,11 +80,13 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
         lastname,
         email,
         password: hashedPassword,
-        phone: phone || "",
+        phone,
         groupId: groupIDCatching,
         roleId: 2, // value of 1 is an admin, and the value of 2 is a user. By default, the newly created user is assigned to the user role.
       },
     });
+
+    const verificationToken = await generateVerificationToken(email);
 
     return { success: "Yay!! Your user has been created!" };
   } catch (err) {
