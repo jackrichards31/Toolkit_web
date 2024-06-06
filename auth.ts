@@ -6,6 +6,14 @@ import authConfig from "./auth.config";
 import { getUserById } from "./data/user";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  events: {
+    async linkAccount({ user }) {
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      });
+    },
+  },
   callbacks: {
     /*
      * Check if this signIn({user}) is emailVerified or not, if not they will not be able to login
@@ -28,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
-    async jwt({ token }) {
+    async jwt({ token, profile }) {
       if (!token.sub) return token;
 
       const existingUser = await getUserById(token.sub);

@@ -7,6 +7,10 @@ import Slack from "next-auth/providers/slack";
 
 export default {
   providers: [
+    Slack({
+      clientId: process.env.AUTH_SLACK_ID,
+      clientSecret: process.env.AUTH_SLACK_SECRET,
+    }),
     Credentials({
       name: "Credentials",
       credentials: {
@@ -29,10 +33,6 @@ export default {
 
         return null;
       },
-    }),
-    Slack({
-      clientId: process.env.AUTH_SLACK_ID,
-      clientSecret: process.env.AUTH_SLACK_SECRET,
     }),
   ],
   debug: true,
