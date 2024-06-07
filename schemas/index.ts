@@ -8,13 +8,11 @@ export const SignInSchema = z.object({
 });
 
 export const SignUpSchema = z.object({
-  email: z
-    .string()
-    .email("Invalid Email!")
-    .regex(
-      /^[a-zA-Z0-9._%+-]+@micamp\.com$/,
-      "Only @micamp.com emails are allowed!"
-    ),
+  email: z.string().email("Invalid Email!"),
+  // .regex(
+  //   /^[a-zA-Z0-9._%+-]+@micamp\.com$/,
+  //   "Only @micamp.com emails are allowed!"
+  // ),
   password: z
     .string()
     .min(8, {
@@ -27,6 +25,6 @@ export const SignUpSchema = z.object({
   firstname: z.string().min(1).max(15),
   lastname: z.string().min(1).max(20),
   phone: z.string().max(10),
-  groupId: z.string(),
-  role: z.string(),
+  groupTitle: z.string(),
+  roleTitle: z.string(),
 });

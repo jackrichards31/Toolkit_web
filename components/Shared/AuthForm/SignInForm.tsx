@@ -95,9 +95,9 @@ const SignInForm = ({ type }: { type: string }) => {
       <div className="mt-3 flex justify-center">
         <span>Create an account</span>
       </div>
-      <p className="mt-5 cursor-pointer text-center">
+      <p className="mt-1 cursor-pointer text-center">
         <Link href="/sign-up">
-          <Button className="w-full">Sign-Up</Button>
+          <h1 className="text-sky-600">Sign-Up</h1>
         </Link>
       </p>
     </div>

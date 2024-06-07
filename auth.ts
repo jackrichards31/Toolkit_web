@@ -19,18 +19,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
   callbacks: {
-    /*
-     * Check if this signIn({user}) is emailVerified or not, if not they will not be able to login
-     */
-    // async signIn({ user }) {
-    //   const existingUser = await getUserById(user.id);
+    async signIn({ user, account }) {
+      // Allow OAuth without email verification
+      if (account?.provider !== "credentials") return true;
 
-    //   if (!existingUser || !existingUser.emailVerified) {
-    //     return false;
-    //   }
+      const existingUser = await getUserById(user.id);
 
-    //   return true;
-    // },
+      // Prevent signin without email verification
+      if (!existingUser?.emailVerified) return false;
+
+      // TODO: Add 2FA check
+
+      return true;
+    },
+
     async session({ token, session }) {
       console.log({ SessionToken: token });
       if (token.sub && session.user) {
@@ -40,7 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
-    async jwt({ token, profile }) {
+    async jwt({ token }) {
       if (!token.sub) return token;
 
       const existingUser = await getUserById(token.sub);
@@ -48,10 +50,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!existingUser) return token;
 
       // Include role in the token
-      token.role = existingUser.roleId; // Adjust according to the Role model
+      token.role = existingUser.Role; // Adjust according to the Role model
 
       // Include group in the token
-      token.group = existingUser.groupId; // Adjust according to the Group model
+      token.group = existingUser.Group; // Adjust according to the Group model
 
       token.firstname = existingUser.firstname; // Adjust according to the User's firstname
 

@@ -21,6 +21,11 @@ const SignUpForm = ({ type }: { type: string }) => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
 
+  // handle sending emails to confirm the account's email
+  const [to, setTo] = useState("");
+  const [subject, setSubject] = useState("");
+  const [text, setText] = useState("");
+
   // const [selectedGroup, setSelectedGroup] = useState<string>("");
   const SignUpForm = useForm<z.infer<typeof SignUpSchema>>({
     resolver: zodResolver(SignUpSchema),
@@ -28,10 +33,10 @@ const SignUpForm = ({ type }: { type: string }) => {
       email: "",
       password: "",
       phone: "",
-      groupId: "",
+      groupTitle: "",
       firstname: "",
       lastname: "",
-      role: "",
+      roleTitle: "User",
     },
   });
 
@@ -41,7 +46,16 @@ const SignUpForm = ({ type }: { type: string }) => {
     setError("");
     setSuccess("");
     startPending(() => {
-      signUp(values).then((data) => {
+      signUp(values).then(async (data) => {
+        const res = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ to, subject, text }),
+        });
+
+        const Data = await res.json();
+        console.log(Data.message);
+
         setError(data?.error);
         setSuccess(data?.success);
       });
@@ -91,7 +105,7 @@ const SignUpForm = ({ type }: { type: string }) => {
             <CustomInput
               key="group"
               control={SignUpForm.control}
-              name="groupId"
+              name="groupTitle"
               label="Group"
               nameHolder="IT, Sales, etc..."
               type="sign-up"
