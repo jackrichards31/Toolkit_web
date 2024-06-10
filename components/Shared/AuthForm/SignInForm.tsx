@@ -97,7 +97,7 @@ const SignInForm = ({ type }: { type: string }) => {
       </div>
       <p className="mt-1 cursor-pointer text-center">
         <Link href="/sign-up">
-          <h1 className="text-sky-600">Sign-Up</h1>
+          <span className="text-sky-600">Sign-Up</span>
         </Link>
       </p>
     </div>

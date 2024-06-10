@@ -19,7 +19,7 @@ const Sidebar = () => {
   // Set the theme for system, dark, and light
   // eslint-disable-next-line no-unused-vars
   const [resolvedTheme, setResolvedTheme] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Sidebar = () => {
 
         {sidebarLinks.map((item) => {
           const isActive =
-            (pathname.includes(item.route) && item.label.length > 1) ||
+            (pathname?.includes(item.route) && item.label.length > 1) ||
             pathname === item.label;
           return (
             <Link

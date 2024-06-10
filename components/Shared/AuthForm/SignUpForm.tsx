@@ -11,6 +11,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
+import axios from "axios";
 import LineSeperator from "../../LineSeperator";
 
 const SignUpForm = ({ type }: { type: string }) => {
@@ -20,11 +21,6 @@ const SignUpForm = ({ type }: { type: string }) => {
   // For storing the validation of an error and a success messages.
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-
-  // handle sending emails to confirm the account's email
-  const [to, setTo] = useState("");
-  const [subject, setSubject] = useState("");
-  const [text, setText] = useState("");
 
   // const [selectedGroup, setSelectedGroup] = useState<string>("");
   const SignUpForm = useForm<z.infer<typeof SignUpSchema>>({
@@ -40,22 +36,12 @@ const SignUpForm = ({ type }: { type: string }) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof SignUpSchema>) => {
-    // Add selectedGroup to form data.
+  const onSubmit = async (values: z.infer<typeof SignUpSchema>) => {
     console.log(values);
     setError("");
     setSuccess("");
-    startPending(() => {
-      signUp(values).then(async (data) => {
-        const res = await fetch("/api/send-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ to, subject, text }),
-        });
-
-        const Data = await res.json();
-        console.log(Data.message);
-
+    startPending(async () => {
+      const Data = await signUp(values).then(async (data) => {
         setError(data?.error);
         setSuccess(data?.success);
       });

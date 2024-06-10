@@ -9,7 +9,8 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
 import { generateVerificationToken } from "@/lib/tokens";
 import { getUserByEmail } from "@/data/user";
-import { sendVerificationEmail } from "@/lib/emailSender";
+// import { sendVerificationEmail } from "@/lib/emailSender";
+import axios from "axios";
 
 export const login = async (values: z.infer<typeof SignInSchema>) => {
   //   Use .safeParse on the schema instance
@@ -34,12 +35,12 @@ export const login = async (values: z.infer<typeof SignInSchema>) => {
   if (!existingUser.emailVerified) {
     // eslint-disable-next-line no-unused-vars
     const verificationToken = await generateVerificationToken(
-      existingUser.email
+      existingUser.email,
     );
-    await sendVerificationEmail(
-      verificationToken.email,
-      verificationToken.token
-    );
+    // await sendVerificationEmail(
+    //   verificationToken.email,
+    //   verificationToken.token,
+    // );
 
     return { success: "Confirmation email sent!" };
   }
@@ -116,14 +117,28 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
       },
     });
 
+    // eslint-disable-next-line no-unused-vars
     const verificationToken = await generateVerificationToken(email);
-    await sendVerificationEmail(
-      verificationToken.email,
-      verificationToken.token
-    );
+    // await sendVerificationEmail(
+    //   verificationToken.email,
+    //   verificationToken.token,
+    // );
+
+    // Send the welcome email
+    try {
+      await axios.post("/api/send-email", {
+        to: email,
+        subject: "Welcome to Toolkit web! Please, confirm your email.",
+        text: `Hello ${firstname}, welcome to Toolkit web!`,
+        html: `<p>Hello ${firstname}, welcome to Toolkit web!</p>`,
+      });
+    } catch (emailError) {
+      console.error("Failed to send welcome email:", emailError);
+    }
 
     return { success: "Yay!! Your user has been created!" };
   } catch (err) {
     console.log(err);
+    return { error: "An error occurred during sign-up" };
   }
 };
