@@ -8,6 +8,9 @@ import bcrypt from "bcryptjs";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
 import { generateVerificationToken } from "@/lib/tokens";
+import { getUserByEmail } from "@/data/user";
+// import { sendVerificationEmail } from "@/lib/emailSender";
+import axios from "axios";
 
 export const login = async (values: z.infer<typeof SignInSchema>) => {
   //   Use .safeParse on the schema instance
@@ -20,6 +23,27 @@ export const login = async (values: z.infer<typeof SignInSchema>) => {
   }
 
   const { email, password } = validatedFields.data;
+
+  const existingUser = await getUserByEmail(email);
+
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return {
+      error: "Email does not exist!",
+    };
+  }
+
+  if (!existingUser.emailVerified) {
+    // eslint-disable-next-line no-unused-vars
+    const verificationToken = await generateVerificationToken(
+      existingUser.email,
+    );
+    // await sendVerificationEmail(
+    //   verificationToken.email,
+    //   verificationToken.token,
+    // );
+
+    return { success: "Confirmation email sent!" };
+  }
 
   try {
     await signIn("credentials", {
@@ -48,20 +72,15 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
 
     if (!validatedFields.success) return { error: "Invalid fields!" };
 
-    const { email, password, firstname, lastname, phone, groupId } =
-      validatedFields.data;
-
-    const groupIdMapping: Record<string, number | null> = {
-      IT: 1,
-      Hardware: 2,
-      Sale: 3,
-      Support: 4,
-      Marketing: 5,
-    };
-
-    const groupIDCatching = groupIdMapping[groupId] ?? null;
-
-    if (groupIDCatching === null) return { error: "Invalid group ID" };
+    const {
+      email,
+      password,
+      firstname,
+      lastname,
+      phone,
+      groupTitle,
+      roleTitle,
+    } = validatedFields.data;
 
     // Hashed the password of the registered users
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -74,24 +93,52 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
       return { error: "This email has been already taken!" };
     }
 
-    await db.user.create({
+    const newUser = await db.user.create({
       data: {
         firstname,
         lastname,
         email,
         password: hashedPassword,
         phone,
-        groupId: groupIDCatching,
-
-        // Error of this one, it passed an empty string to the database.
-        roleId: 2, // value of 1 is an admin, and the value of 2 is a user. By default, the newly created user is assigned to the user role.
       },
     });
 
+    await db.group.create({
+      data: {
+        title: groupTitle,
+        userId: newUser.id,
+      },
+    });
+
+    await db.role.create({
+      data: {
+        title: roleTitle,
+        userId: newUser.id,
+      },
+    });
+
+    // eslint-disable-next-line no-unused-vars
     const verificationToken = await generateVerificationToken(email);
+    // await sendVerificationEmail(
+    //   verificationToken.email,
+    //   verificationToken.token,
+    // );
+
+    // Send the welcome email
+    try {
+      await axios.post("/api/send-email", {
+        to: email,
+        subject: "Welcome to Toolkit web! Please, confirm your email.",
+        text: `Hello ${firstname}, welcome to Toolkit web!`,
+        html: `<p>Hello ${firstname}, welcome to Toolkit web!</p>`,
+      });
+    } catch (emailError) {
+      console.error("Failed to send welcome email:", emailError);
+    }
 
     return { success: "Yay!! Your user has been created!" };
   } catch (err) {
     console.log(err);
+    return { error: "An error occurred during sign-up" };
   }
 };

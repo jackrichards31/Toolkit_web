@@ -11,6 +11,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
+import axios from "axios";
 import LineSeperator from "../../LineSeperator";
 
 const SignUpForm = ({ type }: { type: string }) => {
@@ -28,20 +29,19 @@ const SignUpForm = ({ type }: { type: string }) => {
       email: "",
       password: "",
       phone: "",
-      groupId: "",
+      groupTitle: "",
       firstname: "",
       lastname: "",
-      role: "",
+      roleTitle: "User",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof SignUpSchema>) => {
-    // Add selectedGroup to form data.
+  const onSubmit = async (values: z.infer<typeof SignUpSchema>) => {
     console.log(values);
     setError("");
     setSuccess("");
-    startPending(() => {
-      signUp(values).then((data) => {
+    startPending(async () => {
+      const Data = await signUp(values).then(async (data) => {
         setError(data?.error);
         setSuccess(data?.success);
       });
@@ -91,7 +91,7 @@ const SignUpForm = ({ type }: { type: string }) => {
             <CustomInput
               key="group"
               control={SignUpForm.control}
-              name="groupId"
+              name="groupTitle"
               label="Group"
               nameHolder="IT, Sales, etc..."
               type="sign-up"

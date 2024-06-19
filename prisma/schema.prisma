@@ -16,18 +16,15 @@ model User {
   password          String?
   phone             String?
   image             String?
-  isPhoneConfirm    Boolean   @default(false)
-  isEmailConfirm    Boolean   @default(false)
+  phoneVerified     Boolean   @default(false)
   emailVerified     DateTime?
   enabled2FA        Boolean   @default(true)
   createdAtDateTime DateTime  @default(now())
   updatedAtDateTime DateTime  @updatedAt
   Profile           Profile?
   Account           Account?
-  Group             Group?    @relation(fields: [groupId], references: [id])
-  groupId           Int?
-  Role              Role?     @relation(fields: [roleId], references: [id])
-  roleId            Int?
+  Group             Group?
+  Role              Role?
 
   @@map("Users")
 }
@@ -54,7 +51,7 @@ model Account {
   id_token                 String? @db.Text
   session_state            String?
   refresh_token_expires_in Int?
-  user                     User?   @relation(fields: [userId], references: [id])
+  user                     User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -64,17 +61,21 @@ model Account {
 }
 
 model Group {
-  id    Int    @id @default(autoincrement())
-  title String
-  User  User[]
-  Role  Role[]
+  id     Int    @id @default(autoincrement())
+  userId String @unique
+  title  String
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model Role {
-  id    Int     @id @default(autoincrement())
-  title String
-  User  User[]
-  Group Group[]
+  id     Int    @id @default(autoincrement())
+  userId String @unique
+  title  String
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model VerificationToken {
