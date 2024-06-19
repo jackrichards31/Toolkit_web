@@ -1,92 +1,99 @@
-"use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { sidebarLinks } from "@/constants";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { Menu } from "lucide-react";
+import Theme from "../Home/Theme";
+import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import Footer from "../Footer/Footer";
 
-const MobileNav = ({ user }: { user: string }) => {
+const MobileSideNav = () => {
   const pathname = usePathname();
+  const light = "/icon/LogoWhite.png";
+  const dark = "/icon/LogoBlack.webp";
+  const { theme, systemTheme } = useTheme();
+
+  // Set the theme for system, dark, and light
+  // eslint-disable-next-line no-unused-vars
+  const [resolvedTheme, setResolvedTheme] = useState<string | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    if (theme === "system") {
+      setResolvedTheme(systemTheme);
+    } else {
+      setResolvedTheme(theme);
+    }
+  }, [theme, systemTheme]);
+
+  const imgSrc =
+    theme === "system"
+      ? systemTheme === "dark"
+        ? light
+        : dark
+      : theme === "light"
+        ? dark
+        : light;
   return (
-    <section className="hidden w-full max-w-[254px] max-sm:absolute max-sm:top-10">
+    <div className="right-8 top-5 z-10 max-sm:absolute sm:hidden">
       <Sheet>
         <SheetTrigger>
-          <Image
-            src="/icon/hamburger.svg"
-            alt="Hamburger"
-            width={30}
-            height={30}
-          />
+          <Menu />
         </SheetTrigger>
-        <SheetContent side="left" className="border-none bg-white">
-          <Link href="/" className="flex items-center gap-1 px-4">
-            <Image
-              src="/icon/Chain-smol.png"
-              alt="Logo"
-              width={34}
-              height={34}
-            />
-            <h1 className="text-[26px] font-bold text-zinc-900">
-              Micamp Solutions
-            </h1>
-          </Link>
-          <div className="mobilenav-sheet">
-            <SheetClose asChild>
-              <nav className="flex h-full flex-col gap-6 pt-16 text-white">
+        <SheetContent side="left">
+          <SheetHeader>
+            <SheetTitle>
+              <div className="flex justify-center">
+                <Link href="/">
+                  <Image
+                    src={imgSrc}
+                    alt="logo"
+                    width={250}
+                    height={250}
+                    priority
+                  />
+                </Link>
+              </div>
+            </SheetTitle>
+            <SheetDescription>
+              <Theme />
+
+              <div data-orientation="horizon" className="my-10 border" />
+
+              <>
                 {sidebarLinks.map((item) => {
                   const isActive =
-                    pathname.includes(item.route) ||
-                    pathname.startsWith(`${item.route}/`);
-
+                    (pathname?.includes(item.route) && item.label.length > 1) ||
+                    pathname === item.label;
                   return (
-                    <SheetClose asChild key={item.route}>
-                      <Link
-                        href={item.route}
-                        key={item.label}
-                        className={cn("mobilenav-sheet_close w-full", {
-                          "bg-orange-400": isActive,
-                        })}
-                      >
-                        <Image
-                          src={item.imgURL}
-                          alt={item.label}
-                          width={20}
-                          height={20}
-                          className={cn({
-                            "brightness-[3] invert-0": isActive,
-                          })}
-                        />
-                        <p
-                          className={cn(
-                            "text-[16px] font-semibold text-zinc-900",
-                            { "text-white": isActive }
-                          )}
-                        >
-                          {item.label}
-                        </p>
-                      </Link>
-                    </SheetClose>
+                    <Link
+                      className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
+                      key={item.label}
+                      href={item.route}
+                    >
+                      {React.createElement(item.icon)}
+                      <p className={`${isActive ? "font-semibold" : ""}`}>
+                        {item.label}
+                      </p>
+                    </Link>
                   );
                 })}
-                USER
-              </nav>
-            </SheetClose>
-
-            <Footer />
-          </div>
+              </>
+            </SheetDescription>
+          </SheetHeader>
         </SheetContent>
       </Sheet>
-    </section>
+    </div>
   );
 };
 
-export default MobileNav;
+export default MobileSideNav;
