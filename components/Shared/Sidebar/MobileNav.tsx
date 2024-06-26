@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -14,6 +15,7 @@ import { Menu } from "lucide-react";
 import Theme from "../Home/Theme";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
+import ProfileLogo from "../Profile/ProfileLogo";
 
 const MobileSideNav = () => {
   const pathname = usePathname();
@@ -43,6 +45,7 @@ const MobileSideNav = () => {
       : theme === "light"
         ? dark
         : light;
+
   return (
     <div className="right-8 top-5 z-10 max-sm:absolute sm:hidden">
       <Sheet>
@@ -53,15 +56,17 @@ const MobileSideNav = () => {
           <SheetHeader>
             <SheetTitle>
               <div className="flex justify-center">
-                <Link href="/">
-                  <Image
-                    src={imgSrc}
-                    alt="logo"
-                    width={250}
-                    height={250}
-                    priority
-                  />
-                </Link>
+                <SheetClose asChild>
+                  <Link href="/">
+                    <Image
+                      src={imgSrc}
+                      alt="logo"
+                      width={250}
+                      height={250}
+                      priority
+                    />
+                  </Link>
+                </SheetClose>
               </div>
             </SheetTitle>
             <SheetDescription>
@@ -69,25 +74,30 @@ const MobileSideNav = () => {
 
               <div data-orientation="horizon" className="my-10 border" />
 
-              <>
+              <div className="h-[580px] overflow-y-auto">
                 {sidebarLinks.map((item) => {
                   const isActive =
                     (pathname?.includes(item.route) && item.label.length > 1) ||
                     pathname === item.label;
                   return (
-                    <Link
-                      className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
-                      key={item.label}
-                      href={item.route}
-                    >
-                      {React.createElement(item.icon)}
-                      <p className={`${isActive ? "font-semibold" : ""}`}>
-                        {item.label}
-                      </p>
-                    </Link>
+                    <SheetClose asChild key={item.label}>
+                      <Link
+                        className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
+                        href={item.route}
+                      >
+                        {React.createElement(item.icon)}
+                        <p className={`${isActive ? "font-semibold" : ""}`}>
+                          {item.label}
+                        </p>
+                      </Link>
+                    </SheetClose>
                   );
                 })}
-              </>
+              </div>
+
+              <div>
+                <ProfileLogo Firstname="Tony" Lastname="Stark" />
+              </div>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Payment, columns } from "./columns";
 import DataTable from "./data-table";
+import MobileTable from "@/components/Shared/DataTable/MobileTable";
 
 async function payment(): Promise<Payment[]> {
   return [
@@ -22,9 +23,15 @@ async function payment(): Promise<Payment[]> {
 const Merchants = async () => {
   const data = await payment();
   return (
-    <section className="flex min-h-fit w-full justify-center p-12">
-      <DataTable columns={columns} data={data} />
-    </section>
+    <>
+      <section className="flex min-h-fit w-full justify-center p-12 max-sm:hidden">
+        <DataTable columns={columns} data={data} />
+      </section>
+
+      <section className="flex min-h-fit w-full justify-center sm:hidden">
+        <MobileTable />
+      </section>
+    </>
   );
 };
 

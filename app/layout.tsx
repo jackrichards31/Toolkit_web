@@ -4,6 +4,9 @@ import { Inter as Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
+// import devextreme license key
+import "@/components/DevLicense";
+
 const inter = Sans({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -14,7 +17,7 @@ export const metadata: Metadata = {
   title: "Toolkit",
   description: "A Toolkit web for everyone",
   icons: {
-    icon: "icon/Chain-smol.png",
+    icon: "/icon/Chain-smol.png",
   },
 };
 

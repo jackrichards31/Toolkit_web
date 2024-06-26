@@ -67,7 +67,7 @@ export default function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="w-2/3 rounded-md border p-5 max-sm:hidden">
+      <div className="w-2/3 rounded-md border p-5 md:w-full">
         <Tabs defaultValue="mid" className="mb-4 w-1/2">
           <TabsList className="w-full">
             {merchantLinks.map((item) => (

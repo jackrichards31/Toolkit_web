@@ -1,9 +1,9 @@
-import Cards from "@/components/Shared/Cards/Cards";
+import DataTable from "@/components/Shared/DataTable/DataGrid";
 
 export default function Home() {
   return (
     <main>
-      <Cards />
+      <DataTable />
     </main>
   );
 }

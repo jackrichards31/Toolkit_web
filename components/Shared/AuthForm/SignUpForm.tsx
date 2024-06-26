@@ -11,7 +11,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas";
 import { signUp } from "@/actions/authAction";
-import axios from "axios";
 import LineSeperator from "../../LineSeperator";
 
 const SignUpForm = ({ type }: { type: string }) => {
@@ -41,7 +40,7 @@ const SignUpForm = ({ type }: { type: string }) => {
     setError("");
     setSuccess("");
     startPending(async () => {
-      const Data = await signUp(values).then(async (data) => {
+      await signUp(values).then(async (data) => {
         setError(data?.error);
         setSuccess(data?.success);
       });

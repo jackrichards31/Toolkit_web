@@ -69,9 +69,7 @@ const Sidebar = () => {
                 href={item.route}
               >
                 {React.createElement(item.icon)}
-                <p
-                  className={`${isActive ? "base-bold" : "base-medium"} max-lg:hidden`}
-                >
+                <p className={`${isActive ? "base-bold" : "base-medium"}`}>
                   {item.label}
                 </p>
               </Link>
