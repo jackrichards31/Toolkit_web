@@ -4,7 +4,7 @@ import Theme from "./Theme";
 const WelcomeBar = ({ user }: { user: string }) => {
   return (
     <>
-      <div className="background-light900_dark200 flex flex-1 items-center justify-between p-12 max-sm:text-center">
+      <div className="flex flex-1 items-center justify-between p-12 max-sm:text-center">
         <div className="text-dark100_light900">
           <h1 className="text-[38px]">
             Welcome <span className="text-blue-500">&nbsp;{user}</span>
