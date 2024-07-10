@@ -27,7 +27,7 @@ const ProfileLogo = ({
           <Avatar>
             <AvatarFallback>{Firstname[0]}</AvatarFallback>
           </Avatar>
-          <div className="ml-3 flex flex-col items-start">
+          <div className="ml-3 flex flex-col items-start max-2xl:hidden max-sm:flex">
             <h1 className="text-dark200_light900 font-semibold">
               {Firstname} {Lastname}
             </h1>

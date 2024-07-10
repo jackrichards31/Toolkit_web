@@ -47,7 +47,7 @@ const MobileSideNav = () => {
         : light;
 
   return (
-    <div className="right-8 top-5 z-10 max-sm:absolute sm:hidden">
+    <div className="absolute right-8 top-5 z-10 sm:hidden">
       <Sheet>
         <SheetTrigger>
           <Menu />
@@ -55,7 +55,7 @@ const MobileSideNav = () => {
         <SheetContent side="left">
           <SheetHeader>
             <SheetTitle>
-              <div className="flex justify-center">
+              <div className="flex flex-col justify-center">
                 <SheetClose asChild>
                   <Link href="/">
                     <Image
@@ -67,14 +67,12 @@ const MobileSideNav = () => {
                     />
                   </Link>
                 </SheetClose>
+                <Theme />
+                <div data-orientation="horizon" className="mt-6 border" />
               </div>
             </SheetTitle>
-            <SheetDescription>
-              <Theme />
-
-              <div data-orientation="horizon" className="my-10 border" />
-
-              <div className="h-[580px] overflow-y-auto">
+            <SheetDescription className="flex grow flex-col justify-between">
+              <div className="grow overflow-y-auto">
                 {sidebarLinks.map((item) => {
                   const isActive =
                     (pathname?.includes(item.route) && item.label.length > 1) ||
@@ -82,7 +80,7 @@ const MobileSideNav = () => {
                   return (
                     <SheetClose asChild key={item.label}>
                       <Link
-                        className={`${isActive ? "bg-slate-300 shadow-md dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
+                        className={`${isActive ? "text-dark300_light900 border bg-stone-300 dark:bg-zinc-800" : ""} flex items-center justify-start gap-4 rounded-lg bg-transparent p-4`}
                         href={item.route}
                       >
                         {React.createElement(item.icon)}
@@ -95,7 +93,7 @@ const MobileSideNav = () => {
                 })}
               </div>
 
-              <div>
+              <div className="mt-auto">
                 <ProfileLogo Firstname="Tony" Lastname="Stark" />
               </div>
             </SheetDescription>

@@ -32,7 +32,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function SideDetails() {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden max-sm:hidden sm:hidden 2xl:block">
       <CardHeader className="flex flex-row items-start bg-muted/50">
         <div className="grid gap-0.5">
           <CardTitle className="group flex items-center gap-2 text-lg">
