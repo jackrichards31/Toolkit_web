@@ -13,9 +13,11 @@ import DataGrid, {
 import { Workbook } from "exceljs";
 import saveAs from "file-saver";
 import { exportDataGrid } from "devextreme/excel_exporter";
+import { jsPDF as JSPDF } from "jspdf";
+import { exportDataGrid as exportPDF } from "devextreme/pdf_exporter";
 import React from "react";
 
-const exportFormats = ["xlsx"];
+const exportFormats = ["xlsx", "pdf"];
 
 const exportGrid = (e: any) => {
   if (e.format === "xlsx") {
@@ -33,10 +35,18 @@ const exportGrid = (e: any) => {
       });
     });
     e.cancel = true;
+  } else if (e.format === "pdf") {
+    const doc = new JSPDF();
+    exportPDF({
+      jsPDFDocument: doc,
+      component: e.component,
+    }).then(() => {
+      doc.save("Merchant - MID.pdf");
+    });
   }
 };
 
-const ExtremeDataTable = () => {
+const ExtremeDataTable = ({ type }: { type: string }) => {
   return (
     <div>
       <DataGrid
@@ -48,6 +58,7 @@ const ExtremeDataTable = () => {
         rowAlternationEnabled={true}
         onExporting={exportGrid}
         paging={{ pageSize: 10 }}
+        onRowClick={() => {}}
       >
         <ColumnFixing enabled={true} />
         <GroupPanel visible={true} />
@@ -59,22 +70,40 @@ const ExtremeDataTable = () => {
           dataField="EmployeeID"
           caption="ID"
           alignment="left"
+          fixed={true}
           dataType="number"
         />
-        <Column dataField="FullName" caption="Full Name" dataType="string" />
-        <Column dataField="Position" caption="Position" dataType="string" />
-        <Column dataField="BirthDate" caption="Birth Date" dataType="date" />
+        <Column
+          dataField="FullName"
+          caption="Full Name"
+          dataType="string"
+          fixed={true}
+        />
+        <Column
+          dataField="Position"
+          caption="Position"
+          dataType="string"
+          fixed={true}
+        />
+        <Column
+          dataField="BirthDate"
+          caption="Birth Date"
+          dataType="date"
+          fixed={true}
+        />
         <Column
           dataField="City"
           caption="City"
           alignment="left"
           dataType="string"
+          fixed={true}
         />
         <Column
           dataField="Country"
           caption="Country"
           alignment="left"
           dataType="string"
+          fixed={true}
         />
       </DataGrid>
     </div>

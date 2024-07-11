@@ -5,7 +5,7 @@ import DataTable from "./data-table";
 const Merchants = async () => {
   return (
     <>
-      <div className="px-12 max-2xl:mb-3">
+      <div className="max-2xl:mb-3 lg:px-12">
         {/* <MerchantTables /> */}
         <DataTable />
       </div>

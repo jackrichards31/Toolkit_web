@@ -7,7 +7,6 @@ import {
   Barcode,
   CpuIcon,
   Calendar,
-  Plus,
   FileText,
 } from "lucide-react";
 
@@ -83,11 +82,6 @@ export const merchantTabs = [
     icons: Calendar,
     title: "Created Date",
     value: "created_at",
-  },
-  {
-    icons: Plus,
-    title: "New",
-    value: "new",
   },
   {
     icons: FileText,
