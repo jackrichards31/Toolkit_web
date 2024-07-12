@@ -3,7 +3,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { PlusSquare } from "lucide-react";
 import React from "react";
-import { Button } from "../ui/button";
 import DateRangeBox from "devextreme-react/cjs/date-range-box";
 import {
   Dialog,
@@ -61,12 +60,12 @@ const MerchantSearch = ({ type }: { type: string }) => {
 
         <Dialog>
           <DialogTrigger>
-            <Button className="gap-3">
+            <div className="flex gap-3 rounded-md bg-black p-2.5 dark:bg-white dark:text-black">
               <PlusSquare />
               New merchant
-            </Button>
+            </div>
           </DialogTrigger>
-          <DialogContent className="max-lg:max-w-[500px] lg:max-w-[1200px]">
+          <DialogContent className="2xl:[1200px] max-lg:max-w-[500px] lg:max-w-[800px]">
             <DialogHeader>
               <DialogTitle className="text-2xl font-semibold">
                 Merchant Information

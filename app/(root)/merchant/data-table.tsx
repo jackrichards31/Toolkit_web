@@ -9,9 +9,9 @@ import React from "react";
 
 export default function DataTable() {
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 max-2xl:grid-cols-1">
       <div className="w-full rounded-md border p-5 max-sm:w-fit">
-        <Tabs defaultValue="mid" className="mb-4 w-full max-lg:w-4/5">
+        <Tabs defaultValue="mid" className="mb-4 w-full">
           <TabsList className="w-full">
             {merchantTabs.map((item) => (
               <TabsTrigger

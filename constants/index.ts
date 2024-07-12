@@ -8,6 +8,7 @@ import {
   CpuIcon,
   Calendar,
   FileText,
+  Home,
 } from "lucide-react";
 
 export const themes = [
@@ -17,6 +18,13 @@ export const themes = [
 ];
 
 export const sidebarLinks: SidebarLink[] = [
+  {
+    icon: Home,
+    route: "/",
+    desc: "Home page",
+    label: "Home",
+    options: [],
+  },
   {
     icon: Store,
     route: "/merchant",
@@ -30,13 +38,6 @@ export const sidebarLinks: SidebarLink[] = [
     desc: "Report the FSP",
     label: "FSP",
     options: ["FSP"],
-  },
-  {
-    icon: FileDown,
-    route: "/ad-hoc",
-    desc: "Report Ad Hoc",
-    label: "Ad Hoc",
-    options: ["Ad Hoc"],
   },
   {
     icon: UserCog,
