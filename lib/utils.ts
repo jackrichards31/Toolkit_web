@@ -59,6 +59,36 @@ export const newMerchantSchema = z.object({
   Notice: z.string(),
 });
 
+export const AgentSetupSchema = z.object({
+  findAgent: z.string(),
+  excludeClosedAgents: z.string(),
+  displayName: z.string().nonempty("Display Name is required"),
+  firstName: z.string().nonempty("First Name is required"),
+  lastName: z.string().nonempty("Last Name is required"),
+  merchantNote: z.string(),
+  isChildSubAgent: z.boolean(),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().optional(),
+  status: z.string().nonempty("Status is required"),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  address1: z.string().optional(),
+  address2: z.string().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  zip: z.string().optional(),
+  routing: z.string().optional(),
+  account: z.string().optional(),
+  ssn: z.string().optional(),
+  payDay: z.string().optional(),
+  payGroup: z.string().optional(),
+  msoId: z.string().optional(),
+  reportType: z.string().optional(),
+  payrollId: z.string().optional(),
+  agentId: z.string().optional(),
+  note: z.string().optional(),
+});
+
 // Currency format functions
 export const formatCurrency = (
   value: number,
