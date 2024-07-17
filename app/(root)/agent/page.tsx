@@ -1,3 +1,6 @@
+"use client";
+
+import AgentSetup from "@/components/agent/AgentSetup";
 import ExtremeDataTable from "@/components/Shared/DataTable/DataTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { agentData } from "@/constants";
@@ -20,9 +23,19 @@ const page = () => {
           ))}
         </TabsList>
         {list.map((tab) => (
-          <TabsContent value={tab.value} key={tab.id}>
-            <ExtremeDataTable data={agentData} pageSize={10} />
-          </TabsContent>
+          <div key={tab.value}>
+            {tab.value === "list" && (
+              <TabsContent value={tab.value} key={tab.id}>
+                <ExtremeDataTable data={agentData} pageSize={10} />
+              </TabsContent>
+            )}
+
+            {tab.value === "setup" && (
+              <TabsContent value={tab.value} key={tab.id}>
+                <AgentSetup />
+              </TabsContent>
+            )}
+          </div>
         ))}
       </Tabs>
     </div>
