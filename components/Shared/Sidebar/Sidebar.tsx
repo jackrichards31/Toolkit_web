@@ -14,6 +14,8 @@ const Sidebar = () => {
   const Firstname = "Tony";
   const Lastname = "Stark";
 
+  const role = "admin";
+
   return (
     <>
       <section className="sticky left-0 top-0 flex h-screen w-64 flex-col justify-between overflow-y-auto border-r p-6 pt-16 dark:shadow-none max-2xl:w-fit max-md:hidden 2xl:w-[266px]">
@@ -44,6 +46,9 @@ const Sidebar = () => {
           <hr className="text-[14px]" />
 
           {sidebarLinks.map((item) => {
+            if (item.label === "Admin" && role !== "admin") {
+              return null;
+            }
             const isActive =
               (pathname?.includes(item.route) && item.route.length > 1) ||
               pathname === item.route;

@@ -7,8 +7,7 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import DataGrid, { Column, Paging } from "devextreme-react/data-grid";
-import { Badge } from "@/components/ui/badge";
+import ExtremeDataTable from "./DataTable";
 
 // Mock up data
 const orders = [
@@ -62,7 +61,7 @@ const orders = [
     customer: "Sophia Martinez",
     email: "sophia@example.com",
     type: "Sale",
-    status: "Fulfilled",
+    status: "Denied",
     date: "2023-06-28",
     amount: "$400.00",
   },
@@ -80,7 +79,7 @@ const orders = [
     customer: "Isabella Hernandez",
     email: "isabella@example.com",
     type: "Purchase",
-    status: "Shipped",
+    status: "Pending",
     date: "2023-06-30",
     amount: "$500.00",
   },
@@ -89,7 +88,7 @@ const orders = [
     customer: "Lucas Moore",
     email: "lucas@example.com",
     type: "Sale",
-    status: "Fulfilled",
+    status: "Success",
     date: "2023-07-01",
     amount: "$350.00",
   },
@@ -98,14 +97,14 @@ const orders = [
     customer: "Mia Taylor",
     email: "mia@example.com",
     type: "Purchase",
-    status: "Processed",
+    status: "Success",
     date: "2023-07-02",
     amount: "$100.00",
   },
   // Add more order data as needed
 ];
 
-export default function Component() {
+export default function DataTable() {
   return (
     <div className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
       <Card>
@@ -114,30 +113,11 @@ export default function Component() {
           <CardDescription>Recent orders from your store.</CardDescription>
         </CardHeader>
         <CardContent>
-          <DataGrid
-            dataSource={orders}
-            id="id"
-            showBorders={false}
-            rowAlternationEnabled={true}
-            paging={{ pageSize: 7 }}
-          >
-            <Paging defaultPageSize={7} />
-            <Column dataField="customer" caption="Customer" />
-            <Column dataField="type" caption="Type" />
-            <Column
-              dataField="status"
-              caption="Status"
-              cellRender={(cellData) => {
-                return (
-                  <Badge className="text-xs" variant="secondary">
-                    {cellData.value}
-                  </Badge>
-                );
-              }}
-            />
-            <Column dataField="date" caption="Date" />
-            <Column dataField="amount" caption="Amount" alignment="right" />
-          </DataGrid>
+          <ExtremeDataTable
+            pageSize={7}
+            data={orders}
+            columnsToDisplay={["id", "type", "status", "date", "amount"]}
+          />
         </CardContent>
       </Card>
     </div>
