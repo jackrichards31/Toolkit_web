@@ -32,7 +32,7 @@ export const sidebarLinks: SidebarLink[] = [
   },
   {
     icon: Store,
-    route: "/merchant",
+    route: "/merchant/find",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
     options: ["MID", "Agent", "Processor"],
@@ -128,23 +128,23 @@ export const merchantMainTabs = [
   {
     title: "Find",
     value: "find",
-    route: "/merchant/find"
+    route: "/merchant/find",
   },
   {
     title: "Summary",
     value: "summary",
-    route: "/merchant/summary"
+    route: "/merchant/summary",
   },
   {
     title: "Information",
     value: "information",
-    route: "/merchant/information/info"
+    route: "/merchant/information/info",
   },
   {
     title: "Reports",
     value: "reports",
-    route: "/merchant/reports"
-  }  
+    route: "/merchant/reports",
+  },
 ];
 /**
  * This employees data is for mock-up data only!
@@ -860,4 +860,58 @@ export const AgentSetupFields = [
     defaultValue: "",
     validation: z.string().optional(),
   },
+];
+
+export const AgentSetupTabs = [
+  {
+    id: "1",
+    title: "Residuals",
+    value: "residuals",
+  },
+  {
+    id: "2",
+    title: "Billing",
+    value: "billing",
+  },
+  {
+    id: "3",
+    title: "Customer Finance",
+    value: "customerFinance",
+  },
+  {
+    id: "4",
+    title: "Equipment",
+    value: "equipment",
+  },
+  {
+    id: "5",
+    title: "Documentation",
+    value: "documentation",
+  },
+  {
+    id: "6",
+    title: "Reporting",
+    value: "reporting",
+  },
+  {
+    id: "7",
+    title: "Email Lists",
+    value: "emailList",
+  },
+  {
+    id: "8",
+    title: "Adjustments",
+    value: "adjustments",
+  },
+];
+
+export const FindAgent = [
+  { id: 1, name: "Average Joe", value: "avgJoe" },
+  { id: 2, name: "Martin Joe", value: "marJoe" },
+];
+
+export const SubAgentOrChild = [
+  { id: 1, name: "Testing1", value: "test1" },
+  { id: 2, name: "Testing2", value: "test2" },
+  { id: 3, name: "Testing3", value: "test3" },
 ];

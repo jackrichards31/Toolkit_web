@@ -7,3 +7,7 @@ export interface SidebarLink {
   label: string;
   options: string[];
 }
+
+export interface ContentItem {
+  [key: string]: string | number;
+}
