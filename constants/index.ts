@@ -124,6 +124,28 @@ export const merchantTabs = [
   },
 ];
 
+export const merchantMainTabs = [
+  {
+    title: "Find",
+    value: "find",
+    route: "/merchant/find"
+  },
+  {
+    title: "Summary",
+    value: "summary",
+    route: "/merchant/summary"
+  },
+  {
+    title: "Information",
+    value: "information",
+    route: "/merchant/information/info"
+  },
+  {
+    title: "Reports",
+    value: "reports",
+    route: "/merchant/reports"
+  }  
+];
 /**
  * This employees data is for mock-up data only!
  */

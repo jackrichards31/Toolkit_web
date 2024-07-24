@@ -1,11 +1,11 @@
 import React from "react";
-import DataTable from "./data-table";
+import DataTable from "./find/data-table";
 
 const Merchants = async () => {
   return (
     <>
-      <div className="px-12 max-2xl:mb-3 max-lg:w-full">
-        <DataTable />
+      <div className="">
+        
       </div>
     </>
   );
