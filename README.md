@@ -2,12 +2,14 @@
 
 This project is built using [Next.js 14.2.5](https://nextjs.org/) for the framework, [Shadcn/ui](https://ui.shadcn.com/) for the UI components, [Prisma](https://www.prisma.io/) for database ORM, [Auth.js](https://authjs.dev/) for authentication, [Figma](https://www.figma.com/) for frontend design, and [MySQL](https://www.mysql.com/) for the database.
 
+<div align='center'>
 <img src="https://miro.medium.com/v2/resize:fit:828/format:webp/1*okiCUvTUJLtOqJv1dMzwpA.png" alt="Next.js logo" width='80' />
 <img src="https://suhelmakkad.gallerycdn.vsassets.io/extensions/suhelmakkad/shadcn-ui/0.1.22/1700392120935/Microsoft.VisualStudio.Services.Icons.Default" alt="Next.js logo" width='80' />
 <img src="https://yt3.googleusercontent.com/1oQc-j55vr_tnNhIWvSTxSPeV9cPpZyC3IoTr4zl6oUvEK50z9PjtfvKfyL8qC-sNbcQQmYg=s160-c-k-c0x00ffffff-no-rj" alt="Next.js logo" width='80' />
 <img src="https://avatars.githubusercontent.com/u/67470890?s=200&v=4" alt="Next.js logo" width='80' />
 <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-in-colors/3000/figma-logo-1024.png" alt="Next.js logo" width='80' />
 <img src="https://pngimg.com/uploads/mysql/mysql_PNG9.png" alt="Next.js logo" width='80' />
+</div>
 
 ## What is Toolkit Web?
 
