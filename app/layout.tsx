@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter as Sans } from "next/font/google";
 import "./globals.css";
-import "devextreme/dist/css/dx.fluent.blue.dark.css";
+// import "devextreme/dist/css/dx.fluent.blue.dark.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import { DevLicense } from "@/components/DevLicense";
 

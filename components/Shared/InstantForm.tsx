@@ -158,21 +158,23 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
   formName,
   label,
   placeholder,
+  className,
 }: {
   control: Control<z.infer<T>>;
   formName: Path<z.infer<T>>;
   label: string;
   placeholder: string;
+  className?: string;
 }) => {
   return (
     <FormField
       control={control}
       name={formName}
       render={({ field }) => (
-        <FormItem className="flex flex-col">
+        <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <div>
+            <div className={className}>
               <Checkbox
                 checked={field.value ?? false}
                 onCheckedChange={field.onChange}
@@ -196,30 +198,30 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   control: Control<z.infer<T>>;
   formName: Path<z.infer<T>>;
   label: string;
-  placeholder: string;
+  placeholder?: string;
 }) => {
   const [date, setDate] = useState<Date>();
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn("w-[280px] justify-start text-left font-normal", {
-            "text-muted-foreground": !date,
-          })}
-        >
-          <CalendarIcon className="mr-2 size-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
-        <FormField
-          control={control}
-          name={formName}
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>{label}</FormLabel>
-              <FormControl>
+    <FormField
+      control={control}
+      name={formName}
+      render={({ field }) => (
+        <FormItem className="flex flex-col">
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn("w-full justify-start text-left font-normal", {
+                    "text-muted-foreground": !date,
+                  })}
+                >
+                  <CalendarIcon className="mr-2 size-4" />
+                  {date ? format(date, "PPP") : <span>{placeholder}</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
                 <Calendar
                   mode="single"
                   selected={date}
@@ -229,11 +231,11 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
                   }}
                   initialFocus
                 />
-              </FormControl>
-            </FormItem>
-          )}
-        />
-      </PopoverContent>
-    </Popover>
+              </PopoverContent>
+            </Popover>
+          </FormControl>
+        </FormItem>
+      )}
+    />
   );
 };

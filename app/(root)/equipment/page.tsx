@@ -1,7 +1,14 @@
+"use client";
+
 import EquipmentForm from "@/components/equipments/EquipmentForm";
-import ExtremeDataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
+import DataTable from "@/components/Shared/DataTable/DataTable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { equipmentData } from "@/constants";
+import { DataTypes } from "@/types";
 import React from "react";
 
 const data = [
@@ -42,6 +49,21 @@ const data = [
   },
 ];
 
+const columnsConfig: ColumnConfig<DataTypes>[] = [
+  { accessorKey: "id", header: "ID" },
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "brand", header: "Brand" },
+  { accessorKey: "model", header: "Model" },
+  { accessorKey: "purchaseDate", header: "Purchase" },
+  { accessorKey: "warrantyExpiration", header: "Warranty Expiration" },
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "location", header: "Location" },
+  { accessorKey: "assignedTo", header: "Assigned" },
+  { accessorKey: "price", header: "Price" },
+];
+
+const columns = createColumns(columnsConfig);
+
 const Equipment = () => {
   return (
     <div className="grid grid-cols-2 overflow-auto p-12 max-2xl:grid-cols-1">
@@ -59,11 +81,7 @@ const Equipment = () => {
           </TabsContent>
         ))}
       </Tabs>
-      <ExtremeDataTable
-        data={equipmentData}
-        pageSize={10}
-        columnsToDisplay={["id", "name", "brand", "model", "status", "price"]}
-      />
+      <DataTable columns={columns} data={equipmentData} />
     </div>
   );
 };

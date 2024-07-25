@@ -14,15 +14,14 @@ const MerchantMainTabs = () => {
           pathname === item.title;
 
         return (
-          <>
-            <div
-              className={`${isActive ? "border-b-8 border-sky-500 text-sky-500" : "text-black dark:text-white"} cursor-pointer p-3 text-lg`}
-            >
-              <Link href={item.route}>
-                <p className="text-pretty">{item.title}</p>
-              </Link>
-            </div>
-          </>
+          <div
+            className={`${isActive ? "border-b-8 border-sky-500 text-sky-500" : "text-black dark:text-white"} cursor-pointer p-3 text-lg`}
+            key={item.value}
+          >
+            <Link href={item.route}>
+              <p className="text-pretty">{item.title}</p>
+            </Link>
+          </div>
         );
       })}
     </div>
