@@ -259,7 +259,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(206) 555-9857",
     Position: "Sales Representative",
-    BirthDate: "1968-12-08T00:00:00.000Z",
+    BirthDate: new Date("1968-12-08T00:00:00.000Z"),
   },
   {
     EmployeeID: 2,
@@ -271,7 +271,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(206) 555-9482",
     Position: "Vice President, Sales",
-    BirthDate: "1972-02-19T00:00:00.000Z",
+    BirthDate: new Date("1972-02-19T00:00:00.000Z"),
   },
   {
     EmployeeID: 3,
@@ -283,7 +283,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(206) 555-3412",
     Position: "Sales Representative",
-    BirthDate: "1983-08-30T00:00:00.000Z",
+    BirthDate: new Date("1983-08-30T00:00:00.000Z"),
   },
   {
     EmployeeID: 4,
@@ -295,7 +295,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(206) 555-8122",
     Position: "Sales Representative",
-    BirthDate: "1980-09-19T00:00:00.000Z",
+    BirthDate: new Date("1980-09-19T00:00:00.000Z"),
   },
   {
     EmployeeID: 5,
@@ -307,7 +307,7 @@ export const employees: DataTypes[] = [
     Country: "UK",
     HomePhone: "(71) 555-4848",
     Position: "Sales Manager",
-    BirthDate: "1966-03-04T00:00:00.000Z",
+    BirthDate: new Date("1966-03-04T00:00:00.000Z"),
   },
   {
     EmployeeID: 6,
@@ -319,7 +319,7 @@ export const employees: DataTypes[] = [
     Country: "UK",
     HomePhone: "(71) 555-7773",
     Position: "Sales Representative",
-    BirthDate: "1963-07-02T00:00:00.000Z",
+    BirthDate: new Date("1963-07-02T00:00:00.000Z"),
   },
   {
     EmployeeID: 7,
@@ -331,7 +331,7 @@ export const employees: DataTypes[] = [
     Country: "UK",
     HomePhone: "(71) 555-5598",
     Position: "Sales Representative",
-    BirthDate: "1984-05-29T00:00:00.000Z",
+    BirthDate: new Date("1984-05-29T00:00:00.000Z"),
   },
   {
     EmployeeID: 8,
@@ -343,7 +343,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(206) 555-1189",
     Position: "Inside Sales Coordinator",
-    BirthDate: "1988-01-09T00:00:00.000Z",
+    BirthDate: new Date("1988-01-09T00:00:00.000Z"),
   },
   {
     EmployeeID: 9,
@@ -355,7 +355,7 @@ export const employees: DataTypes[] = [
     Country: "UK",
     HomePhone: "(71) 555-4444",
     Position: "Sales Representative",
-    BirthDate: "1974-01-27T00:00:00.000Z",
+    BirthDate: new Date("1974-01-27T00:00:00.000Z"),
   },
   {
     EmployeeID: 10,
@@ -367,7 +367,7 @@ export const employees: DataTypes[] = [
     Country: "USA",
     HomePhone: "(214) 555-7890",
     Position: "Sales Manager",
-    BirthDate: "1976-11-10T00:00:00.000Z",
+    BirthDate: new Date("1976-11-10T00:00:00.000Z"),
   },
 ];
 

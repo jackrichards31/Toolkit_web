@@ -25,7 +25,14 @@ const columnsConfig: ColumnConfig<DataTypes>[] = [
 const columns = createColumns(columnsConfig);
 
 const Page = () => {
-  return <DataTable columns={columns} data={employees} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={employees}
+      enableColumnFilter={true}
+      filteredBy="FullName"
+    />
+  );
 };
 
 export default Page;

@@ -49,6 +49,16 @@ const data = [
   },
 ];
 
+const Price = (row: any) => {
+  const amount = parseFloat(row.getValue("price"));
+  const formatted = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(amount);
+
+  return <div className="text-right font-medium">{formatted}</div>;
+};
+
 const columnsConfig: ColumnConfig<DataTypes>[] = [
   { accessorKey: "id", header: "ID" },
   { accessorKey: "name", header: "Name" },
@@ -59,7 +69,7 @@ const columnsConfig: ColumnConfig<DataTypes>[] = [
   { accessorKey: "status", header: "Status" },
   { accessorKey: "location", header: "Location" },
   { accessorKey: "assignedTo", header: "Assigned" },
-  { accessorKey: "price", header: "Price" },
+  { accessorKey: "price", header: "Price", cell: Price },
 ];
 
 const columns = createColumns(columnsConfig);
@@ -81,7 +91,13 @@ const Equipment = () => {
           </TabsContent>
         ))}
       </Tabs>
-      <DataTable columns={columns} data={equipmentData} />
+      <DataTable
+        columns={columns}
+        data={equipmentData}
+        enableSorting={true}
+        enableColumnFilter={true}
+        filteredBy="brand"
+      />
     </div>
   );
 };

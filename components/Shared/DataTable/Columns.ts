@@ -2,11 +2,15 @@
 
 import { JSX } from "react";
 import { DataTypes } from "@/types";
-import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  createColumnHelper,
+  HeaderContext,
+} from "@tanstack/react-table";
 
 export type ColumnConfig<T extends DataTypes> = {
   accessorKey: keyof T;
-  header: string;
+  header: string | ((props: HeaderContext<T, any>) => JSX.Element);
   cell?: (info: { getValue(): any }) => JSX.Element;
 };
 
