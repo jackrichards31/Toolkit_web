@@ -110,7 +110,7 @@ const MerchantsInformationTab = () => {
             id: '15',
             title: 'WAVit Info',
             value: 'wavitInfo',
-            route: '/merchant/information/wavitinfo/transactions',
+            route: '/merchant/information/wavitinfo/',
             icon: "/infoTabs/info-item.svg"
         },
         {

@@ -42,11 +42,6 @@ export default function DataTableMerchant() {
               <TabsContent key={item.value} value={item.value} className="mt-5">
                 <h1 className="font-semibold">Merchant - Find ({item.title})</h1>
                 <MerchantSearch type={item.title} />
-                {/* <ExtremeDataTable
-                  pageSize={10}
-                  data={employees}
-                  columnsToDisplay={["EmployeeID", "FullName", "City", "Country"]}
-                /> */}
                 <DataTable
                   columns={columns}
                   data={employees}

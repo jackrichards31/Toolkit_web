@@ -1426,6 +1426,129 @@ const rejectCollectionsTable2 = [
   },
 ]
 
+const wavitTransactionsTable = [
+  {
+    DateTime: "07/29/2024 09:00AM",
+    Type: "Cash",
+    Invoice: "101",
+    Amount: 42.50,
+    WAVit: 0.00,
+    Total: 42.50,
+    CC: "Visa",
+    Last4: "1234",
+    NameOnCard: "No Name",
+    AuthCode: "424242",
+    Tax: 0.00,
+    Tax2: 0.00,
+    Porcentage: 0
+  },
+  {
+    DateTime: "07/29/2024 09:00AM",
+    Type: "Cash",
+    Invoice: "101",
+    Amount: 42.50,
+    WAVit: 0.00,
+    Total: 42.50,
+    CC: "Visa",
+    Last4: "1234",
+    NameOnCard: "No Name",
+    AuthCode: "424242",
+    Tax: 0.00,
+    Tax2: 0.00,
+    Porcentage: 0
+  },
+  {
+    DateTime: "07/29/2024 09:00AM",
+    Type: "Debit Card",
+    Invoice: "101",
+    Amount: 422.50,
+    WAVit: 15.00,
+    Total: 437.50,
+    CC: "Visa",
+    Last4: "1234",
+    NameOnCard: "No Name",
+    AuthCode: "424242",
+    Tax: 0.00,
+    Tax2: 0.00,
+    Porcentage: 0
+  },
+  {
+    DateTime: "07/29/2024 09:00AM",
+    Type: "Credit Card",
+    Invoice: "101",
+    Amount: 31.55,
+    WAVit: 1.40,
+    Total: 42.50,
+    CC: "Visa",
+    Last4: "1234",
+    NameOnCard: "No Name",
+    AuthCode: "424242",
+    Tax: 0.00,
+    Tax2: 0.00,
+    Porcentage: 0
+  },
+]
+
+const wavitSettingsTable = [
+  {
+    Description: "Integrated",
+    Value: "false"
+  },
+  {
+    Description: "ByPass Integration",
+    Value: "null"
+  },
+  {
+    Description: "Bypass PIN",
+    Value: "null"
+  },
+  {
+    Description: "Integration Type",
+    Value: "null"
+  },
+  {
+    Description: "Subscription ID",
+    Value: "null"
+  },
+  {
+    Description: "Department Code",
+    Value: "null"
+  },
+  {
+    Description: "Enterprise Code",
+    Value: "null"
+  },
+  {
+    Description: "Company Number",
+    Value: "null"
+  },
+  {
+    Description: "Server Name",
+    Value: "null"
+  },
+  {
+    Description: "Transaction Type",
+    Value: "Pre-Auth"
+  },
+  {
+    Description: "Force Terms Acceptance",
+    Value: "false"
+  },
+  {
+    Description: "Terms and Conditions Address",
+    Value: "null"
+  },
+  {
+    Description: "Ask Manager Refund Override",
+    Value: "true"
+  },
+  {
+    Description: "Decline Partial Payments",
+    Value: "false"
+  },
+]
+
+
 export {
   merchantStatusList,
   merchantProcessorList,
@@ -1448,7 +1571,9 @@ export {
   onboardCheckListTable,
   documentsTable,
   rejectCollectionsTable1,
-  rejectCollectionsTable2
+  rejectCollectionsTable2,
+  wavitTransactionsTable,
+  wavitSettingsTable
 
 };
 
