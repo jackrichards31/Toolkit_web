@@ -20,7 +20,7 @@ const AgentSetup = () => {
           return (
             <TabsContent key={content.id} value={content.value}>
               <div className="flex">
-                <AgentContent value={content.value} />
+                <AgentContent />
               </div>
             </TabsContent>
           );

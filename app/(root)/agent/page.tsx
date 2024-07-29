@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import React, { useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { agentData } from "@/constants";
@@ -10,10 +9,7 @@ import {
 } from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 import DataTable from "@/components/Shared/DataTable/DataTable";
-
-const AgentSetup = dynamic(() => import("@/components/agent/AgentSetup"), {
-  ssr: false,
-});
+import AgentSetup from "@/components/agent/AgentSetup";
 
 const Page = () => {
   const list = useMemo(
