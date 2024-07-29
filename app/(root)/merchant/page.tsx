@@ -4,8 +4,8 @@ import DataTable from "./find/data-table";
 const Merchants = async () => {
   return (
     <>
-      <div className="">
-        
+      <div className=" ">
+
       </div>
     </>
   );

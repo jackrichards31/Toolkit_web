@@ -8,6 +8,9 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import ExtremeDataTable from "./DataTable";
+import DataTable from '@/components/Shared/DataTable/DataTable';
+import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+import { DataTypes } from "@/types";
 
 // Mock up data
 const orders = [
@@ -104,7 +107,17 @@ const orders = [
   // Add more order data as needed
 ];
 
-export default function DataTable() {
+const columnsConfig: ColumnConfig<DataTypes>[] = [
+  { accessorKey: "id", header: "ID" },
+  { accessorKey: "type", header: "Type" },
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "date", header: "Date" },
+  { accessorKey: "amount", header: "Amount" }
+];
+
+const columns = createColumns(columnsConfig);
+
+export default function DataTableOrders() {
   return (
     <div className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
       <Card>
@@ -113,10 +126,16 @@ export default function DataTable() {
           <CardDescription>Recent orders from your store.</CardDescription>
         </CardHeader>
         <CardContent>
-          <ExtremeDataTable
+          {/* <ExtremeDataTable
             pageSize={7}
             data={orders}
             columnsToDisplay={["id", "type", "status", "date", "amount"]}
+          /> */}
+          <DataTable
+            columns={columns}
+            data={orders}
+            enableColumnFilter={true}
+            filteredBy='username'
           />
         </CardContent>
       </Card>

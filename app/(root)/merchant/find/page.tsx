@@ -4,7 +4,9 @@ import DataTable from "./data-table";
 const page = () => {
   return (
     <>
+      <div className='w-full'>
         <DataTable />
+      </div>
     </>
   )
 }

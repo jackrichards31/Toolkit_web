@@ -3,7 +3,10 @@ import React from 'react'
 const page = () => {
   return (
     <>
-      <div></div>
+      <section>
+        <h1>Settings</h1>
+
+      </section>
     </>
   )
 }

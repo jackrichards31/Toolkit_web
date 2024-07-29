@@ -1,164 +1,266 @@
 "use client";
 
-import DataGrid, {
-  Column,
-  ColumnFixing,
-  Export,
-  GroupPanel,
-  HeaderFilter,
-  Paging,
-  SearchPanel,
-} from "devextreme-react/cjs/data-grid";
-import { Workbook } from "exceljs";
-import saveAs from "file-saver";
-import { exportDataGrid } from "devextreme/excel_exporter";
-import { jsPDF as JSPDF } from "jspdf";
-import { exportDataGrid as exportPDF } from "devextreme/pdf_exporter";
-import React from "react";
-import { Badge } from "@/components/ui/badge";
+import React, { useState } from "react";
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getSortedRowModel,
+  SortingState,
+  getPaginationRowModel,
+  ColumnFiltersState,
+  getFilteredRowModel,
+  VisibilityState,
+  ColumnDef,
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DataTableProps } from "@/types";
+import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+} from "@/components/ui/pagination";
+import { toast } from "@/components/ui/use-toast";
 
-const exportFormats = ["xlsx", "pdf"];
-
-const exportGrid = (e: any) => {
-  if (e.format === "xlsx") {
-    const workbook = new Workbook();
-    const worksheet = workbook.addWorksheet("Main sheet");
-    exportDataGrid({
-      worksheet,
-      component: e.component,
-    }).then(() => {
-      workbook.xlsx.writeBuffer().then((buffer) => {
-        saveAs(
-          new Blob([buffer], { type: "application/octet-stream" }),
-          "DataGrid.xlsx",
-        );
-      });
-    });
-    e.cancel = true;
-  } else if (e.format === "pdf") {
-    const doc = new JSPDF();
-    exportPDF({
-      jsPDFDocument: doc,
-      component: e.component,
-    }).then(() => {
-      doc.save("Merchant - MID.pdf");
-    });
-  }
-};
-
-interface ExtremeDataTableProps<T> {
-  pageSize: number;
-  data: T[];
-  columnsToDisplay?: (keyof T)[];
-}
-
-// For generating devExtreme data table
-const isDate = (value: any): value is Date => {
-  return value instanceof Date;
-};
-
-export const generateColumns = <T extends object>(
-  data: T[],
-  columnsToDisplay?: (keyof T)[],
-) => {
-  if (data.length === 0) return [];
-  const keys = columnsToDisplay || (Object.keys(data[0]) as (keyof T)[]);
-  return keys.map((key) => {
-    let dataType: "string" | "number" | "date" | undefined = "string";
-    if (typeof data[0][key] === "number") dataType = "number";
-    if (isDate(data[0][key])) dataType = "date";
-    const columnConfig: any = { dataField: key as string, dataType };
-
-    // Add custom cellRender for specific columns
-    if (key === "status") {
-      columnConfig.cellRender = (cellData: any) => {
-        const value = cellData.value;
-        let variant:
-          | "secondary"
-          | "success"
-          | "default"
-          | "destructive"
-          | "outline"
-          | null
-          | undefined = "secondary";
-        if (
-          value === "Success" ||
-          value === "Shipped" ||
-          value === "Fulfilled" ||
-          value === "Processed" ||
-          value === "Active"
-        )
-          variant = "success";
-        if (value === "Denied" || value === "Cancelled")
-          variant = "destructive";
-
-        return (
-          <Badge className="text-xs" variant={variant}>
-            {value}
-          </Badge>
-        );
-      };
-    }
-
-    return columnConfig;
-  });
-};
-
-// Capitalize the first letter of the string
-const capitalizeFirstLetter = (string: string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-/**
- * This is a dynamic DevExtreme data table.
- * Usage: data is required (data={exployee}), pageSize is required (pageSize={5}), and columnsToDisplay is not required but if you want to display some columns specifically instead of displaying them all.
- * You can declare it like this columnsToDisplay = {['id', 'title', 'name', ...]}
- * @data {your data}
- * @pageSize {5 (for example)}
- * @columnsToDisplay {['id', 'title', 'name', ...]}
- * @returns
- */
-const ExtremeDataTable = <T extends object>({
-  pageSize,
+export default function DataTable<TData>({
+  columns,
   data,
-  columnsToDisplay,
-}: ExtremeDataTableProps<T>) => {
-  const columns = generateColumns(data, columnsToDisplay);
+  enableSorting = false,
+  pagination = true,
+  enableColumnFilter = false,
+  filteredBy,
+  enableVisibility = false,
+  actionsColumn = true,
+}: DataTableProps<TData>) {
+  const [sorting, setSoring] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
+  const allColumns = React.useMemo(() => {
+    const actionColumn: ColumnDef<TData, any> = {
+      accessorKey: "action",
+      header: "Actions",
+      cell: ({ row }) => {
+        const original: any = row.getAllCells()[0].getValue();
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="size-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="size-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => {
+                  navigator.clipboard.writeText(original.toString());
+                  toast({
+                    title: "Copied!",
+                    description: "The ID has been successfully copied",
+                    variant: "default",
+                  });
+                }}
+                className="cursor-pointer"
+              >
+                Copy ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="cursor-pointer">
+                View customer
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer">
+                View payment details
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    };
+
+    return actionsColumn ? [...columns, actionColumn] : columns;
+  }, [actionsColumn, columns]);
+
+  const table = useReactTable({
+    data,
+    columns: allColumns,
+    getCoreRowModel: getCoreRowModel(),
+    onSortingChange: setSoring,
+    getSortedRowModel: enableSorting ? getSortedRowModel() : undefined,
+    getPaginationRowModel: pagination ? getPaginationRowModel() : undefined,
+    getFilteredRowModel: enableColumnFilter ? getFilteredRowModel() : undefined,
+    onColumnFiltersChange: enableColumnFilter ? setColumnFilters : undefined,
+    onColumnVisibilityChange: enableVisibility
+      ? setColumnVisibility
+      : undefined,
+
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+    },
+  });
+
+  if (enableColumnFilter && !filteredBy) {
+    throw new Error(
+      "The filteredBy prop is required when enable the column filter!",
+    );
+  }
   return (
     <div>
-      <DataGrid
-        dataSource={data}
-        id="dataGrid"
-        showBorders={false}
-        columnAutoWidth={true}
-        rowAlternationEnabled={true}
-        onExporting={exportGrid}
-        paging={{ pageSize }}
-        onRowClick={() => {}}
-      >
-        <ColumnFixing enabled={true} />
-        <GroupPanel visible={true} />
-        <HeaderFilter visible={true} />
-        <SearchPanel visible={true} />
-        <Export enabled={true} formats={exportFormats} />
-        <Paging defaultPageSize={10} />
-        {columns.map((col) => (
-          <Column
-            key={col.dataField}
-            dataField={col.dataField}
-            dataType={col.dataType}
-            caption={capitalizeFirstLetter(
-              col.dataField.replace(/([A-Z])/g, " $1").trim(),
-            )}
-            alignment="left"
-            fixed={true}
-            cellRender={col.cellRender}
+      {enableColumnFilter && (
+        <div className="flex items-center justify-end px-5 py-4">
+          <Input
+            placeholder={`Filter ${filteredBy}...`}
+            value={
+              (table
+                .getColumn(filteredBy as string)
+                ?.getFilterValue() as string) ?? ""
+            }
+            onChange={(e) =>
+              table
+                .getColumn(filteredBy as string)
+                ?.setFilterValue(e.target.value)
+            }
+            className="max-w-sm"
           />
-        ))}
-      </DataGrid>
+          {enableVisibility && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="ml-auto">
+                  Columns
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className="cursor-pointer capitalize"
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {column.id}
+                      </DropdownMenuCheckboxItem>
+                    );
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </div>
+      )}
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell ??
+                          ((info) => {
+                            const value = info.getValue();
+                            return value instanceof Date
+                              ? format(value, "MMM d, yyyy")
+                              : value;
+                          }),
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        {pagination && (
+          <span className="flex items-center justify-end space-x-2 px-2 py-4">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.previousPage()}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    <ChevronLeft />
+                  </Button>
+                </PaginationItem>
+                <PaginationItem className="flex gap-3">
+                  {table.getState().pagination.pageIndex + 1} <span>of</span>{" "}
+                  {table.getPageCount()}
+                </PaginationItem>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.nextPage()}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    <ChevronRight />
+                  </Button>
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </span>
+        )}
+      </div>
     </div>
   );
-};
-
-export default ExtremeDataTable;
+}

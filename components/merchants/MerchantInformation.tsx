@@ -23,7 +23,7 @@ import {
   import { Button } from "@/components/ui/button";
 import { Calendar } from "../ui/calendar";
 import { Calendar as CalendarIcon } from "lucide-react";
-import MerchantAccessOneApiTab from './accessOneApi/MerchantAccessOneApiTab';
+import MerchantAccessOneApiTab from './MerchantAccessOneApiTab';
 
 const MerchantInformation = () => {
 

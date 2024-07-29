@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const MerchantAccessOneApi = () => {
+const MerchantAccessOneApiTab = () => {
 
 const pathname = usePathname();
 const tabItems = [
@@ -92,4 +92,4 @@ const tabItems = [
   )
 }
 
-export default MerchantAccessOneApi
+export default MerchantAccessOneApiTab;

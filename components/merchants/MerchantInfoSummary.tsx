@@ -52,7 +52,7 @@ const MerchantInfoSummary = () => {
 
   return (
     <>
-        <div className="w-auto p-2 border rounded-lg border-solid border-gray-600 mb-5 mt-0">
+        <div className="w-auto p-2 border rounded-lg border-solid border-gray-400 shadow-md mb-5 mt-0">
             <h1 className="text-sky-500 text-3xl">
                 Merchant Details
             </h1>
