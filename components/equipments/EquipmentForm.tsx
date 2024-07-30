@@ -1,9 +1,9 @@
 import React from "react";
-import DateRangeBox from "devextreme-react/cjs/date-range-box";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
 import { Checkbox } from "../ui/checkbox";
 import { Button } from "../ui/button";
+import DatePickerWithRange from "../Shared/Calender/Calender";
 
 interface Props {
   type?: string;
@@ -22,15 +22,8 @@ const EquipmentForm = ({ type }: Props) => {
               </SelectContent>
             </Select>
 
-            <div className="py-5">
-              <DateRangeBox
-                startDate={new Date().setDate(new Date().getDate() - 1)}
-                endDate={new Date().setDate(new Date().getDate() - 1)}
-                startDateLabel="From"
-                endDateLabel="To"
-                labelMode="floating"
-                max={new Date()}
-              />
+            <div className="flex items-center justify-center py-5">
+              <DatePickerWithRange />
             </div>
 
             <Select>
@@ -64,14 +57,7 @@ const EquipmentForm = ({ type }: Props) => {
             </Select>
 
             <div className="py-5">
-              <DateRangeBox
-                startDate={new Date().setDate(new Date().getDate() - 1)}
-                endDate={new Date().setDate(new Date().getDate() - 1)}
-                startDateLabel="From"
-                endDateLabel="To"
-                labelMode="floating"
-                max={new Date()}
-              />
+              <DatePickerWithRange />
             </div>
 
             <Select>
@@ -111,14 +97,7 @@ const EquipmentForm = ({ type }: Props) => {
             </Select>
 
             <div className="py-5">
-              <DateRangeBox
-                startDate={new Date().setDate(new Date().getDate() - 1)}
-                endDate={new Date().setDate(new Date().getDate() - 1)}
-                startDateLabel="From"
-                endDateLabel="To"
-                labelMode="floating"
-                max={new Date()}
-              />
+              <DatePickerWithRange />
             </div>
 
             <div className="flex w-full justify-around">
@@ -204,14 +183,7 @@ const EquipmentForm = ({ type }: Props) => {
         return (
           <>
             <div className="pb-5">
-              <DateRangeBox
-                startDate={new Date().setDate(new Date().getDate() - 1)}
-                endDate={new Date().setDate(new Date().getDate() - 1)}
-                startDateLabel="From"
-                endDateLabel="To"
-                labelMode="floating"
-                max={new Date()}
-              />
+              <DatePickerWithRange />
             </div>
 
             <div className="flex w-full justify-around">

@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React from "react";
 import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
@@ -89,7 +89,6 @@ const page = () => {
   ];
 
   const columns = createColumns(columnsConfig);
-
   return (
     <>
       <section>
@@ -332,8 +331,7 @@ const page = () => {
 
 
     </>
+  );
+};
 
-  )
-}
-
-export default page
+export default page;

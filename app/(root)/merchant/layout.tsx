@@ -7,17 +7,17 @@ import MerchantInfoSummary from "@/components/merchants/MerchantInfoSummary";
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <>
-        <div className="px-12 w-full max-sm:w-fit">
+      <div className="w-full px-12 max-sm:w-fit">
 
 
-            <MerchantMainTabs/>
-            <div className="h-auto w-auto p-5 mb-0 border border-solid border-gray-400 shadow-md rounded-tr-lg rounded-br-lg rounded-bl-lg">
+        <MerchantMainTabs />
+        <div className="mb-0 h-auto w-auto rounded-r-lg rounded-bl-lg border border-solid border-gray-400 shadow-md p-5">
               
-              {children}
+          {children}
 
-            </div>
-            <br/>
         </div>
+        <br />
+      </div>
     </>
   );
 };

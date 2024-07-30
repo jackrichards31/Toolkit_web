@@ -1,24 +1,29 @@
 "use client";
 
-import AgentSetup from "@/components/agent/AgentSetup";
-import ExtremeDataTable from "@/components/Shared/DataTable/DataTable";
+import React, { useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { agentData } from "@/constants";
-import React from "react";
-import DataTable from '@/components/Shared/DataTable/DataTable';
-import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import AgentSetup from "@/components/agent/AgentSetup";
 
-const page = () => {
-  const list = [
-    { id: 1, title: "List", value: "list" },
-    { id: 2, title: "Setup", value: "setup" },
-    { id: 3, title: "Reports", value: "report" },
-  ];
-  
-  const columnsConfig: ColumnConfig<DataTypes>[] = [
-    { accessorKey: "id", header: "Agent ID" },
-    { accessorKey: "name", header: "Name" },
+const Page = () => {
+  const list = useMemo(
+    () => [
+      { id: 1, title: "List", value: "list" },
+      { id: 2, title: "Setup", value: "setup" },
+      { id: 3, title: "Reports", value: "report" },
+    ],
+    [],
+  );
+
+  const ColumnConfig: ColumnConfig<DataTypes>[] = [
+    { accessorKey: "id", header: "ID" },
+    { accessorKey: "name", header: "Agent's Name" },
     { accessorKey: "email", header: "Email" },
     { accessorKey: "phone", header: "Phone" },
     { accessorKey: "department", header: "Department" },
@@ -26,42 +31,26 @@ const page = () => {
     { accessorKey: "location", header: "Location" },
   ];
 
-  const columns = createColumns(columnsConfig);
-  
+  const columns = createColumns(ColumnConfig);
   return (
     <div>
       <Tabs defaultValue="list" className="size-full p-12">
         <TabsList>
-          {list.map((list) => (
-            <TabsTrigger value={list.value} key={list.id}>
-              {list.title}
+          {list.map((item) => (
+            <TabsTrigger value={item.value} key={item.id}>
+              {item.title}
             </TabsTrigger>
           ))}
         </TabsList>
-        {list.map((tab) => (
-          <div key={tab.value}>
-            {tab.value === "list" && (
-              <TabsContent value={tab.value} key={tab.id}>
-                {/* <ExtremeDataTable data={agentData} pageSize={10} /> */}
-                <DataTable
-                  columns={columns}
-                  data={agentData}
-                  enableColumnFilter={true}
-                  filteredBy='username'
-                />
-              </TabsContent>
-            )}
-
-            {tab.value === "setup" && (
-              <TabsContent value={tab.value} key={tab.id}>
-                <AgentSetup />
-              </TabsContent>
-            )}
-          </div>
-        ))}
+        <TabsContent value="list">
+          <DataTable columns={columns} data={agentData} />
+        </TabsContent>
+        <TabsContent value="setup">
+          <AgentSetup />
+        </TabsContent>
       </Tabs>
     </div>
   );
 };
 
-export default page;
+export default Page;

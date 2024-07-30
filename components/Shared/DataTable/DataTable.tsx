@@ -30,11 +30,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { DataTableProps } from "@/types";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronsLeft,
+  ChevronRight,
+  ChevronsRight,
+  MoreHorizontal,
+} from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -229,9 +242,34 @@ export default function DataTable<TData>({
           </TableBody>
         </Table>
         {pagination && (
-          <span className="flex items-center justify-end space-x-2 px-2 py-4">
+          <div className="flex items-center justify-center space-x-2 px-2 py-4">
             <Pagination>
               <PaginationContent>
+                <PaginationItem>
+                  <span className="flex items-center gap-1">
+                    <Input
+                      defaultValue={table.getState().pagination.pageIndex + 1}
+                      onChange={(e) => {
+                        const page = e.target.value
+                          ? Number(e.target.value) - 1
+                          : 0;
+                        table.setPageIndex(page);
+                      }}
+                      className="w-fit"
+                      placeholder="Jump to..."
+                    />
+                  </span>
+                </PaginationItem>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.setPageIndex(0)}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    <ChevronsLeft />
+                  </Button>
+                </PaginationItem>
                 <PaginationItem>
                   <Button
                     variant="ghost"
@@ -256,9 +294,38 @@ export default function DataTable<TData>({
                     <ChevronRight />
                   </Button>
                 </PaginationItem>
+                <PaginationItem>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    <ChevronsRight />
+                  </Button>
+                </PaginationItem>
+                <PaginationItem>
+                  <Select
+                    value={table.getState().pagination.pageSize.toString()}
+                    onValueChange={(value: string) =>
+                      table.setPageSize(Number(value))
+                    }
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select show size." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {[10, 20, 40, 50].map((item) => (
+                        <SelectItem key={item} value={item.toString()}>
+                          Show {item}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </PaginationItem>
               </PaginationContent>
             </Pagination>
-          </span>
+          </div>
         )}
       </div>
     </div>

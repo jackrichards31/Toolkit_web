@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
 
 export interface SidebarLink {
   icon: LucideIcon;
@@ -12,6 +13,7 @@ export interface ContentItem {
   [key: string]: string | number;
 }
 
+// Data table types and interface
 export type DataTypes = Record<string, number, boolean, Date, any>;
 
 export interface DataTableProps<TData> {
