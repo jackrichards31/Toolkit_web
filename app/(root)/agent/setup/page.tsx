@@ -1,12 +1,16 @@
-import React from 'react'
+"use client";
 
-const page = () => {
+import React, { useMemo } from "react";
+import AgentSetup from "@/components/agent/AgentSetup";
+
+const Page = () => {
+
   return (
-    <>
-        <h1>Agent Detail</h1>
-    
-    </>
-  )
-}
+    <div>
+      <h1 className='text-2xl text-sky-500 mb-3 '>Agent Detail</h1>
+      <AgentSetup />
+    </div>
+  );
+};
 
-export default page
+export default Page;

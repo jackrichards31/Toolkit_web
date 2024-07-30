@@ -109,7 +109,7 @@ const page = () => {
             <span className='text-nowrap'>Restaurant</span>
           </div>
         </div>
-        <div className='w-full h-full mt-3 flex-1 bg-zinc-800 rounded-md mb-5'>
+        <div className='w-full h-full mt-3 flex-1 rounded-md mb-5'>
 
           <DataTable
           columns={columns}

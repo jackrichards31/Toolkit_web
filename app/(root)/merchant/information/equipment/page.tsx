@@ -125,7 +125,7 @@ const page = () => {
 
         <div className='flex max-lg:flex-wrap gap-4'>
           {/* FIRST COLUMN */}
-          <div className='w-fit flex-auto bg-zinc-800 rounded-md min-h-96 mb-5'>
+          <div className='w-fit flex-auto rounded-md min-h-96 mb-5'>
 
             <DataTable
               columns={columns1}
@@ -168,7 +168,7 @@ const page = () => {
                     <span className='text-nowrap text-sm'>Return to Inventory</span>
                   </div>
                 </div>
-                <div className='w-full flex-1 bg-zinc-800 rounded-md min-h-96 mb-5'>
+                <div className='w-full flex-1  rounded-md min-h-96 mb-5'>
                   <DataTable
                     columns={columns2}
                     data={equipmentTable2}
@@ -189,7 +189,7 @@ const page = () => {
 
 
                 </div>
-                <div className='w-full flex-1 bg-zinc-800 rounded-md min-h-96 mb-5'>
+                <div className='w-full flex-1 rounded-md min-h-96 mb-5'>
                   <DataTable
                     columns={columns3}
                     data={equipmentTable3}

@@ -97,7 +97,7 @@ const page = () => {
             <h1 className='text-2xl text-sky-500 mb-3 '>Account Status</h1>
 
             <div className='flex gap-3 min-h-80'>
-              <div className='w-2/3 bg-zinc-800 rounded-md'>
+              <div className='w-2/3 rounded-md'>
                 <DataTable
                   columns={columns}
                   data={accountStatusTable}

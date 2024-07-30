@@ -20,7 +20,7 @@ const page = () => {
     <>
       <div>
         <h1 className='text-2xl text-sky-500 mb-3 '>ZenDesk (1)</h1>
-        <div className='w-full bg-zinc-800 rounded-md p-2'>
+        <div className='w-full  rounded-md p-2'>
           {/* <ExtremeDataTable
             pageSize={10}
             data={zenDeskTable}

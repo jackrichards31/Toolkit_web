@@ -38,12 +38,7 @@ const page = () => {
     <>
       <section className='w-full'>
         <h1 className='text-2xl text-sky-500 mb-3'>Leasing</h1>
-        <div className='w-full bg-zinc-800 rounded-md min-h-96 mb-5'>
-          {/* <ExtremeDataTable
-            pageSize={1}
-            data={leasingTable1}
-            columnsToDisplay={["LeaseNumber", "FundedDate", "Funded$", "TSR", "BuybackDate", "Buyback$", "Score", "Grade", "TSR$", "Term", "Factor"]}
-          /> */}
+        <div className='w-full  rounded-md min-h-96 mb-5'>
           <DataTable
             columns={columns1}
             data={leasingTable1}
@@ -52,12 +47,7 @@ const page = () => {
           />
         </div>
         <div className='flex gap-5 w-full'>
-          <div className='bg-zinc-800 rounded-md min-h-80'>
-            {/* <ExtremeDataTable
-              pageSize={1}
-              data={leasingTable2}
-              columnsToDisplay={["Order", "OrderDate", "Status"]}
-            /> */}
+          <div className=' rounded-md min-h-80'>
              <DataTable
             columns={columns2}
             data={leasingTable2}
@@ -65,7 +55,7 @@ const page = () => {
             filteredBy='username'
           />
           </div>
-          <div className='bg-zinc-800 rounded-md min-h-80'>
+          <div className=' rounded-md min-h-80'>
           <DataTable
             columns={columns3}
             data={leasingTable3}

@@ -42,6 +42,12 @@
 //     </div>
 //   );
 // }
+
+import MerchantDetails from "@/components/merchants/MerchantDetails";
+import MerchantSearch from "@/components/merchants/MerchantSearch";
+ import { Tabs, TabsList, TabsContent, TabsTrigger } from "@/components/ui/tabs";
+import { employees, merchantTabs } from "@/constants";
+
 import React from "react";
 import DataTable from '@/components/Shared/DataTable/DataTable';
 import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';

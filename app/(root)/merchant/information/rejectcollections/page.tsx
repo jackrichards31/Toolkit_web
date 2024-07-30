@@ -137,7 +137,7 @@ const page = () => {
         <h1 className='text-2xl text-sky-500 mb-3'>Reject / Collections</h1>
 
 
-        <div className='w-full flex-1 bg-zinc-800 rounded-md min-h-96 mb-5'>
+        <div className='w-full flex-1 rounded-md min-h-96 mb-5'>
           <DataTable
             columns={columns1}
             data={rejectCollectionsTable1}
@@ -147,9 +147,9 @@ const page = () => {
         </div>
 
         <div className='flex max-md:flex-wrap gap-2'>
-          <div className='w-full flex-auto bg-zinc-800 rounded-md min-h-96 mb-5'>
+          <div className='w-full flex-auto rounded-md min-h-96 mb-5'>
             <DataTable
-              columns={columnsConfig2}
+              columns={columns2}
               data={rejectCollectionsTable2}
               enableColumnFilter={true}
               filteredBy='username'

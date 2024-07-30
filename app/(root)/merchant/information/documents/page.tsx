@@ -98,12 +98,7 @@ const page = () => {
         <h1 className='text-2xl text-sky-500 mb-3'>Documents</h1>
 
 
-        <div className='w-full h-full mt-3 flex-1 bg-zinc-800 rounded-md mb-5'>
-          {/* <ExtremeDataTable
-            pageSize={5}
-            data={documentsTable}
-            columnsToDisplay={["Doc type", "Historic", "Doc Name", "File Size", "Upload Date/Time"]}
-          /> */}
+        <div className='w-full h-full mt-3 flex-1 rounded-md mb-5'>
           <DataTable
             columns={columns}
             data={documentsTable}

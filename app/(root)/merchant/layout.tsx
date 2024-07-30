@@ -12,7 +12,7 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 
         <MerchantMainTabs />
         <div className="mb-0 h-auto w-auto rounded-r-lg rounded-bl-lg border border-solid border-gray-400 shadow-md p-5">
-              
+
           {children}
 
         </div>

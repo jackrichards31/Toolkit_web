@@ -191,16 +191,10 @@ const page = () => {
                         placeholder='Enter text...'
                       />
                     </div>
-
                   </div>
-
                 )
               })}
             </div>
-
-
-
-
           </form>
         </Form>
 

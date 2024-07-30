@@ -4,7 +4,7 @@ import { summaryItems } from "@/constants";
 const MerchantInfoSummary = () => {
   return (
     <>
-      <div className="mb-5 mt-0 w-auto rounded-lg border border-solid border-gray-400 shadow-md p-2">
+      <div className="mb-5 mt-0 w-auto rounded-lg border border-solid border-gray-400 shadow-md p-4">
         <h1 className="text-3xl text-sky-500">Merchant Details</h1>
         <div className="grid w-auto grid-rows-4 gap-1 p-4 md:grid-flow-col">
           {summaryItems.map((item) => {
