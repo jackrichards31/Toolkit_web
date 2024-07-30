@@ -13,7 +13,7 @@ import { newMerchantSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import MerchantAccessOneApiTab from "./accessOneApi/MerchantAccessOneApiTab";
+import MerchantAccessOneApi from "./MerchantAccessOneApiTab";
 
 const MerchantInformation = () => {
   const form = useForm<z.infer<typeof newMerchantSchema>>({
@@ -50,7 +50,7 @@ const MerchantInformation = () => {
   return (
     <>
       <div className="grow rounded-md border border-solid border-gray-600 p-4">
-        <MerchantAccessOneApiTab />
+        <MerchantAccessOneApi />
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

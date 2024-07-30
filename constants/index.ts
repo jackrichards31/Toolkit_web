@@ -153,98 +153,152 @@ export const tabItems = [
     title: "Information",
     value: "information",
     route: "/merchant/information/info",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "2",
     title: "Access One API",
     value: "accessoneapi",
     route: "/merchant/information/accessoneapi",
+    icon: "/infoTabs/api-item.svg",
   },
   {
     id: "3",
     title: "Agent / Lead Source",
     value: "agentleadsource",
     route: "/merchant/information/agentleadsource",
+    icon: "/infoTabs/agent-item.svg",
   },
   {
     id: "4",
     title: "Account Status",
     value: "accountstatus",
     route: "/merchant/information/accountstatus",
+    icon: "/infoTabs/account-item.svg",
   },
   {
     id: "5",
     title: "Call Log / Tasks",
     value: "calllog",
     route: "/merchant/information/calllog",
+    icon: "/infoTabs/call-item.svg",
   },
   {
     id: "6",
     title: "ZenDesk(1)",
     value: "zendesk",
     route: "/merchant/information/zendesk",
+    icon: "/infoTabs/desk-item.svg",
   },
   {
     id: "7",
     title: "Leasing",
     value: "leasing",
     route: "/merchant/information/leasing",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "8",
     title: "Equipment",
     value: "equipment",
     route: "/merchant/information/equipment",
+    icon: "/infoTabs/equipment-item.svg",
   },
   {
     id: "9",
     title: "Onboard Checklist",
     value: "onboardchecklist",
     route: "/merchant/information/onboardchecklist",
+    icon: "/infoTabs/onboarding-item.svg",
   },
   {
     id: "10",
     title: "Documents",
     value: "documents",
     route: "/merchant/information/documents",
+    icon: "/infoTabs/doc-item.svg",
   },
   {
     id: "11",
     title: "Merch Fees / Proc",
     value: "merchfees",
     route: "/merchant/information/merchfees",
+    icon: "/infoTabs/fees-item.svg",
   },
   {
     id: "12",
     title: "Software Install",
     value: "softwareinstall",
     route: "/merchant/information/softwareinstall",
+    icon: "/infoTabs/software-item.svg",
   },
   {
     id: "13",
     title: "Reject / Collections",
     value: "rejectcollections",
     route: "/merchant/information/rejectcollections",
+    icon: "/infoTabs/reject-item.svg",
   },
   {
     id: "14",
     title: "Residuals",
     value: "residuals",
     route: "/merchant/information/residuals",
+    icon: "/infoTabs/residuals-item.svg",
   },
   {
     id: "15",
     title: "WAVit Info",
     value: "wavitInfo",
-    route: "/merchant/information/wavitinfo",
+    route: "/merchant/information/wavitinfo/",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "16",
     title: "BOTWest",
     value: "botWest",
     route: "/merchant/information/botwest",
+    icon: "/infoTabs/bank-item.svg",
   },
 ];
+export const onboardCheckListTable = [
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+];
+
 /**
  * This employees data is for mock-up data only!
  */
@@ -368,6 +422,392 @@ export const employees: DataTypes[] = [
     HomePhone: "(214) 555-7890",
     Position: "Sales Manager",
     BirthDate: new Date("1976-11-10T00:00:00.000Z"),
+  },
+];
+
+export const equipmentList1 = [
+  {
+    id: 1,
+    title: "New",
+    value: "closed",
+  },
+  {
+    id: 2,
+    title: "Returned/Used",
+    value: "returnedUsed",
+  },
+  {
+    id: 3,
+    title: "Returned/Junk",
+    value: "returnedJunk",
+  },
+  {
+    id: 4,
+    title: "Returned to Manufactor",
+    value: "returnedToManufactor",
+  },
+];
+
+export const callLogsTasks = [
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+];
+
+export const activityRecordList = [
+  {
+    id: 1,
+    title: "Mark as Closed",
+    value: "closed",
+  },
+  {
+    id: 2,
+    title: "Mark as Declined",
+    value: "declined",
+  },
+  {
+    id: 3,
+    title: "Mark as Pending",
+    value: "pending",
+  },
+  {
+    id: 4,
+    title: "Mark as Application Received",
+    value: "applicationReceived",
+  },
+  {
+    id: 5,
+    title: "Mark as Withdrawn",
+    value: "withdrawn",
+  },
+  {
+    id: 6,
+    title: "Application Submitted",
+    value: "applicationSubmitted",
+  },
+  {
+    id: 7,
+    title: "Duplicate MID",
+    value: "duplicateMID",
+  },
+  {
+    id: 8,
+    title: "Risk Related",
+    value: "riskRelated",
+  },
+];
+
+export const merchantProcessorList = [
+  { id: 1, name: "First National Bank", value: "firstNationalBank" },
+  { id: 2, name: "Global Trust Bank", value: "globalTrustBank" },
+  { id: 3, name: "United Savings Bank", value: "unitedSavingsBank" },
+  { id: 4, name: "Prime Financial Group", value: "primeFinancialGroup" },
+  { id: 5, name: "Evergreen Bank", value: "evergreenBank" },
+  { id: 6, name: "Central Credit Union", value: "centralCreditUnion" },
+  { id: 7, name: "Liberty Bank", value: "libertyBank" },
+  { id: 8, name: "Oakwood Financial", value: "oakwoodFinancial" },
+  { id: 9, name: "Summit Bank", value: "summitBank" },
+  { id: 10, name: "Pinnacle Bank", value: "pinnacleBank" },
+];
+
+export const rejectCollectionsTable1 = [
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+];
+
+export const rejectCollectionsTable2 = [
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Wating Payment",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Paid",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Cancelled",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Paid",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+];
+
+export const accountStatusTable = [
+  {
+    Id: 1,
+    Date: "04/12/2024",
+    UserID: "hsouza",
+    SQL: "Approved",
+  },
+  {
+    Id: 2,
+    Date: "04/05/2024",
+    UserID: "hsouza",
+    SQL: "Pending",
+  },
+  {
+    Id: 3,
+    Date: "04/05/2024",
+    UserID: "hsouza",
+    SQL: "Merchant Record created!",
+  },
+];
+
+export const zenDeskTable = [
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "Tony Stark",
+    subject: "Some subject about it",
+  },
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "George Harrison",
+    subject: "Some subject about it",
+  },
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "Jimmy Page",
+    subject: "Some subject about it",
+  },
+];
+
+export const leasingTable1: DataTypes[] = [
+  {
+    LeaseNumber: "",
+    FundedDate: "",
+    Funded$: "",
+    TSR: "",
+    BuybackDate: "",
+    Buyback$: "",
+    Score: "",
+    Grade: "",
+    TSR$: "",
+    Term: "",
+    Factor: "",
+  },
+];
+
+export const leasingTable2: DataTypes[] = [
+  {
+    Order: "",
+    OrderDate: "",
+    Status: "",
+  },
+];
+
+export const leasingTable3: DataTypes[] = [
+  {
+    MakeModel: "",
+    Serial: "",
+    Status: "",
+  },
+];
+
+export const equipmentTable1 = [
+  {
+    StartDate: "07/26/2024",
+    Status: "5 - Complete",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+  {
+    StartDate: "07/26/2024",
+    Status: "5 - Complete",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+  {
+    StartDate: "07/26/2024",
+    Status: "3 - In Progress",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+];
+export const equipmentTable2 = [
+  {
+    Model: "Clover Flex LTE",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 235.0,
+    $Sale: 235.0,
+  },
+  {
+    Model: "Shipping Expedited Fee",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 30.0,
+    $Sale: 30.0,
+  },
+  {
+    Model: "Clover Flex LTE",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 235.0,
+    $Sale: 235.0,
+  },
+  {
+    Model: "Shipping Expedited Fee",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 30.0,
+    $Sale: 30.0,
+  },
+];
+export const equipmentTable3 = [
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
   },
 ];
 
@@ -1036,6 +1476,37 @@ export const AgentSetupTabs = [
     id: "8",
     title: "Adjustments",
     value: "adjustments",
+  },
+];
+
+export const documentsTable = [
+  {
+    DocType: "Bank Statement",
+    Historic: "Historic Field",
+    DocName: "Statement.pdf",
+    FileSize: "500 mb",
+    UploadDateTime: "07/26/2024 11:22 AM",
+  },
+  {
+    DocType: "Identification",
+    Historic: "Historic Field",
+    DocName: "ID.pdf",
+    FileSize: "40 mb",
+    UploadDateTime: "07/26/2024 11:22 AM",
+  },
+  {
+    DocType: "Certification",
+    Historic: "Historic Field",
+    DocName: "Certification.pdf",
+    FileSize: "751 mb",
+    UploadDateTime: "07/26/2024 11:22 AM",
+  },
+  {
+    DocType: "Leasing",
+    Historic: "Historic Field",
+    DocName: "Leasing.pdf",
+    FileSize: "500 mb",
+    UploadDateTime: "07/26/2024 11:22 AM",
   },
 ];
 

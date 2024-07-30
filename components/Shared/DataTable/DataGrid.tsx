@@ -7,23 +7,25 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import DataTable from "./DataTable";
-import { ColumnConfig, createColumns } from "./Columns";
 import { Orders } from "@/constants";
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 
 export default function DataGrid() {
-  const columnConfig: ColumnConfig<DataTypes>[] = [
+  const columnsConfig: ColumnConfig<DataTypes>[] = [
     { accessorKey: "id", header: "ID" },
-    { accessorKey: "customer", header: "Customer's Name" },
-    { accessorKey: "email", header: "Email" },
     { accessorKey: "type", header: "Type" },
     { accessorKey: "status", header: "Status" },
     { accessorKey: "date", header: "Date" },
     { accessorKey: "amount", header: "Amount" },
   ];
 
-  const columns = createColumns(columnConfig);
+  const columns = createColumns(columnsConfig);
+
   return (
     <div className="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
       <Card>
@@ -33,6 +35,17 @@ export default function DataGrid() {
         </CardHeader>
         <CardContent>
           <DataTable columns={columns} data={Orders} />
+          {/* <ExtremeDataTable
+            pageSize={7}
+            data={orders}
+            columnsToDisplay={["id", "type", "status", "date", "amount"]}
+          /> */}
+          <DataTable
+            columns={columns}
+            data={Orders}
+            enableColumnFilter={true}
+            filteredBy="username"
+          />
         </CardContent>
       </Card>
     </div>
