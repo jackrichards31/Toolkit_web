@@ -1782,19 +1782,7 @@ const merchantStatusList =
     { "id": 47, "name": "Withdran App", "value": "withdranApp" }
   ]
 
-const merchantProcessorList =
-  [
-    { id: 1, name: "First National Bank", value: "firstNationalBank" },
-    { id: 2, name: "Global Trust Bank", value: "globalTrustBank" },
-    { id: 3, name: "United Savings Bank", value: "unitedSavingsBank" },
-    { id: 4, name: "Prime Financial Group", value: "primeFinancialGroup" },
-    { id: 5, name: "Evergreen Bank", value: "evergreenBank" },
-    { id: 6, name: "Central Credit Union", value: "centralCreditUnion" },
-    { id: 7, name: "Liberty Bank", value: "libertyBank" },
-    { id: 8, name: "Oakwood Financial", value: "oakwoodFinancial" },
-    { id: 9, name: "Summit Bank", value: "summitBank" },
-    { id: 10, name: "Pinnacle Bank", value: "pinnacleBank" }
-  ]
+
 
 const salesRepList =
   [
@@ -1850,54 +1838,7 @@ const mccCode =
     { id: 10, name: "Hawaiian Airlines", value: "hawaiianAirlines" }
   ]
 
-const accountStatusTable = [
-  {
-    Id: 1,
-    Date: "04/12/2024",
-    UserID: "hsouza",
-    SQL: 'Approved'
-  },
-  {
-    Id: 2,
-    Date: "04/05/2024",
-    UserID: "hsouza",
-    SQL: 'Pending'
-  },
-  {
-    Id: 3,
-    Date: "04/05/2024",
-    UserID: "hsouza",
-    SQL: 'Merchant Record created!'
-  },
-]
 
-const activityRecordList = [
-  {
-    id: 1,
-    title: "Mark as Closed",
-    value: "closed",
-  },
-  {
-    id: 2,
-    title: "Mark as Declined",
-    value: "declined",
-  },
-  {
-    id: 3,
-    title: "Mark as Pending",
-    value: "pending",
-  },
-  {
-    id: "7",
-    title: "Email Lists",
-    value: "emailList",
-  },
-  {
-    id: "8",
-    title: "Adjustments",
-    value: "adjustments",
-  },
-];
 
 export const documentsTable = [
   {
@@ -1930,87 +1871,7 @@ export const documentsTable = [
   },
 ]
 
-const rejectCollectionsTable1 = [
-  {
-    SuspenseDate: "07/26/2024",
-    CreateDate: "07/23/2024",
-    DebitAmount: 100.00,
-    CreditAmount: 100.00,
-    RejectCode: "RC654",
-    FollowupDate: "07/27/2024",
-    ResponseDescription: "Rejection based on the card.",
-  },
-  {
-    SuspenseDate: "07/26/2024",
-    CreateDate: "07/23/2024",
-    DebitAmount: 100.00,
-    CreditAmount: 100.00,
-    RejectCode: "RC654",
-    FollowupDate: "07/27/2024",
-    ResponseDescription: "Rejection based on the card.",
-  },
-  {
-    SuspenseDate: "07/26/2024",
-    CreateDate: "07/23/2024",
-    DebitAmount: 100.00,
-    CreditAmount: 100.00,
-    RejectCode: "RC654",
-    FollowupDate: "07/27/2024",
-    ResponseDescription: "Rejection based on the card.",
-  },
-  {
-    SuspenseDate: "07/26/2024",
-    CreateDate: "07/23/2024",
-    DebitAmount: 100.00,
-    CreditAmount: 100.00,
-    RejectCode: "RC654",
-    FollowupDate: "07/27/2024",
-    ResponseDescription: "Rejection based on the card.",
-  },
-]
 
-const rejectCollectionsTable2 = [
-  {
-    Type: "Example",
-    RefDate: "07/26/2024",
-    InitDate: "07/26/2024",
-    ToCollect: "",
-    Payments: "",
-    Status: "Wating Payment",
-    NextDate: "07/29/2024",
-    NextTask: "Note",
-  },
-  {
-    Type: "Example",
-    RefDate: "07/26/2024",
-    InitDate: "07/26/2024",
-    ToCollect: "",
-    Payments: "",
-    Status: "Paid",
-    NextDate: "07/29/2024",
-    NextTask: "Note",
-  },
-  {
-    Type: "Example",
-    RefDate: "07/26/2024",
-    InitDate: "07/26/2024",
-    ToCollect: "",
-    Payments: "",
-    Status: "Cancelled",
-    NextDate: "07/29/2024",
-    NextTask: "Note",
-  },
-  {
-    Type: "Example",
-    RefDate: "07/26/2024",
-    InitDate: "07/26/2024",
-    ToCollect: "",
-    Payments: "",
-    Status: "Paid",
-    NextDate: "07/29/2024",
-    NextTask: "Note",
-  },
-]
 
 const wavitTransactionsTable = [
   {
@@ -2137,27 +1998,11 @@ const wavitSettingsTable = [
 
 export {
   merchantStatusList,
-  merchantProcessorList,
   salesRepList,
   leadSourceList,
   splitNameList,
   deployByList,
   mccCode,
-  accountStatusTable,
-  activityRecordList,
-  callLogsTasks,
-  zenDeskTable,
-  leasingTable1,
-  leasingTable2,
-  leasingTable3,
-  equipmentTable1,
-  equipmentTable2,
-  equipmentTable3,
-  equipmentList1,
-  onboardCheckListTable,
-  documentsTable,
-  rejectCollectionsTable1,
-  rejectCollectionsTable2,
   wavitTransactionsTable,
   wavitSettingsTable
 
