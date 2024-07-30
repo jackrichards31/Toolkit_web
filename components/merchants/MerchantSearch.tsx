@@ -60,7 +60,7 @@ const MerchantSearch = ({ type }: { type: string }) => {
 
         <Dialog>
           <DialogTrigger>
-            <div className="flex gap-3 rounded-md bg-black p-2.5 dark:bg-white dark:text-black">
+            <div className="flex gap-3 rounded-md dark:bg-black dark:text-white p-2.5 bg-gray-300 text-black hover:opacity-60">
               <PlusSquare />
               New merchant
             </div>
