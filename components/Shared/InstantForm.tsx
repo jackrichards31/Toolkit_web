@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { z } from "zod";
-import { Control, Path } from "react-hook-form";
+import { Control, FieldPath } from "react-hook-form";
 import { FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import {
   Select,
@@ -31,7 +31,7 @@ export const InputForm = <T extends z.ZodType<any, any>>({
   placeholder,
 }: {
   control: Control<z.infer<T>>;
-  formName: Path<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
 }) => {
@@ -72,7 +72,7 @@ export const SelectForm = <
   className,
 }: {
   control: Control<z.infer<T>>;
-  formName: Path<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
   label: string;
   content: ItemTypes[];
   placeholder?: string;
@@ -129,7 +129,7 @@ export const TextAreaForm = <T extends z.ZodType<any, any>>({
   placeholder,
 }: {
   control: Control<z.infer<T>>;
-  formName: Path<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
 }) => {
@@ -161,7 +161,7 @@ export const CheckboxForm = <T extends z.ZodType<any, any>>({
   className,
 }: {
   control: Control<z.infer<T>>;
-  formName: Path<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder: string;
   className?: string;
@@ -196,7 +196,7 @@ export const DatePickerForm = <T extends z.ZodType<any, any>>({
   placeholder,
 }: {
   control: Control<z.infer<T>>;
-  formName: Path<z.infer<T>>;
+  formName: FieldPath<z.infer<T>>;
   label: string;
   placeholder?: string;
 }) => {
