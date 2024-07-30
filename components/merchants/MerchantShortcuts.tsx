@@ -11,11 +11,9 @@ import NewMerchant from "./NewMerchant";
 import { useTheme } from "next-themes";
 // import Theme from "../Home/Theme";
 
-
 const MerchantShortcuts = () => {
-
-  const dark = "/icon/new-merchant.svg";
-  const light = "/icon/new-merchant-blue.svg";
+  const dark = "/icon/colorful/new-merchant-dark.svg";
+  const light = "/icon/colorful/new-merchant-blue.svg";
   const { theme, systemTheme } = useTheme();
 
   // eslint-disable-next-line no-unused-vars
@@ -42,11 +40,8 @@ const MerchantShortcuts = () => {
 
   return (
     <section className="w-auto">
-      <h1 className="mb-4 text-center text-sky-500 text-3xl">
-        Shortcuts
-      </h1>
-      <div className="flex flex-wrap w-auto justify-center gap-4 rounded-md text-lg text-sky-500">
-
+      <h1 className="mb-4 text-center text-3xl text-sky-500">Shortcuts</h1>
+      <div className="flex w-auto flex-wrap justify-center gap-4 rounded-md text-lg text-sky-500">
         {/* MERCHANT ICON */}
         <div className="flex flex-1 flex-col justify-center rounded-md border border-gray-600 bg-transparent px-2">
           <div className="flex justify-center">
@@ -80,94 +75,88 @@ const MerchantShortcuts = () => {
           </Dialog>
         </div>
 
-
-        <div className="justify-center flex-1 text-center p-5 rounded-md border border-gray-600 bg-transparent">
-          <h1>
-            Tasks / Logs
-          </h1>
+        <div className="flex-1 justify-center rounded-md border border-gray-600 bg-transparent p-5 text-center">
+          <h1>Tasks / Logs</h1>
           <div className="">
             <Image
               className="m-auto my-5"
-              src="/icon/create-task.svg"
+              src="/icon/colorful/create-task.svg"
               alt="Logo"
               width={75}
               height={75}
               priority
             />
-            <h1 className="text-nowrap justify-center text-black dark:text-white">
+            <h1 className="justify-center text-nowrap text-black dark:text-white">
               Create Task
             </h1>
           </div>
         </div>
-        <div className="justify-center flex-1 text-center p-5 rounded-md border border-gray-600 bg-transparent">
-          <h1>
-            Documents
-          </h1>
+        <div className="flex-1 justify-center rounded-md border border-gray-600 bg-transparent p-5 text-center">
+          <h1>Documents</h1>
           <div className="">
             <Image
               className="m-auto my-5"
-              src="/icon/upload-document.svg"
+              src="/icon/colorful/upload-document.svg"
               alt="Logo"
               width={75}
               height={75}
               priority
             />
-            <h1 className="text-nowrap justify-center text-black dark:text-white">
+            <h1 className="justify-center text-nowrap text-black dark:text-white">
               Upload Document
             </h1>
           </div>
         </div>
 
-        <div className="justify-center flex-1 text-center p-5 rounded-md border border-gray-600 bg-transparent">
+        <div className="flex-1 justify-center rounded-md border border-gray-600 bg-transparent p-5 text-center">
           <h1>Equipment</h1>
           <div className="">
             <Image
               className="m-auto my-5"
-              src="/icon/equipment-create-order.svg"
+              src="/icon/colorful/equipment-create-order.svg"
               alt="Logo"
               width={75}
               height={75}
               priority
             />
-            <h1 className="text-nowrap justify-center text-black dark:text-white">
+            <h1 className="justify-center text-nowrap text-black dark:text-white">
               Create Order
             </h1>
           </div>
         </div>
 
-        <div className="justify-center flex-1 text-center p-5 rounded-md border border-gray-600 bg-transparent">
+        <div className="flex-1 justify-center rounded-md border border-gray-600 bg-transparent p-5 text-center">
           <h1>Call Logs</h1>
           <div className="">
             <Image
               className="m-auto my-5"
-              src="/icon/call-logs.svg"
+              src="/icon/colorful/call-logs.svg"
               alt="Logo"
               width={75}
               height={75}
               priority
             />
-            <h1 className="text-nowrap justify-center text-black dark:text-white">
+            <h1 className="justify-center text-nowrap text-black dark:text-white">
               See Logs / Tasks
             </h1>
           </div>
         </div>
 
-        <div className="justify-center flex-1 text-center p-5 rounded-md border border-gray-600 bg-transparent">
+        <div className="flex-1 justify-center rounded-md border border-gray-600 bg-transparent p-5 text-center">
           <h1>Leasing</h1>
           <div className="">
             <Image
               className="m-auto my-5"
-              src="/icon/leasing-create-order.svg"
+              src="/icon/colorful/new-leasing.svg"
               alt="Logo"
               width={75}
               height={75}
               priority
             />
-            <h1 className="text-nowrap justify-center text-black dark:text-white">
+            <h1 className="justify-center text-nowrap text-black dark:text-white">
               Create Order
             </h1>
           </div>
-
         </div>
       </div>
     </section>

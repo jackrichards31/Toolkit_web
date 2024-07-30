@@ -1,8 +1,11 @@
+"use client"
+
 import React from 'react'
+import SoftwareInstall from '@/components/merchants/SoftwareInstall'
 
 const page = () => {
   return (
-    <div>Software Install</div>
+    <div><SoftwareInstall/></div>
   )
 }
 

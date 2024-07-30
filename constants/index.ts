@@ -32,7 +32,7 @@ export const sidebarLinks: SidebarLink[] = [
   },
   {
     icon: Store,
-    route: "/merchant",
+    route: "/merchant/find",
     desc: "Find MID, Agent, and Processor.",
     label: "Merchant",
     options: ["MID", "Agent", "Processor"],
@@ -861,3 +861,26 @@ export const AgentSetupFields = [
     validation: z.string().optional(),
   },
 ];
+
+export const agentLeadSourceDataTable = [
+  {
+    SalesRep: "Liam Johnson",
+    "Split %": "100%",
+    Master: "XX",
+    "A/M": "",
+    "F/M": "",
+    "A/A": "",
+    R: "",
+    "F/SM": "",
+  },
+  {
+    SalesRep: "Eric Smith",
+    "Split %": "4%",
+    Master: "XX",
+    "A/M": "",
+    "F/M": "",
+    "A/A": "",
+    R: "",
+    "F/SM": "",
+  },
+]
