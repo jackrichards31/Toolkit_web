@@ -47,6 +47,7 @@ import {
   ChevronRight,
   ChevronsRight,
   MoreHorizontal,
+  Filter,
 } from "lucide-react";
 import {
   Pagination,
@@ -161,8 +162,9 @@ export default function DataTable<TData>({
           {enableVisibility && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  Columns
+                <Button variant="outline" className="ml-auto gap-2">
+                  <Filter />
+                  Filter
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -255,7 +257,7 @@ export default function DataTable<TData>({
                           : 0;
                         table.setPageIndex(page);
                       }}
-                      className="w-fit"
+                      className="max-w-[70px]"
                       placeholder="Jump to..."
                     />
                   </span>
@@ -311,13 +313,13 @@ export default function DataTable<TData>({
                       table.setPageSize(Number(value))
                     }
                   >
-                    <SelectTrigger className="w-[180px]">
+                    <SelectTrigger className="w-[70px]">
                       <SelectValue placeholder="Select show size." />
                     </SelectTrigger>
                     <SelectContent>
                       {[10, 20, 40, 50].map((item) => (
                         <SelectItem key={item} value={item.toString()}>
-                          Show {item}
+                          {item}
                         </SelectItem>
                       ))}
                     </SelectContent>

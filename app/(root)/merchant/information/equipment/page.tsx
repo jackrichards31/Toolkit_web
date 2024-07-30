@@ -1,46 +1,28 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
-import { newMerchantSchema, cn, formatCurrency } from "@/lib/utils";
+import { newMerchantSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Calendar } from '@/components/ui/calendar';
-import { Calendar as CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { ContentItem } from "@/types";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerForm, SelectForm, CheckboxForm } from "@/components/Shared/InstantForm";
-import { equipmentTable1, equipmentTable2, equipmentTable3, equipmentList1 } from "@/constants";
-import DataTable from '@/components/Shared/DataTable/DataTable';
-import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+import { SelectForm } from "@/components/Shared/InstantForm";
+import {
+  equipmentTable1,
+  equipmentTable2,
+  equipmentTable3,
+  equipmentList1,
+} from "@/constants";
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 
-
 const page = () => {
-
   const form = useForm<z.infer<typeof newMerchantSchema>>({
     resolver: zodResolver(newMerchantSchema),
     defaultValues: {
@@ -82,7 +64,7 @@ const page = () => {
   const onSubmit = (value: z.infer<typeof newMerchantSchema>) => {
     console.log(value);
   };
-  {/* COSTUMIZATION OF THE COLUMN PRICE */}
+  /* COSTUMIZATION OF THE COLUMN PRICE */
   const Price = (row: any) => {
     const amount = parseFloat(row.getValue("price"));
     const formatted = new Intl.NumberFormat("en-US", {
@@ -116,37 +98,38 @@ const page = () => {
   const columns1 = createColumns(columnsConfig1);
   const columns2 = createColumns(columnsConfig2);
   const columns3 = createColumns(columnsConfig3);
-  
 
   return (
     <>
       <section>
-        <h1 className='text-2xl text-sky-500 mb-3'>Equipment</h1>
+        <h1 className="mb-3 text-2xl text-sky-500">Equipment</h1>
 
-        <div className='flex max-lg:flex-wrap gap-4'>
+        <div className="flex gap-4 max-lg:flex-wrap">
           {/* FIRST COLUMN */}
-          <div className='w-fit flex-auto rounded-md min-h-96 mb-5'>
-
+          <div className="mb-5 min-h-96 w-fit flex-auto rounded-md bg-zinc-800">
             <DataTable
               columns={columns1}
               data={equipmentTable1}
               enableColumnFilter={true}
-              filteredBy='Status'
+              filteredBy="Status"
             />
           </div>
           {/* SECOND COLUMN */}
-          <div className='w-fit flex-auto rounded-md min-h-96 mb-5'>
+          <div className="mb-5 min-h-96 w-fit flex-auto rounded-md">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
                 {/* Activity Row */}
-                <div className='flex gap-2'>
-                  <Button className="self-end flex-auto p-1 bg-gradient-to-r from-[#C05353] to-[#8F0000] hover:opacity-90 text-white">
+                <div className="flex gap-2">
+                  <Button className="flex-auto self-end bg-gradient-to-r from-[#C05353] to-[#8F0000] p-1 text-white hover:opacity-90">
                     Delete Order
                   </Button>
-                  <Button className="self-end flex-auto p-1 bg-gradient-to-r from-[#14ADD6] to-[#384295] hover:opacity-90 text-white">
+                  <Button className="flex-auto self-end bg-gradient-to-r from-[#14ADD6] to-[#384295] p-1 text-white hover:opacity-90">
                     Edit Order
                   </Button>
-                  <div className='self-end flex-auto'>
+                  <div className="flex-auto self-end">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -156,55 +139,54 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
                   <div className="ml-4 mt-8 flex items-center gap-2">
                     <Checkbox />
-                    <span className='text-nowrap text-sm'>Show history</span>
+                    <span className="text-nowrap text-sm">Show history</span>
                   </div>
                   <div className="ml-4 mt-8 flex items-center gap-2">
                     <Checkbox />
-                    <span className='text-nowrap text-sm'>Return to Inventory</span>
+                    <span className="text-nowrap text-sm">
+                      Return to Inventory
+                    </span>
                   </div>
                 </div>
-                <div className='w-full flex-1  rounded-md min-h-96 mb-5'>
+                <div className="mb-5 min-h-96 w-full flex-1 rounded-md bg-zinc-800">
                   <DataTable
                     columns={columns2}
                     data={equipmentTable2}
                     enableColumnFilter={true}
-                    filteredBy='Model'
+                    filteredBy="Model"
                   />
                 </div>
-                <div className='flex justify-around gap-2'>
-                  <Button className=" bg-gradient-to-r from-[#A4A4A4] to-[#353535] hover:opacity-90 text-white">
+                <div className="flex justify-around gap-2">
+                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
                     Copy Serial # to Clipboard
                   </Button>
-                  <Button className=" bg-gradient-to-r from-[#A4A4A4] to-[#353535] hover:opacity-90 text-white">
+                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
                     Return Label
                   </Button>
-                  <Button className=" bg-gradient-to-r from-[#A4A4A4] to-[#353535] hover:opacity-90 text-white">
+                  <Button className="bg-gradient-to-r from-[#A4A4A4] to-[#353535] text-white hover:opacity-90">
                     Send Email
                   </Button>
-
-
                 </div>
-                <div className='w-full flex-1 rounded-md min-h-96 mb-5'>
+                <div className="mb-5 min-h-96 w-full flex-1 rounded-md bg-zinc-800">
                   <DataTable
                     columns={columns3}
                     data={equipmentTable3}
                     enableColumnFilter={true}
-                    filteredBy='Method'
+                    filteredBy="Method"
                   />
                 </div>
-
               </form>
             </Form>
           </div>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

@@ -1,43 +1,20 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
-import { newMerchantSchema, cn, formatCurrency } from "@/lib/utils";
+import { newMerchantSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Calendar } from '@/components/ui/calendar';
-import { Calendar as CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { ContentItem } from "@/types";
+import { Form } from "@/components/ui/form";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { DatePickerForm, SelectForm, CheckboxForm, InputForm } from "@/components/Shared/InstantForm";
-import { equipmentTable1, equipmentTable2, equipmentTable3, equipmentList1, merchantProcessorList } from "@/constants";
-
+  SelectForm,
+  CheckboxForm,
+  InputForm,
+} from "@/components/Shared/InstantForm";
+import { equipmentList1, merchantProcessorList } from "@/constants";
 
 const page = () => {
-
   const form = useForm<z.infer<typeof newMerchantSchema>>({
     resolver: zodResolver(newMerchantSchema),
     defaultValues: {
@@ -80,23 +57,23 @@ const page = () => {
     console.log(value);
   };
 
-
   return (
     <>
       <section>
-        <h1 className='text-2xl text-sky-500 mb-3'>Merch Fees / Proc</h1>
-
+        <h1 className="mb-3 text-2xl text-sky-500">Merch Fees / Proc</h1>
 
         {/* FIRST COLUMN */}
-        <div className='w-auto rounded-md min-h-96 mb-5'>
+        <div className="mb-5 min-h-96 w-auto rounded-md">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
               {/* Processor Information */}
-              <h1 className='text-xl font-bold text-center m-auto'>Processor Information</h1>
-              <div className='flex flex-wrap w-full mt-0'>
+              <h1 className="m-auto text-center text-xl font-bold">
+                Processor Information
+              </h1>
+              <div className="mt-0 flex w-full flex-wrap">
                 {/* FIRST COLUMN */}
-                <div className='flex-auto'>
-                  <div className='w-3/4 m-auto mb-2' >
+                <div className="flex-auto">
+                  <div className="m-auto mb-2 w-3/4">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -106,10 +83,10 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"name"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-                  <div className="flex w-2/4 m-auto content-center">
+                  <div className="m-auto flex w-2/4 content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -118,13 +95,14 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">MiCamp is Master ISO</span>
+                    <span className="mt-1 content-center">
+                      MiCamp is Master ISO
+                    </span>
                   </div>
                 </div>
                 {/* SECOND COLUMN */}
-                <div className='flex-auto text-center self-center'>
-
-                  <div className="flex content-center m-auto">
+                <div className="flex-auto self-center text-center">
+                  <div className="m-auto flex content-center">
                     <div className="content-center text-nowrap">
                       <CheckboxForm
                         control={form.control}
@@ -133,9 +111,11 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Is WAVit Account (Split or discount)</span>
+                    <span className="mt-1 content-center">
+                      Is WAVit Account (Split or discount)
+                    </span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -144,9 +124,11 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Is WAVit Equip Replacement Program</span>
+                    <span className="mt-1 content-center">
+                      Is WAVit Equip Replacement Program
+                    </span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -155,9 +137,11 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Is Nutra Account?</span>
+                    <span className="mt-1 content-center">
+                      Is Nutra Account?
+                    </span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -166,9 +150,11 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">WAVit APP (not manual)</span>
+                    <span className="mt-1 content-center">
+                      WAVit APP (not manual)
+                    </span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -177,19 +163,24 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Is Free POS Program?</span>
+                    <span className="mt-1 content-center">
+                      Is Free POS Program?
+                    </span>
                   </div>
                 </div>
               </div>
-              <hr className='bg-gray-400 border-gray-400' />
+              <hr className="border-gray-400 bg-gray-400" />
               {/* FEE INFORMATION */}
-              <h1 className='text-xl font-bold text-center m-auto'>Fee Information</h1>
-              <div className="flex flex-wrap w-full mt-0">
-
+              <h1 className="m-auto text-center text-xl font-bold">
+                Fee Information
+              </h1>
+              <div className="mt-0 flex w-full flex-wrap">
                 {/* PRODUCT FEE */}
-                <div className="flex-auto mt-2">
-                  <h1 className='text-lg font-semibold text-center m-auto'>Product Fee</h1>
-                  <div className="flex content-center m-auto">
+                <div className="mt-2 flex-auto">
+                  <h1 className="m-auto text-center text-lg font-semibold">
+                    Product Fee
+                  </h1>
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -198,9 +189,9 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Merchant Annual</span>
+                    <span className="mt-1 content-center">Merchant Annual</span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -209,9 +200,9 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">PCI Annual</span>
+                    <span className="mt-1 content-center">PCI Annual</span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -220,9 +211,9 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">PCI Monthly</span>
+                    <span className="mt-1 content-center">PCI Monthly</span>
                   </div>
-                  <div className="flex content-center m-auto">
+                  <div className="m-auto flex content-center">
                     <div className="content-center">
                       <CheckboxForm
                         control={form.control}
@@ -231,35 +222,39 @@ const page = () => {
                         placeholder=""
                       />
                     </div>
-                    <span className="content-center mt-1">Rate Increases</span>
+                    <span className="mt-1 content-center">Rate Increases</span>
                   </div>
                 </div>
                 {/* Amount */}
-                <div className="flex-auto mt-2">
-                  <h1 className='text-lg font-semibold text-center m-auto'>Product Fee</h1>
+                <div className="mt-2 flex-auto">
+                  <h1 className="m-auto text-center text-lg font-semibold">
+                    Product Fee
+                  </h1>
                   <InputForm
                     control={form.control}
                     formName="Filter3"
                     label=""
-                    placeholder='Enter text...'
+                    placeholder="Enter text..."
                   />
                   <InputForm
                     control={form.control}
                     formName="Filter3"
                     label=""
-                    placeholder='Enter text...'
+                    placeholder="Enter text..."
                   />
                   <InputForm
                     control={form.control}
                     formName="Filter3"
                     label=""
-                    placeholder='Enter text...'
+                    placeholder="Enter text..."
                   />
                 </div>
                 {/* BILLING MONTH */}
-                <div className="flex-auto mt-2">
-                  <h1 className='text-lg font-semibold text-center m-auto'>Billing Month</h1>
-                  <div className='w-3/4 m-auto mb-2' >
+                <div className="mt-2 flex-auto">
+                  <h1 className="m-auto text-center text-lg font-semibold">
+                    Billing Month
+                  </h1>
+                  <div className="m-auto mb-2 w-3/4">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -269,10 +264,10 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-                  <div className='w-3/4 m-auto mb-2' >
+                  <div className="m-auto mb-2 w-3/4">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -282,15 +277,16 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-
                 </div>
                 {/* STATUS / NON-BILLING RATIONAL */}
-                <div className="flex-auto mt-2">
-                  <h1 className='text-lg font-semibold text-center m-auto'>Status / Non-Billing Rational</h1>
-                  <div className='w-full m-auto mb-2' >
+                <div className="mt-2 flex-auto">
+                  <h1 className="m-auto text-center text-lg font-semibold">
+                    Status / Non-Billing Rational
+                  </h1>
+                  <div className="m-auto mb-2 w-full">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -300,10 +296,10 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-                  <div className='w-full m-auto mb-2' >
+                  <div className="m-auto mb-2 w-full">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -313,10 +309,10 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-                  <div className='w-full m-auto mb-2' >
+                  <div className="m-auto mb-2 w-full">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -326,10 +322,10 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
-                  <div className='w-full m-auto mb-2' >
+                  <div className="m-auto mb-2 w-full">
                     <SelectForm
                       control={form.control}
                       formName="SalesRep"
@@ -339,16 +335,18 @@ const page = () => {
                       valueKey={"id"}
                       displayKey={"title"}
                       disabled={false}
-                      className=''
+                      className=""
                     />
                   </div>
                 </div>
               </div>
-              <hr className='bg-gray-400 border-gray-400' />
+              <hr className="border-gray-400 bg-gray-400" />
               {/* MiCamp PROCESSING DATA */}
-              <h1 className='text-xl font-bold text-center m-auto'>MiCamp Processing Data</h1>
-              <div className="w-full m-auto text-center">
-                <div className='w-2/4 m-auto mb-2' >
+              <h1 className="m-auto text-center text-xl font-bold">
+                MiCamp Processing Data
+              </h1>
+              <div className="m-auto w-full text-center">
+                <div className="m-auto mb-2 w-2/4">
                   <SelectForm
                     control={form.control}
                     formName="SalesRep"
@@ -358,24 +356,23 @@ const page = () => {
                     valueKey={"id"}
                     displayKey={"title"}
                     disabled={false}
-                    className=''
+                    className=""
                   />
                 </div>
               </div>
 
-              <hr className='bg-gray-400 border-gray-400' />
+              <hr className="border-gray-400 bg-gray-400" />
               <div className="text-center">
-                <Button className="self-end flex-auto px-10 bg-gradient-to-r from-[#79CB6C] to-[#285C20] hover:opacity-90 text-white">
+                <Button className="flex-auto self-end bg-gradient-to-r from-[#79CB6C] to-[#285C20] px-10 text-white hover:opacity-90">
                   Update
                 </Button>
               </div>
-
             </form>
           </Form>
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

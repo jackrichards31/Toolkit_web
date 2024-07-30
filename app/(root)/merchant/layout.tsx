@@ -2,7 +2,6 @@
 
 import React from "react";
 import MerchantMainTabs from "@/components/merchants/MerchantMainTabs";
-import MerchantInfoSummary from "@/components/merchants/MerchantInfoSummary";
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
@@ -18,7 +17,7 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
         </div>
         <br />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,9 +1,11 @@
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
+import React from "react";
 import { zenDeskTable } from "@/constants";
-import DataTable from '@/components/Shared/DataTable/DataTable';
-import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 
 const page = () => {
@@ -11,7 +13,7 @@ const page = () => {
     { accessorKey: "createdDate", header: "Created Date" },
     { accessorKey: "from", header: "From" },
     { accessorKey: "name", header: "Name" },
-    { accessorKey: "subject", header: "Subject" }
+    { accessorKey: "subject", header: "Subject" },
   ];
 
   const columns = createColumns(columnsConfig);
@@ -19,8 +21,8 @@ const page = () => {
   return (
     <>
       <div>
-        <h1 className='text-2xl text-sky-500 mb-3 '>ZenDesk (1)</h1>
-        <div className='w-full  rounded-md p-2'>
+        <h1 className="mb-3 text-2xl text-sky-500">ZenDesk (1)</h1>
+        <div className="w-full rounded-md  p-2">
           {/* <ExtremeDataTable
             pageSize={10}
             data={zenDeskTable}
@@ -30,13 +32,12 @@ const page = () => {
             columns={columns}
             data={zenDeskTable}
             enableColumnFilter={true}
-            filteredBy='username'
+            filteredBy="username"
           />
         </div>
       </div>
-
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

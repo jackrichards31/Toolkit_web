@@ -1,12 +1,13 @@
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
+import React from "react";
 import { leasingTable1, leasingTable2, leasingTable3 } from "@/constants";
-import DataTable from '@/components/Shared/DataTable/DataTable';
-import { ColumnConfig, createColumns } from '@/components/Shared/DataTable/Columns';
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
 import { DataTypes } from "@/types";
 const page = () => {
-  
   const columnsConfig1: ColumnConfig<DataTypes>[] = [
     { accessorKey: "LeaseNumber", header: "Lease Number" },
     { accessorKey: "FundedDate", header: "Funded Date" },
@@ -17,17 +18,17 @@ const page = () => {
     { accessorKey: "Grade", header: "Grade" },
     { accessorKey: "TSR$", header: "TSR$" },
     { accessorKey: "Term", header: "Term" },
-    { accessorKey: "Factor", header: "Factor" }
+    { accessorKey: "Factor", header: "Factor" },
   ];
   const columnsConfig2: ColumnConfig<DataTypes>[] = [
     { accessorKey: "Order", header: "Order" },
     { accessorKey: "OrderDate", header: "Order Date" },
-    { accessorKey: "Status", header: "Status" }
+    { accessorKey: "Status", header: "Status" },
   ];
   const columnsConfig3: ColumnConfig<DataTypes>[] = [
     { accessorKey: "MakeModel", header: "Make Model" },
     { accessorKey: "Serial", header: "Serial" },
-    { accessorKey: "Status", header: "Status" }
+    { accessorKey: "Status", header: "Status" },
   ];
 
   const columns1 = createColumns(columnsConfig1);
@@ -43,7 +44,7 @@ const page = () => {
             columns={columns1}
             data={leasingTable1}
             enableColumnFilter={true}
-            filteredBy='username'
+            filteredBy="username"
           />
         </div>
         <div className='flex gap-5 w-full'>
@@ -66,7 +67,7 @@ const page = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

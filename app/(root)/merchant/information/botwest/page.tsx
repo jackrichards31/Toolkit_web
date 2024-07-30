@@ -1,21 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import React from 'react'
-import ExtremeDataTable from '@/components/Shared/DataTable/DataTable'
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { z } from "zod";
-import { newMerchantSchema, cn, formatCurrency } from "@/lib/utils";
+import { newMerchantSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { DatePickerForm, SelectForm, CheckboxForm, InputForm } from "@/components/Shared/InstantForm";
-import { equipmentTable1, equipmentTable2, equipmentTable3, equipmentList1, merchantProcessorList } from "@/constants";
+import { Form } from "@/components/ui/form";
+import { InputForm } from "@/components/Shared/InstantForm";
 
 const page = () => {
   const form = useForm<z.infer<typeof newMerchantSchema>>({
@@ -64,143 +55,143 @@ const page = () => {
       id: 1,
       title: "Agent / Rep. Name",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 2,
       title: "Branch Name",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 3,
       title: "ABA Routing #",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 4,
       title: "DDA Checking Act. #",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 5,
       title: "Federal Tax ID #",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 6,
       title: "Banker",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 7,
       title: "Division Name",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 8,
       title: "Region Name",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 9,
       title: "Segment Name",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 10,
       title: "Referral Lead #",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 11,
       title: "Entity",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 12,
       title: "Client Group",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 13,
       title: "Agent / Rep. Code",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 14,
       title: "Branch Code",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 15,
       title: "Banker Employee ID",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 16,
       title: "Division / LOB #",
       type: "input",
-      value: ""
+      value: "",
     },
     {
       id: 17,
       title: "Region #",
       type: "input",
-      value: ""
+      value: "",
     },
-  ]
+  ];
 
   return (
     <>
       <section>
-        <h1 className='text-2xl text-sky-500 mb-3'>Bank of The West</h1>
-
+        <h1 className="mb-3 text-2xl text-sky-500">Bank of The West</h1>
 
         {/* FIRST COLUMN */}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             {/* Processor Information */}
-            <h1 className='text-xl font-bold text-center m-auto'>Information</h1>
+            <h1 className="m-auto text-center text-xl font-bold">
+              Information
+            </h1>
 
-            <div className="grid grid-rows-10 grid-flow-col gap-2">
+            <div className="grid grid-flow-col grid-rows-10 gap-2">
               {itemsList.map((item) => {
                 return (
-                  <div className='flex gap-4 m-auto w-full'>
-                    <div className='w-2/4 text-end content-center'>
-                      <p className=''>{item.title}</p>
+                  <div key={item.id} className="m-auto flex w-full gap-4">
+                    <div className="w-2/4 content-center text-end">
+                      <p className="">{item.title}</p>
                     </div>
-                    <div className='w-1/2'>
+                    <div className="w-1/2">
                       <InputForm
                         control={form.control}
                         formName="Filter3"
                         label=""
-                        placeholder='Enter text...'
+                        placeholder="Enter text..."
                       />
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </form>
         </Form>
-
       </section>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

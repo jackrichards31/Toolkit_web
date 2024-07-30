@@ -147,104 +147,191 @@ export const merchantMainTabs = [
   },
 ];
 
+export const finanialMainTabs = [
+  {
+    id: 1,
+    title: "Find",
+    value: "find",
+    path: "/financial",
+  },
+  {
+    id: 2,
+    title: "Add Entry",
+    value: "addEntry",
+    path: "/financial/addEntry",
+  },
+  {
+    id: 3,
+    title: "Portal Recon",
+    value: "find",
+    path: "/financial/portalRecon",
+  },
+  {
+    id: 4,
+    title: "Import Data",
+    value: "importData",
+    path: "/financial/importData",
+  },
+  {
+    id: 4,
+    title: "Vendors",
+    value: "vendors",
+    path: "/financial/vendors",
+  },
+];
+
 export const tabItems = [
   {
     id: "1",
     title: "Information",
     value: "information",
     route: "/merchant/information/info",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "2",
     title: "Access One API",
     value: "accessoneapi",
     route: "/merchant/information/accessoneapi",
+    icon: "/infoTabs/api-item.svg",
   },
   {
     id: "3",
     title: "Agent / Lead Source",
     value: "agentleadsource",
     route: "/merchant/information/agentleadsource",
+    icon: "/infoTabs/agent-item.svg",
   },
   {
     id: "4",
     title: "Account Status",
     value: "accountstatus",
     route: "/merchant/information/accountstatus",
+    icon: "/infoTabs/account-item.svg",
   },
   {
     id: "5",
     title: "Call Log / Tasks",
     value: "calllog",
     route: "/merchant/information/calllog",
+    icon: "/infoTabs/call-item.svg",
   },
   {
     id: "6",
     title: "ZenDesk(1)",
     value: "zendesk",
     route: "/merchant/information/zendesk",
+    icon: "/infoTabs/desk-item.svg",
   },
   {
     id: "7",
     title: "Leasing",
     value: "leasing",
     route: "/merchant/information/leasing",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "8",
     title: "Equipment",
     value: "equipment",
     route: "/merchant/information/equipment",
+    icon: "/infoTabs/equipment-item.svg",
   },
   {
     id: "9",
     title: "Onboard Checklist",
     value: "onboardchecklist",
     route: "/merchant/information/onboardchecklist",
+    icon: "/infoTabs/onboarding-item.svg",
   },
   {
     id: "10",
     title: "Documents",
     value: "documents",
     route: "/merchant/information/documents",
+    icon: "/infoTabs/doc-item.svg",
   },
   {
     id: "11",
     title: "Merch Fees / Proc",
     value: "merchfees",
     route: "/merchant/information/merchfees",
+    icon: "/infoTabs/fees-item.svg",
   },
   {
     id: "12",
     title: "Software Install",
     value: "softwareinstall",
     route: "/merchant/information/softwareinstall",
+    icon: "/infoTabs/software-item.svg",
   },
   {
     id: "13",
     title: "Reject / Collections",
     value: "rejectcollections",
     route: "/merchant/information/rejectcollections",
+    icon: "/infoTabs/reject-item.svg",
   },
   {
     id: "14",
     title: "Residuals",
     value: "residuals",
     route: "/merchant/information/residuals",
+    icon: "/infoTabs/residuals-item.svg",
   },
   {
     id: "15",
     title: "WAVit Info",
     value: "wavitInfo",
-    route: "/merchant/information/wavitinfo",
+    route: "/merchant/information/wavitinfo/",
+    icon: "/infoTabs/info-item.svg",
   },
   {
     id: "16",
     title: "BOTWest",
     value: "botWest",
     route: "/merchant/information/botwest",
+    icon: "/infoTabs/bank-item.svg",
   },
 ];
+export const onboardCheckListTable = [
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+  {
+    checkbox: "",
+    ID: "123654789",
+    Description: "WAVit Document",
+    ID2: "12356",
+    Documents: "file.pdf",
+  },
+];
+
 /**
  * This employees data is for mock-up data only!
  */
@@ -368,6 +455,549 @@ export const employees: DataTypes[] = [
     HomePhone: "(214) 555-7890",
     Position: "Sales Manager",
     BirthDate: new Date("1976-11-10T00:00:00.000Z"),
+  },
+];
+
+export const equipmentList1 = [
+  {
+    id: 1,
+    title: "New",
+    value: "closed",
+  },
+  {
+    id: 2,
+    title: "Returned/Used",
+    value: "returnedUsed",
+  },
+  {
+    id: 3,
+    title: "Returned/Junk",
+    value: "returnedJunk",
+  },
+  {
+    id: 4,
+    title: "Returned to Manufactor",
+    value: "returnedToManufactor",
+  },
+];
+
+export const entryData: DataTypes[] = [
+  {
+    "P Vendor": "Vendor A",
+    "Eff. Date": new Date("05-19-2024"),
+    "Added By": "John Doe",
+    "Added Date": new Date("05-19-2024"),
+    Reference: "Ref-123",
+    Description: "Purchase of office supplies",
+    Amount: 150.5,
+    "Routing#": "123456789",
+    "Account #": "9876543210",
+    "Date Approved": new Date("05-20-2024"),
+    "Approved by": "Jane Smith",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor B",
+    "Eff. Date": new Date("02-03-2024"),
+    "Added By": "Alice Johnson",
+    "Added Date": new Date("02-03-2024"),
+    Reference: "Ref-456",
+    Description: "Payment for marketing services",
+    Amount: 5000.0,
+    "Routing#": "987654321",
+    "Account #": "1234567890",
+    "Date Approved": new Date("02-05-2024"),
+    "Approved by": "Bob Williams",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor C",
+    "Eff. Date": new Date("11-28-2023"),
+    "Added By": "Emily Davis",
+    "Added Date": new Date("11-28-2023"),
+    Reference: "Ref-789",
+    Description: "Software license renewal",
+    Amount: 1200.0,
+    "Routing#": "567891234",
+    "Account #": "9012345678",
+    "Date Approved": new Date("12-01-2023"),
+    "Approved by": "Michael Brown",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor D",
+    "Eff. Date": new Date("08-15-2024"),
+    "Added By": "Olivia Wilson",
+    "Added Date": new Date("08-15-2024"),
+    Reference: "Ref-101",
+    Description: "Hardware purchase",
+    Amount: 3500.75,
+    "Routing#": "234567891",
+    "Account #": "8901234567",
+    "Date Approved": new Date("08-17-2024"),
+    "Approved by": "Daniel Taylor",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor E",
+    "Eff. Date": new Date("04-10-2024"),
+    "Added By": "Sophia Anderson",
+    "Added Date": new Date("04-10-2024"),
+    Reference: "Ref-202",
+    Description: "Travel expenses reimbursement",
+    Amount: 850.2,
+    "Routing#": "345678912",
+    "Account #": "7890123456",
+    "Date Approved": new Date("04-12-2024"),
+    "Approved by": "James Martinez",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor F",
+    "Eff. Date": new Date("09-03-2023"),
+    "Added By": "Ava Thomas",
+    "Added Date": new Date("09-03-2023"),
+    Reference: "Ref-303",
+    Description: "Office rent payment",
+    Amount: 10000.0,
+    "Routing#": "456789123",
+    "Account #": "6789012345",
+    "Date Approved": new Date("09-05-2023"),
+    "Approved by": "William Hernandez",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor G",
+    "Eff. Date": new Date("01-25-2024"),
+    "Added By": "Isabella Jackson",
+    "Added Date": new Date("01-25-2024"),
+    Reference: "Ref-404",
+    Description: "Utilities bill payment",
+    Amount: 450.8,
+    "Routing#": "567891234",
+    "Account #": "5678901234",
+    "Date Approved": new Date("01-27-2024"),
+    "Approved by": "Ethan Garcia",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor H",
+    "Eff. Date": new Date("07-12-2024"),
+    "Added By": "Mia Lopez",
+    "Added Date": new Date("07-12-2024"),
+    Reference: "Ref-505",
+    Description: "Consulting fees",
+    Amount: 2500.0,
+    "Routing#": "678912345",
+    "Account #": "4567890123",
+    "Date Approved": new Date("07-15-2024"),
+    "Approved by": "Alexander Lee",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor I",
+    "Eff. Date": new Date("03-18-2024"),
+    "Added By": "Liam White",
+    "Added Date": new Date("03-18-2024"),
+    Reference: "Ref-606",
+    Description: "Advertising campaign payment",
+    Amount: 8000.5,
+    "Routing#": "789123456",
+    "Account #": "3456789012",
+    "Date Approved": new Date("03-20-2024"),
+    "Approved by": "Charlotte Harris",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor J",
+    "Eff. Date": new Date("12-05-2023"),
+    "Added By": "Noah Clark",
+    "Added Date": new Date("12-05-2023"),
+    Reference: "Ref-707",
+    Description: "Legal services payment",
+    Amount: 1500.0,
+    "Routing#": "891234567",
+    "Account #": "2345678901",
+    "Date Approved": new Date("12-07-2023"),
+    "Approved by": "Amelia Walker",
+    "Proc. By": "System",
+  },
+  {
+    "P Vendor": "Vendor K",
+    "Eff. Date": new Date("06-22-2024"),
+    "Added By": "Elijah Hall",
+    "Added Date": new Date("06-22-2024"),
+    Reference: "Ref-808",
+    Description: "Maintenance services payment",
+    Amount: 600.3,
+    "Routing#": "912345678",
+    "Account #": "1234567890",
+    "Date Approved": new Date("06-25-2024"),
+    "Approved by": "Harper Young",
+    "Proc. By": "System",
+  },
+];
+
+export const callLogsTasks = [
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+  {
+    Id: 1235,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "General Notes",
+    TaskDescription: "Note",
+    Status: "Active",
+    Notes: "Note about this event. Note about this event.",
+  },
+  {
+    Id: 1234,
+    CreatedDate: "MiCamp LLC",
+    Username: "hsouza",
+    Category: "Supplies Order",
+    TaskDescription: "Note",
+    Status: "Completed",
+    Notes: "Note about this event.",
+  },
+];
+
+export const activityRecordList = [
+  {
+    id: 1,
+    title: "Mark as Closed",
+    value: "closed",
+  },
+  {
+    id: 2,
+    title: "Mark as Declined",
+    value: "declined",
+  },
+  {
+    id: 3,
+    title: "Mark as Pending",
+    value: "pending",
+  },
+  {
+    id: 4,
+    title: "Mark as Application Received",
+    value: "applicationReceived",
+  },
+  {
+    id: 5,
+    title: "Mark as Withdrawn",
+    value: "withdrawn",
+  },
+  {
+    id: 6,
+    title: "Application Submitted",
+    value: "applicationSubmitted",
+  },
+  {
+    id: 7,
+    title: "Duplicate MID",
+    value: "duplicateMID",
+  },
+  {
+    id: 8,
+    title: "Risk Related",
+    value: "riskRelated",
+  },
+];
+
+export const merchantProcessorList = [
+  { id: 1, name: "First National Bank", value: "firstNationalBank" },
+  { id: 2, name: "Global Trust Bank", value: "globalTrustBank" },
+  { id: 3, name: "United Savings Bank", value: "unitedSavingsBank" },
+  { id: 4, name: "Prime Financial Group", value: "primeFinancialGroup" },
+  { id: 5, name: "Evergreen Bank", value: "evergreenBank" },
+  { id: 6, name: "Central Credit Union", value: "centralCreditUnion" },
+  { id: 7, name: "Liberty Bank", value: "libertyBank" },
+  { id: 8, name: "Oakwood Financial", value: "oakwoodFinancial" },
+  { id: 9, name: "Summit Bank", value: "summitBank" },
+  { id: 10, name: "Pinnacle Bank", value: "pinnacleBank" },
+];
+
+export const rejectCollectionsTable1 = [
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+  {
+    SuspenseDate: "07/26/2024",
+    CreateDate: "07/23/2024",
+    DebitAmount: 100.0,
+    CreditAmount: 100.0,
+    RejectCode: "RC654",
+    FollowupDate: "07/27/2024",
+    ResponseDescription: "Rejection based on the card.",
+  },
+];
+
+export const rejectCollectionsTable2 = [
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Wating Payment",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Paid",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Cancelled",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+  {
+    Type: "Example",
+    RefDate: "07/26/2024",
+    InitDate: "07/26/2024",
+    ToCollect: "",
+    Payments: "",
+    Status: "Paid",
+    NextDate: "07/29/2024",
+    NextTask: "Note",
+  },
+];
+
+export const accountStatusTable = [
+  {
+    Id: 1,
+    Date: "04/12/2024",
+    UserID: "hsouza",
+    SQL: "Approved",
+  },
+  {
+    Id: 2,
+    Date: "04/05/2024",
+    UserID: "hsouza",
+    SQL: "Pending",
+  },
+  {
+    Id: 3,
+    Date: "04/05/2024",
+    UserID: "hsouza",
+    SQL: "Merchant Record created!",
+  },
+];
+
+export const zenDeskTable = [
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "Tony Stark",
+    subject: "Some subject about it",
+  },
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "George Harrison",
+    subject: "Some subject about it",
+  },
+  {
+    createdDate: "mm/dd/yyyy",
+    from: "support@micamp.com",
+    name: "Jimmy Page",
+    subject: "Some subject about it",
+  },
+];
+
+export const leasingTable1: DataTypes[] = [
+  {
+    LeaseNumber: "",
+    FundedDate: "",
+    Funded$: "",
+    TSR: "",
+    BuybackDate: "",
+    Buyback$: "",
+    Score: "",
+    Grade: "",
+    TSR$: "",
+    Term: "",
+    Factor: "",
+  },
+];
+
+export const leasingTable2: DataTypes[] = [
+  {
+    Order: "",
+    OrderDate: "",
+    Status: "",
+  },
+];
+
+export const leasingTable3: DataTypes[] = [
+  {
+    MakeModel: "",
+    Serial: "",
+    Status: "",
+  },
+];
+
+export const equipmentTable1 = [
+  {
+    StartDate: "07/26/2024",
+    Status: "5 - Complete",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+  {
+    StartDate: "07/26/2024",
+    Status: "5 - Complete",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+  {
+    StartDate: "07/26/2024",
+    Status: "3 - In Progress",
+    $Cost: 235.0,
+    $Pay: 235.0,
+  },
+];
+export const equipmentTable2 = [
+  {
+    Model: "Clover Flex LTE",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 235.0,
+    $Sale: 235.0,
+  },
+  {
+    Model: "Shipping Expedited Fee",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 30.0,
+    $Sale: 30.0,
+  },
+  {
+    Model: "Clover Flex LTE",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 235.0,
+    $Sale: 235.0,
+  },
+  {
+    Model: "Shipping Expedited Fee",
+    SerialNumber: "C0450254TT320165184",
+    Condition: "New",
+    $Orig: 30.0,
+    $Sale: 30.0,
+  },
+];
+export const equipmentTable3 = [
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
+  },
+  {
+    Method: "MiCamp--",
+    InitialDate: "07/26/2024",
+    AmountDue: 235.0,
+    AmountPaid: 235.0,
+    Split: 235.0,
+    Note: "Approved By myself",
   },
 ];
 
@@ -1258,299 +1888,18 @@ const activityRecordList = [
     value: "pending",
   },
   {
-    id: 4,
-    title: "Mark as Application Received",
-    value: "applicationReceived",
+    id: "7",
+    title: "Email Lists",
+    value: "emailList",
   },
   {
-    id: 5,
-    title: "Mark as Withdrawn",
-    value: "withdrawn",
+    id: "8",
+    title: "Adjustments",
+    value: "adjustments",
   },
-  {
-    id: 6,
-    title: "Application Submitted",
-    value: "applicationSubmitted",
-  },
-  {
-    id: 7,
-    title: "Duplicate MID",
-    value: "duplicateMID",
-  },
-  {
-    id: 8,
-    title: "Risk Related",
-    value: "riskRelated",
-  },
+];
 
-]
-
-const callLogsTasks = [
-  {
-    Id: 1234,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "Supplies Order",
-    TaskDescription: "Note",
-    Status: "Completed",
-    Notes: "Note about this event.",
-  },
-  {
-    Id: 1235,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "General Notes",
-    TaskDescription: "Note",
-    Status: "Active",
-    Notes: "Note about this event. Note about this event.",
-  },
-  {
-    Id: 1234,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "Supplies Order",
-    TaskDescription: "Note",
-    Status: "Completed",
-    Notes: "Note about this event.",
-  },
-  {
-    Id: 1235,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "General Notes",
-    TaskDescription: "Note",
-    Status: "Active",
-    Notes: "Note about this event. Note about this event.",
-  },
-  {
-    Id: 1234,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "Supplies Order",
-    TaskDescription: "Note",
-    Status: "Completed",
-    Notes: "Note about this event.",
-  },
-  {
-    Id: 1235,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "General Notes",
-    TaskDescription: "Note",
-    Status: "Active",
-    Notes: "Note about this event. Note about this event.",
-  },
-  {
-    Id: 1234,
-    CreatedDate: "MiCamp LLC",
-    Username: "hsouza",
-    Category: "Supplies Order",
-    TaskDescription: "Note",
-    Status: "Completed",
-    Notes: "Note about this event.",
-  }
-]
-
-const zenDeskTable = [
-  {
-    createdDate: "mm/dd/yyyy",
-    from: "support@micamp.com",
-    name: "Tony Stark",
-    subject: "Some subject about it"
-  },
-  {
-    createdDate: "mm/dd/yyyy",
-    from: "support@micamp.com",
-    name: "George Harrison",
-    subject: "Some subject about it"
-  },
-  {
-    createdDate: "mm/dd/yyyy",
-    from: "support@micamp.com",
-    name: "Jimmy Page",
-    subject: "Some subject about it"
-  },
-]
-
-const leasingTable1 = [
-  {
-    LeaseNumber: "",
-    FundedDate: "",
-    Funded$: "",
-    TSR: "",
-    BuybackDate: "",
-    Buyback$: "",
-    Score: "",
-    Grade: "",
-    TSR$: "",
-    Term: "",
-    Factor: "",
-  }
-]
-
-const leasingTable2 = [
-  {
-    Order: "",
-    OrderDate: "",
-    Status: "",
-  }
-]
-
-const leasingTable3 = [
-  {
-    MakeModel: "",
-    Serial: "",
-    Status: "",
-  }
-]
-
-const equipmentTable1 = [
-  {
-    StartDate: "07/26/2024",
-    Status: "5 - Complete",
-    $Cost: 235.00,
-    $Pay: 235.00,
-  },
-  {
-    StartDate: "07/26/2024",
-    Status: "5 - Complete",
-    $Cost: 235.00,
-    $Pay: 235.00,
-  },
-  {
-    StartDate: "07/26/2024",
-    Status: "3 - In Progress",
-    $Cost: 235.00,
-    $Pay: 235.00,
-  }
-]
-const equipmentTable2 = [
-  {
-    Model: "Clover Flex LTE",
-    SerialNumber: "C0450254TT320165184",
-    Condition: "New",
-    $Orig: 235.00,
-    $Sale: 235.00,
-  },
-  {
-    Model: "Shipping Expedited Fee",
-    SerialNumber: "C0450254TT320165184",
-    Condition: "New",
-    $Orig: 30.00,
-    $Sale: 30.00,
-  },
-  {
-    Model: "Clover Flex LTE",
-    SerialNumber: "C0450254TT320165184",
-    Condition: "New",
-    $Orig: 235.00,
-    $Sale: 235.00,
-  },
-  {
-    Model: "Shipping Expedited Fee",
-    SerialNumber: "C0450254TT320165184",
-    Condition: "New",
-    $Orig: 30.00,
-    $Sale: 30.00,
-  },
-]
-const equipmentTable3 = [
-  {
-    Method: "MiCamp--",
-    InitialDate: "07/26/2024",
-    AmountDue: 235.00,
-    AmountPaid: 235.00,
-    Split: 235.00,
-    Note: "Approved By myself",
-  },
-  {
-    Method: "MiCamp--",
-    InitialDate: "07/26/2024",
-    AmountDue: 235.00,
-    AmountPaid: 235.00,
-    Split: 235.00,
-    Note: "Approved By myself",
-  },
-  {
-    Method: "MiCamp--",
-    InitialDate: "07/26/2024",
-    AmountDue: 235.00,
-    AmountPaid: 235.00,
-    Split: 235.00,
-    Note: "Approved By myself",
-  },
-  {
-    Method: "MiCamp--",
-    InitialDate: "07/26/2024",
-    AmountDue: 235.00,
-    AmountPaid: 235.00,
-    Split: 235.00,
-    Note: "Approved By myself",
-  },
-]
-
-const equipmentList1 = [
-  {
-    id: 1,
-    title: "New",
-    value: "closed",
-  },
-  {
-    id: 2,
-    title: "Returned/Used",
-    value: "returnedUsed",
-  },
-  {
-    id: 3,
-    title: "Returned/Junk",
-    value: "returnedJunk",
-  },
-  {
-    id: 4,
-    title: "Returned to Manufactor",
-    value: "returnedToManufactor",
-  },
-]
-
-const onboardCheckListTable = [
-  {
-    checkbox: "",
-    ID: "123654789",
-    Description: "WAVit Document",
-    ID2: "12356",
-    Documents: "file.pdf",
-  },
-  {
-    checkbox: "",
-    ID: "123654789",
-    Description: "WAVit Document",
-    ID2: "12356",
-    Documents: "file.pdf",
-  },
-  {
-    checkbox: "",
-    ID: "123654789",
-    Description: "WAVit Document",
-    ID2: "12356",
-    Documents: "file.pdf",
-  },
-  {
-    checkbox: "",
-    ID: "123654789",
-    Description: "WAVit Document",
-    ID2: "12356",
-    Documents: "file.pdf",
-  },
-  {
-    checkbox: "",
-    ID: "123654789",
-    Description: "WAVit Document",
-    ID2: "12356",
-    Documents: "file.pdf",
-  },
-]
-
-const documentsTable = [
+export const documentsTable = [
   {
     DocType: "Bank Statement",
     Historic: "Historic Field",

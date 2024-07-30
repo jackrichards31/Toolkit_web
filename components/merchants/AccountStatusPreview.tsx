@@ -80,38 +80,9 @@ const AccountStatusPreview = () => {
 
   return (
     <>
-      <div className="mb-3 mt-0 grow rounded-lg border border-solid border-gray-400 shadow-md p-4">
+      <div className="mb-3 mt-0 grow rounded-lg border border-solid border-gray-400 p-4 shadow-md">
         <h1 className="text-3xl text-sky-500">Account Status Preview</h1>
-        <div className="flex gap-3">
-          <div className="w-2/3">
-          <DataTable
-            columns={columns}
-            data={accountStatusTable}
-            enableColumnFilter={true}
-            filteredBy='UserID'
-            pagination={false}
-            />
-          </div>
-          <div className="w-1/3 max-lg:hidden mt-10">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <SelectForm
-                    control={form.control}
-                    formName="SalesRep"
-                    label="Select an Activity to Record"
-                    content={activityRecordList}
-                    placeholder="Select an Activity..."
-                    valueKey='id'
-                    displayKey='title'
-                    disabled={false}
-                  />
-                  <Button variant="default" className="w-full m-0 mt-0 bg-gradient-to-r from-[#14ADD6] to-[#384295] hover:opacity-90 text-white">
-                    SUBMIT
-                  </Button>
-              </form>
-            </Form>
-          </div>
-        </div>
+        <div className="flex"></div>
       </div>
     </>
   );
