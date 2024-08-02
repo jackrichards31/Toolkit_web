@@ -4,7 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { Form } from "../ui/form";
-import { SelectForm, InputForm, CheckboxForm } from "../Shared/InstantForm";
+import {
+  SelectForm,
+  InputForm,
+  CheckboxForm,
+  DatePickerForm,
+} from "../Shared/InstantForm";
 import { Button } from "@/components/ui/button";
 
 const SoftwareInstall = () => {
@@ -66,370 +71,527 @@ const SoftwareInstall = () => {
     console.log(value);
   };
   return (
-    <div className="size-full grow p-2">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <h1 className="text-3xl text-sky-500">Software Install</h1>
-          <div className="grid grid-cols-11 gap-3 max-2xl:grid-cols-1">
-            <div className="col-span-4 grid auto-rows-min grid-cols-1 gap-3 rounded-md border p-4 max-2xl:grid-cols-1">
-              <h1 className="flex justify-center text-xl font-semibold text-sky-500">
-                Merchant Information
-              </h1>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-2/6 content-center text-nowrap text-end">
-                  Software Acct #
-                </p>
-                <div className="w-4/6">
-                  <InputForm
-                    control={form.control}
-                    formName="SoftwareAcctNumber"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <Button className="w-1/3 justify-self-end bg-blue-500">
-                Assign New #
-              </Button>
-              <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
-                Technical POC
-              </h1>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Name
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="POCname"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Phone
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="POCphone"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Email
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="POCemail"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
-                ISO Information
-              </h1>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  ISO Name
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="ISOname"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Contact
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="ISOcontact"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Phone
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="ISOphone"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Email
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="ISOemail"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
-                Dealer Information
-              </h1>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Dealer
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="Dealer"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Contact
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="DealerContact"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Phone
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="DealerPhone"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex content-center gap-3">
-                <p className="mt-2 w-1/6 content-center text-nowrap text-end">
-                  Email
-                </p>
-                <div className="w-5/6">
-                  <InputForm
-                    control={form.control}
-                    formName="DealerEmail"
-                    label=""
-                    placeholder=""
-                  />
-                </div>
-              </div>
-              <div className="flex">
-                <CheckboxForm
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <h1 className="text-3xl text-sky-500">Software Install</h1>
+
+        <div className="flex size-full grow gap-3 p-2 max-xl:flex-col">
+          {/* Merchant Information */}
+          <div className="flex-auto rounded-md border p-2 xl:h-screen xl:w-1/3">
+            <h1 className="flex justify-center text-xl font-semibold text-sky-500">
+              Merchant Information
+            </h1>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-2/6 content-center text-nowrap text-end">
+                Software Acct #
+              </p>
+              <div className="w-4/6">
+                <InputForm
                   control={form.control}
-                  formName="ActiveServiceAgreement"
+                  formName="SoftwareAcctNumber"
                   label=""
                   placeholder=""
-                  className=""
                 />
-                <span className="mt-1.5">
-                  Merchant has active service agreement?
-                </span>
               </div>
             </div>
-            <div className="col-span-5 grid h-4/5 auto-rows-min gap-5 rounded-md border p-4 max-2xl:grid-cols-1">
-              <h1 className="flex justify-center text-xl font-semibold text-sky-500">
-                Platform Information
-              </h1>
-              <div className="flex gap-3">
-                <div className="w-3/4">
+            <div className="mt-3 text-end">
+              <Button className="w-1/3 bg-blue-500">Assign New #</Button>
+            </div>
+            <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
+              Technical POC
+            </h1>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Name
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="POCname"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Phone
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="POCphone"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Email
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="POCemail"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
+              ISO Information
+            </h1>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Name
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="ISOname"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Contact
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="ISOcontact"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Phone
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="ISOphone"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Email
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="ISOemail"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
+              Dealer Information
+            </h1>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Dealer
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="Dealer"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Contact
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="DealerContact"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Phone
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="DealerPhone"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="flex content-center gap-3">
+              <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                Email
+              </p>
+              <div className="w-5/6">
+                <InputForm
+                  control={form.control}
+                  formName="DealerEmail"
+                  label=""
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex">
+              <CheckboxForm
+                control={form.control}
+                formName="ActiveServiceAgreement"
+                label=""
+                placeholder=""
+                className=""
+              />
+              <span className="mt-1.5">
+                Merchant has active service agreement?
+              </span>
+            </div>
+          </div>
+
+          {/* Parent of top right section */}
+          <div className="grid grow max-lg:flex-wrap xl:w-2/3">
+            <div className="flex flex-auto flex-col">
+              <div className="grid grow grid-cols-1 gap-3">
+                <div className="grid grid-cols-3 gap-3">
+                  {/* Platform Information Div */}
+                  <div className="col-span-2 rounded-md border p-2">
+                    <h1 className="flex justify-center text-xl font-semibold text-sky-500">
+                      Platform Information
+                    </h1>
+                    <div className="flex gap-3">
+                      <div className="w-3/4">
+                        <SelectForm
+                          control={form.control}
+                          formName="POSsystem"
+                          label="POS System/Version"
+                          content={POSsystemData}
+                          placeholder="Select POS System/Version"
+                          valueKey="id"
+                          displayKey="name"
+                          disabled={false}
+                          className=""
+                        />
+                      </div>
+                      <InputForm
+                        control={form.control}
+                        formName="NumberStations"
+                        label="# Stations"
+                        placeholder=""
+                      />
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="flex w-3/4 items-center justify-start max-xl:w-full max-xl:text-sm lg:gap-3 xl:gap-10">
+                        <div className="flex">
+                          <CheckboxForm
+                            control={form.control}
+                            formName="MiPointClover"
+                            label=""
+                            placeholder=""
+                            className=""
+                          />
+                          <span className="mt-1.5">MiPoint Clover</span>
+                        </div>
+                        <div className="flex">
+                          <CheckboxForm
+                            control={form.control}
+                            formName="HasTSLlicense"
+                            label=""
+                            placeholder=""
+                            className=""
+                          />
+                          <span className="mt-1.5">Has TSL License</span>
+                        </div>
+                      </div>
+                      <div className="flex content-center gap-3">
+                        <p className="mt-2 w-1/3 content-center text-nowrap text-end font-semibold">
+                          Qty
+                        </p>
+                        <div className="w-2/3">
+                          <InputForm
+                            control={form.control}
+                            formName="MiPointCloverQty"
+                            label=""
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <div className="flex w-3/4 items-center justify-start max-xl:w-full max-xl:text-sm lg:gap-3 xl:gap-6">
+                        <div className="flex">
+                          <CheckboxForm
+                            control={form.control}
+                            formName="MiPointIngencio"
+                            label=""
+                            placeholder=""
+                            className=""
+                          />
+                          <span className="mt-2">MiPoint Ingencio</span>
+                        </div>
+                        <div className="flex">
+                          <CheckboxForm
+                            control={form.control}
+                            formName="HasPMSlicense"
+                            label=""
+                            placeholder=""
+                            className=""
+                          />
+                          <span className="mt-2">Has PMS License</span>
+                        </div>
+                      </div>
+                      <div className="flex content-center gap-3">
+                        <p className="mt-2 w-1/3 content-center text-nowrap text-end font-semibold">
+                          Qty
+                        </p>
+                        <div className="w-2/3">
+                          <InputForm
+                            control={form.control}
+                            formName="MiPointCloverQty"
+                            label=""
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex items-end justify-between gap-3">
+                      <div className="flex">
+                        <CheckboxForm
+                          control={form.control}
+                          formName="RemoteServiceAccess"
+                          label=""
+                          placeholder=""
+                          className=""
+                        />
+                        <span className="mt-1.5">
+                          Remote Service Access Available
+                        </span>
+                      </div>
+                      <SelectForm
+                        control={form.control}
+                        formName="Environment"
+                        label="Environment"
+                        content={EnvironmentData}
+                        placeholder="Select Environment"
+                        valueKey="id"
+                        displayKey="name"
+                        disabled={false}
+                        className=""
+                      />
+                    </div>
+                    <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
+                      Gateway Info
+                    </h1>
+                    <div className="grid grid-cols-1 gap-3">
+                      <div className="flex content-center gap-3">
+                        <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                          Username
+                        </p>
+                        <div className="w-1/2">
+                          <InputForm
+                            control={form.control}
+                            formName="GatewayUsername"
+                            label=""
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                      <div className="flex content-center gap-3">
+                        <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                          Password
+                        </p>
+                        <div className="w-1/2">
+                          <InputForm
+                            control={form.control}
+                            formName="GatewayPassword"
+                            label=""
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                      <div className="flex content-center gap-3">
+                        <p className="mt-2 w-1/6 content-center text-nowrap text-end">
+                          Key
+                        </p>
+                        <div className="w-1/2">
+                          <InputForm
+                            control={form.control}
+                            formName="GatewayKey"
+                            label=""
+                            placeholder=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Quick Updates Div */}
+                  <div className="col-span-1 grid rounded-md border p-2 max-lg:flex-wrap">
+                    <h1 className="flex justify-center text-xl font-semibold text-sky-500">
+                      Quick Updates
+                    </h1>
+                    <Button className="mt-14 w-11/12 justify-self-center bg-blue-500">
+                      Update Equipment Status
+                    </Button>
+                    <Button className="mt-20 w-11/12 justify-self-center bg-blue-500">
+                      Migrate to HOLD Status
+                    </Button>
+                    <Button className="w-11/12 justify-self-center bg-blue-500">
+                      Migrate to ACTIVE Status
+                    </Button>
+                    <Button className="mt-20 w-11/12 justify-self-center bg-blue-500">
+                      Update Billing Information
+                    </Button>
+                    <Button className="w-11/12 justify-self-center bg-blue-500">
+                      Setup Support Agreement
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              {/* Parent of bottom right section */}
+              <div className="mt-3 grid h-1/3 grid-cols-3 gap-3">
+                {/* Support & Services Div */}
+                <div className="col-span-1 grid rounded-md border p-2">
+                  <h1 className="flex justify-center text-xl font-semibold text-sky-500">
+                    Support & Services
+                  </h1>
                   <SelectForm
                     control={form.control}
-                    formName="POSsystem"
-                    label="POS System/Version"
+                    formName="SupportProvider"
+                    label="Support Provider"
                     content={POSsystemData}
-                    placeholder="Select POS System/Version"
+                    placeholder="Select Support Provider"
                     valueKey="id"
                     displayKey="name"
                     disabled={false}
                     className=""
                   />
-                </div>
-                <InputForm
-                  control={form.control}
-                  formName="NumberStations"
-                  label="# Stations"
-                  placeholder=""
-                />
-              </div>
-              <div className="flex gap-3">
-                <div className="flex w-3/4 items-center justify-start gap-10">
-                  <div className="flex">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="MiPointClover"
-                      label=""
-                      placeholder=""
-                      className=""
-                    />
-                    <span className="mt-1.5">MiPoint Clover</span>
-                  </div>
-                  <div className="flex">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="HasTSLlicense"
-                      label=""
-                      placeholder=""
-                      className=""
-                    />
-                    <span className="mt-1.5">Has TSL License</span>
-                  </div>
-                </div>
-                <div className="flex content-center gap-3">
-                  <p className="mt-2 w-2/6 content-center text-nowrap text-end font-semibold">
-                    Qty
-                  </p>
-                  <div className="w-4/6">
-                    <InputForm
-                      control={form.control}
-                      formName="MiPointCloverQty"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div className="flex w-3/4 items-center justify-start gap-6">
-                  <div className="flex">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="MiPointIngencio"
-                      label=""
-                      placeholder=""
-                      className=""
-                    />
-                    <span className="mt-1.5">MiPoint Ingencio</span>
-                  </div>
-                  <div className="flex">
-                    <CheckboxForm
-                      control={form.control}
-                      formName="HasPMSlicense"
-                      label=""
-                      placeholder=""
-                      className=""
-                    />
-                    <span className="mt-1.5">Has PMS License</span>
-                  </div>
-                </div>
-                <div className="flex content-center gap-3">
-                  <p className="mt-2 w-2/6 content-center text-nowrap text-end font-semibold">
-                    Qty
-                  </p>
-                  <div className="w-4/6">
-                    <InputForm
-                      control={form.control}
-                      formName="MiPointCloverQty"
-                      label=""
-                      placeholder=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-end justify-between gap-3">
-                <div className="flex">
-                  <CheckboxForm
+                  <SelectForm
                     control={form.control}
-                    formName="RemoteServiceAccess"
-                    label=""
-                    placeholder=""
+                    formName="SupportProgram"
+                    label="Support Program"
+                    content={POSsystemData}
+                    placeholder="Select Support Program"
+                    valueKey="id"
+                    displayKey="name"
+                    disabled={false}
                     className=""
                   />
-                  <span className="mt-1.5">
-                    Remote Service Access Available
-                  </span>
+                  <DatePickerForm
+                    control={form.control}
+                    formName="EffectiveDate"
+                    label="Effective Date"
+                    placeholder="Select Effective Date"
+                  />
                 </div>
-                <SelectForm
-                  control={form.control}
-                  formName="Environment"
-                  label="Environment"
-                  content={EnvironmentData}
-                  placeholder="Select Environment"
-                  valueKey="id"
-                  displayKey="name"
-                  disabled={false}
-                  className=""
-                />
+                {/* Current Billing Details Div */}
+                <div className="col-span-2 rounded-md border p-2">
+                  <h1 className="flex justify-center text-xl font-semibold text-sky-500">
+                    Current Billing Details
+                  </h1>
+                  <div className="mt-6 flex content-center gap-4">
+                    <p className="mt-2 w-1/3 content-center text-nowrap text-end"></p>
+                    <div className="flex w-2/3 lg:gap-8 xl:gap-16">
+                      <label># Devices</label>
+                      <label>$/Each</label>
+                      <label>Total Cost</label>
+                    </div>
+                  </div>
+                  <div className="flex content-center gap-3">
+                    <p className="mt-2 w-1/3 content-center text-nowrap text-end">
+                      Installation Charges
+                    </p>
+                    <div className="flex w-2/3 gap-3">
+                      <InputForm
+                        control={form.control}
+                        formName="InstallationDevices"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="InstallationDevicesPrice"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="InstallationDevicesTotal"
+                        label=""
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                  <div className="flex content-center gap-3">
+                    <p className="mt-2 w-1/3 content-center text-nowrap text-end">
+                      Monthly Recurring
+                    </p>
+                    <div className="flex w-2/3 gap-3">
+                      <InputForm
+                        control={form.control}
+                        formName="MonthlyRecurringDevices"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="MonthlyRecurringDevicesPrice"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="MonthlyRecurringDevicesTotal"
+                        label=""
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                  <div className="flex content-center gap-3">
+                    <p className="mt-2 w-1/3 content-center text-nowrap text-end">
+                      Support Recurring
+                    </p>
+                    <div className="flex w-2/3 gap-3">
+                      <InputForm
+                        control={form.control}
+                        formName="SupportRecurringDevices"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="SupportRecurringDevicesPrice"
+                        label=""
+                        placeholder=""
+                      />
+                      <InputForm
+                        control={form.control}
+                        formName="SupportRecurringDevicesTotal"
+                        label=""
+                        placeholder=""
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h1 className="mt-4 border-b border-gray-600 text-xl font-semibold">
-                Gateway Info
-              </h1>
-              <div className="grid grid-cols-2 gap-3">
-                <InputForm
-                  control={form.control}
-                  formName="GatewayUsername"
-                  label="Username"
-                  placeholder=""
-                />
-                <InputForm
-                  control={form.control}
-                  formName="GatewayPassword"
-                  label="Password"
-                  placeholder=""
-                />
-                <InputForm
-                  control={form.control}
-                  formName="GatewayKey"
-                  label="Key"
-                  placeholder=""
-                />
-              </div>
-            </div>
-            <div className="col-span-2 grid h-4/5 auto-rows-min gap-3 rounded-md border max-2xl:grid-cols-1">
-              <h1 className="flex justify-center text-xl font-semibold text-sky-500">
-                Quick Updates
-              </h1>
-              <Button className="w-11/12 justify-self-center bg-blue-500">
-                Update Equipment Status
-              </Button>
-              <h1></h1>
-              <Button className="w-11/12 justify-self-center bg-blue-500">
-                Migrate to HOLD Status
-              </Button>
-              <Button className="w-11/12 justify-self-center bg-blue-500">
-                Migrate to ACTIVE Status
-              </Button>
-              <h1></h1>
-              <Button className="w-11/12 justify-self-center bg-blue-500">
-                Update Billing Information
-              </Button>
-              <Button className="w-11/12 justify-self-center bg-blue-500">
-                Setup Support Agreement
-              </Button>
             </div>
           </div>
-        </form>
-      </Form>
-    </div>
+        </div>
+      </form>
+    </Form>
   );
 };
 

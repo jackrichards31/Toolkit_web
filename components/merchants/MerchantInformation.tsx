@@ -66,6 +66,7 @@ const MerchantInformation = () => {
   const onSubmit = (value: z.infer<typeof MerchantInfoSchema>) => {
     console.log(value);
   };
+  
   return (
     <>
       <div className="size-full grow p-4">
@@ -380,3 +381,5 @@ const MerchantInformation = () => {
 };
 
 export default MerchantInformation;
+
+

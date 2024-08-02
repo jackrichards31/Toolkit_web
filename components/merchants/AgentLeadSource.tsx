@@ -7,7 +7,12 @@ import { useForm } from "react-hook-form";
 import { Form } from "../ui/form";
 import { Button } from "@/components/ui/button";
 import { agentData, agentLeadSourceDataTable } from "@/constants";
-import ExtremeDataTable from "@/components/Shared/DataTable/DataTable";
+import DataTable from "@/components/Shared/DataTable/DataTable";
+import {
+  ColumnConfig,
+  createColumns,
+} from "@/components/Shared/DataTable/Columns";
+import { DataTypes } from "@/types";
 
 const AgentLeadSource = () => {
   const form = useForm<z.infer<typeof MerchantAgentLeadSourceSchema>>({
@@ -41,6 +46,18 @@ const AgentLeadSource = () => {
     console.log(value);
   };
 
+  const columnsConfig: ColumnConfig<DataTypes>[] = [
+    { accessorKey: "SalesRep", header: "SalesRep" },
+    { accessorKey: "Split%", header: "Split%" },
+    { accessorKey: "Master", header: "Master" },
+    { accessorKey: "A/M", header: "A/M" },
+    { accessorKey: "F/M", header: "F/M" },
+    { accessorKey: "A/A", header: "A/A" },
+    { accessorKey: "R", header: "R" },
+    { accessorKey: "F/SM", header: "F/SM" },
+  ];
+
+  const columns = createColumns(columnsConfig);
   return (
     <div className="size-full grow p-4">
       <Form {...form}>
@@ -170,20 +187,12 @@ const AgentLeadSource = () => {
                 <Button className="bg-red-500">Delete Agent</Button>
                 <Button className="bg-gray-500">Set Master</Button>
               </div>
-              <div className="w-full rounded-md bg-zinc-800 p-2">
-                <ExtremeDataTable
-                  pageSize={10}
+              <div className="w-full rounded-md p-2">
+              <DataTable
+                  columns={columns}
                   data={agentLeadSourceDataTable}
-                  columnsToDisplay={[
-                    "SalesRep",
-                    "Split %",
-                    "Master",
-                    "A/M",
-                    "F/M",
-                    "A/A",
-                    "R",
-                    "F/SM",
-                  ]}
+                  enableColumnFilter={true}
+                  filteredBy="username"
                 />
               </div>
               <div className="grid grid-cols-4">

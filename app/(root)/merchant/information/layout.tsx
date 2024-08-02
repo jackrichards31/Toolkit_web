@@ -2,18 +2,20 @@
 
 import React from "react";
 import MerchantsInformationTab from "@/components/merchants/MerchantsInformationTab";
-import MerchantSummary from "@/components/merchants/MerchantInfoSummary";
+import MerchantInfoSummary from "@/components/merchants/MerchantInfoSummary";
 
 
 const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <>  <MerchantSummary />
-        <div className="flex gap-3">
-            <MerchantsInformationTab/>
-            <div className="h-auto w-auto grow p-5 mb-0 border border-solid border-gray-600 rounded-lg">
-              {children}
-            </div>
+    <>
+      {" "}
+      <MerchantInfoSummary />
+      <div className="flex gap-3">
+        <MerchantsInformationTab />
+        <div className="mb-0 h-auto w-auto grow rounded-lg border border-solid border-gray-400 p-5 shadow-md">
+          {children}
         </div>
+      </div>
     </>
   );
 };

@@ -2,9 +2,9 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter as Sans } from "next/font/google";
 import "./globals.css";
-import "devextreme/dist/css/dx.fluent.blue.dark.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 import { DevLicense } from "@/components/DevLicense";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Sans({
   subsets: ["latin"],
@@ -36,6 +36,7 @@ export default function RootLayout({
         >
           <DevLicense />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
